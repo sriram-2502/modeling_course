@@ -1,0 +1,32 @@
+- number: '01'
+  review: [{"url": "/lectures/03-first-order-systems/#interactive-lab", "label": "First-Order Systems", "lesson": "03"}]
+  title: "Mathematics Review and First-Order Systems"
+  pdf: /materials/assignments/assignment-01.pdf
+- number: '02'
+  review: [{"url": "/lectures/04-second-order-systems/#frequency-response", "label": "Second-Order Systems", "lesson": "04"}, {"url": "/lectures/05-laplace-transforms/#solve-and-invert", "label": "Laplace Transforms", "lesson": "05"}]
+  title: "Second-Order Systems and Laplace Transform Methods"
+  pdf: /materials/assignments/assignment-02.pdf
+- number: '03'
+  review: [{"url": "/lectures/08-exam-1-review/#practice", "label": "Exam 1 Review", "lesson": "08"}]
+  title: "Practice Questions for Exam 1"
+  pdf: /materials/assignments/assignment-03.pdf
+- number: '04'
+  review: [{"url": "/lectures/09-rigid-body-dynamics/#interactive-lab", "label": "Rigid-Body Dynamics", "lesson": "09"}, {"url": "/lectures/10-drive-kinematics/#gear-speed-torque-and-inertia", "label": "Drive Kinematics", "lesson": "10"}]
+  title: "Mechanical Modeling"
+  pdf: /materials/assignments/assignment-04.pdf
+- number: '05'
+  review: [{"url": "/lectures/13-transfer-functions-and-diagrams/#interactive-lab", "label": "Transfer Functions and Block Diagrams", "lesson": "13"}, {"url": "/lectures/14-coupled-systems/#a-passive-quarter-car", "label": "Coupled Systems and the Quarter-Car Model", "lesson": "14"}]
+  title: "Mechanical Systems, State Space, and Block Diagrams"
+  pdf: /materials/assignments/assignment-05.pdf
+- number: '06'
+  review: [{"url": "/lectures/16-exam-2-review/#practice", "label": "Exam 2 Review", "lesson": "16"}]
+  title: "Practice Questions for Exam 2"
+  pdf: /materials/assignments/assignment-06.pdf
+- number: '07'
+  review: [{"url": "/lectures/17-electrical-circuits/#a-series-rlc-circuit", "label": "Electrical Circuits", "lesson": "17"}, {"url": "/lectures/19-dc-motors/#dc-motor", "label": "Galvanometers and DC Motors", "lesson": "19"}]
+  title: "Electrical and Electromechanical Systems"
+  pdf: /materials/assignments/assignment-07.pdf
+- number: '08'
+  review: [{"url": "/lectures/20-fluid-systems/#filling-and-draining-demo", "label": "Fluid Systems and Mass Conservation", "lesson": "20"}, {"url": "/lectures/21-fluid-analogies/#coupled-actuator-model", "label": "Fluid Systems and Electrical Analogies", "lesson": "21"}]
+  title: "Fluid Systems"
+  pdf: /materials/assignments/assignment-08.pdf

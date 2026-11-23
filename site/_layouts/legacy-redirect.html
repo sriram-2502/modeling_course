@@ -1,0 +1,15 @@
+{% assign destination = page.destination | relative_url %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ME 3050</title>
+  <link rel="canonical" href="{{ destination | escape }}">
+  <script>window.location.replace({{ destination | jsonify }} + window.location.search + window.location.hash);</script>
+  <meta http-equiv="refresh" content="0;url={{ destination | escape }}">
+</head>
+<body>
+  <p><a href="{{ destination | escape }}">Continue to ME 3050</a></p>
+</body>
+</html>

@@ -1,0 +1,7 @@
+- {title: Course Overview, path: /, key: overview, icon: calendar}
+- {title: Syllabus, path: /syllabus/, key: syllabus, icon: document}
+- {title: Lectures, path: /lectures/, key: lectures, icon: book}
+- {title: Exam study guide, path: /exams/, key: exams, icon: document}
+- {title: Assignments, path: /assignments/, key: assignments, icon: clipboard}
+- {title: Projects, path: /projects/, key: projects, icon: folder}
+

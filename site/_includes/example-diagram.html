@@ -1,0 +1,5 @@
+{% assign example = site.data.example_diagrams[include.id] %}
+<figure class="example-diagram">
+  <img src="{{ '/assets/images/examples/' | append: include.id | append: '.svg' | relative_url }}" alt="{{ example.alt | escape }}" loading="lazy">
+  <figcaption>{{ example.caption }}</figcaption>
+</figure>

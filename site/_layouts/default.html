@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.summary | default: site.description | escape }}">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="{{ '/assets/css/course.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <script src="{{ '/assets/js/course.js' | relative_url }}" defer></script>
+  {% if page.math or page.lab or page.activity %}
+  <link rel="stylesheet" href="{{ '/assets/vendor/katex/katex.min.css' | relative_url }}">
+  <script src="{{ '/assets/vendor/katex/katex.min.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/vendor/katex/auto-render.min.js' | relative_url }}" defer></script>
+  <script src="{{ '/assets/js/course-math.js' | relative_url }}" defer></script>
+  {% endif %}
+  {% if page.activity or page.lab %}
+    {% assign activity_revision = site.time | date: '%s' %}
+    {% assign course_scripts = site.static_files | where_exp: 'asset', "asset.path contains '/assets/js/'" | where: 'extname', '.js' %}
+    <script type="importmap">
+    { "imports": {
+      {% for asset in course_scripts %}"{{ asset.path | relative_url }}": "{{ asset.path | relative_url }}?v={{ activity_revision }}"{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    } }
+    </script>
+  {% endif %}
+  {% if page.lab %}<script type="module" src="{{ '/assets/js/labs.js' | relative_url }}?v={{ activity_revision }}"></script>{% endif %}
+  {% if page.activity or page.lab %}<link rel="stylesheet" href="{{ '/assets/css/activities.css' | relative_url }}">{% endif %}
+  {% if page.activity %}
+  <script type="module" src="{{ '/assets/js/activities.js' | relative_url }}?v={{ activity_revision }}"></script>
+  {% endif %}
+</head>
+<body data-course-root="{{ '/' | relative_url }}">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="{{ '/' | relative_url }}">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>{{ site.title }}</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        {% for item in site.data.navigation %}
+          <a href="{{ item.path | relative_url }}"{% if page.section == item.key %} class="active"{% if page.url == item.path %} aria-current="page"{% endif %}{% endif %}><span class="nav-icon {{ item.icon }}" aria-hidden="true"></span>{{ item.title }}</a>
+        {% endfor %}
+      </nav>
+      <div class="sidebar-footer">
+        <span>{{ site.course_name }}</span>
+        <a href="{{ '/#instructor-bio' | relative_url }}">{{ site.instructor }}</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>{{ site.course_name }}</p>
+        <form class="course-search" action="{{ '/search/' | relative_url }}" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        {{ content }}
+      </main>
+      <footer class="site-footer"><span>{{ site.title }}</span><a href="{{ '/syllabus/#instructor' | relative_url }}">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

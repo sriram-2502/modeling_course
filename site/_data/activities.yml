@@ -1,0 +1,373 @@
+pendulum:
+  title: Pendulum and phase portrait
+  predict: If you release the pendulum near the upright position, which way will it move?
+  task: Try the starting cases or tap a point in the phase portrait. Play the motion, then pause and use the time slider to compare the views at the same instant.
+  prompt: Where do trajectories spiral inward? How does the small-angle prediction change as the release point moves away from the hanging position?
+  choices:
+    - key: preset
+      label: Starting case
+      options: [{key: gentle, label: Gentle release}, {key: large, label: Large release}, {key: upright, label: Near upright}, {key: custom, label: Custom}]
+    - key: angle
+      label: Initial angle (rad)
+      number: {min: -3.14, max: 3.14, step: 0.01, value: 0.45}
+    - key: velocity
+      label: Initial ang. vel. (rad/s)
+      number: {min: -8, max: 8, step: 0.01, value: 0}
+    - key: overlay
+      label: Small-angle comparison
+      options: [{key: 'off', label: Hide}, {key: 'on', label: Show}]
+  views:
+    - {key: motion, title: Pendulum motion, description: Solid pendulum is nonlinear. Dashed pendulum is the small-angle comparison when enabled.}
+    - {key: phase, title: Phase portrait, description: Tap to choose an initial state. The filled center marks the hanging equilibrium and the two open circles mark the upright equilibrium.}
+    - {key: time, title: Angle over time, description: Solid curve is nonlinear. Dashed curve is the small-angle comparison when enabled.}
+  reference: With a small release from rest, the pendulum oscillates and its path spirals toward the hanging equilibrium. Near the upright equilibrium, gravity drives it away. The linear comparison is taken about the hanging equilibrium.
+  model:
+    tex: '\ddot{\theta}+0.45\dot{\theta}+9.81\sin\theta=0'
+    text: A 1 m pendulum with light damping follows θ″ + 0.45θ′ + 9.81 sin θ = 0.
+
+damper-cart:
+  title: Watch the two forces come into balance
+  predict: What happens to the net force as the cart speeds up?
+  task: Play the solved response with the initial velocity of 1 m/s. Compare the force arrows and readouts as the cart approaches 2 m/s.
+  prompt: Explain how a cart with nearly zero net force can keep moving.
+  views:
+    - {key: physical, title: Cart motion and horizontal forces, description: The orange applied-force arrow stays fixed. The green damping force grows as speed rises.}
+  text_reference: true
+  reference: At release, the 6 N applied force opposes a 3 N damper force, leaving 3 N net. At steady speed, both force magnitudes approach 6 N.
+
+viscous-damper:
+  title: Follow the force and energy loss in a damper
+  stacked: true
+  predict: If you double the damping coefficient, what happens to the speed of a coasting cart?
+  task: Play the coast case and change the damping coefficient. Then apply the 2 N step and compare the steady speed. The green arrow is the force the damper exerts on the cart.
+  prompt: In the driven case, how can the cart move at constant speed while the damper still dissipates energy?
+  choices:
+    - key: input
+      label: Cart input
+      options:
+        - {key: coast, label: 'Coast from 1 m/s'}
+        - {key: push, label: 'Apply 2 N from rest'}
+    - key: damping
+      label: Damping coefficient
+      options:
+        - {key: '1', label: '1 N·s/m'}
+        - {key: '2', label: '2 N·s/m'}
+        - {key: '4', label: '4 N·s/m'}
+  views:
+    - {key: speed, title: Cart velocity, description: The purple curve follows velocity on the positive axis.}
+    - {key: power, title: Power dissipated, description: The green curve shows the rate at which the damper removes mechanical energy.}
+    - {key: physical, title: Cart and viscous damper, description: The green force arrow opposes the cart’s motion. The applied push, when selected, points right.}
+  text_reference: true
+  reference: At 2 N·s/m, a 2 N push gives a steady speed of 1 m/s. At that speed the damper dissipates 2 W and the applied force supplies 2 W.
+  model:
+    tex: 'm\dot v=f-cv,\qquad F_d=-cv,\qquad P_{\mathrm{diss}}=cv^2'
+    text: The damper force opposes motion. Dissipated power is positive and equals the damping coefficient times speed squared.
+
+pinned-rod:
+  title: Watch gravity turn the pinned rod
+  predict: Where in the swing will the magnitude of angular acceleration be greatest?
+  task: Release the 1.2 m uniform rod from rest. Scrub through its first crossing and watch the weight’s moment arm change sign.
+  prompt: Explain how the angular acceleration can be zero at the instant the rod swings fastest.
+  choices:
+    - key: release
+      label: Release angle
+      options:
+        - {key: '30', label: '30°'}
+        - {key: '10', label: '10°'}
+        - {key: '60', label: '60°'}
+  views:
+    - {key: physical, title: Motion and moment arm, description: The orange arrow is weight at the center of mass. The orange horizontal line spans the weight’s signed moment arm.}
+  text_reference: true
+  reference: At 30° the moment arm is 0.30 m and the angular acceleration is approximately −6.13 rad/s². At the downward crossing the moment arm and acceleration are zero, and the rod has its highest speed.
+  model:
+    tex: '\ddot{\theta}=-\dfrac{3g}{2L}\sin\theta'
+    text: Angular acceleration is −3g sin θ divided by twice the rod length. The model neglects pivot friction.
+
+gears:
+  title: Follow the motion of meshing gears
+  predict: Which driven gear will turn faster, the 12-tooth gear or the 36-tooth gear?
+  task: Hold the 24-tooth driver at 2 rad/s. Pick a driven gear, then play or step through the rotation. The orange point marks where the pitch circles touch.
+  prompt: How can the two angular velocities be different while the pitch circles have the same tangential speed at contact?
+  choices:
+    - key: teeth
+      label: Driven gear
+      options:
+        - {key: '12', label: '12 teeth'}
+        - {key: '24', label: '24 teeth'}
+        - {key: '36', label: '36 teeth'}
+  views:
+    - {key: physical, title: Rotating pitch circles, description: The gears rotate in opposite directions. The radial marks track each gear’s rotation.}
+  text_reference: true
+  reference: The 12-tooth driven gear turns at −4 rad/s when driven by the 24-tooth gear at 2 rad/s. The negative sign indicates the opposite direction.
+
+hydraulic:
+  title: Watch a piston compress and expand air
+  predict: When the piston moves right, which chamber reaches a higher pressure?
+  task: Start with sealed air at 100 kPa in both 0.10 L chambers. Scrub to either stroke end and compare pressure and piston force. Then select liquid and watch the flow through the ports.
+  prompt: At a stroke end, why can the sealed air exert a force even though the piston speed is zero?
+  choices:
+    - key: medium
+      label: Chamber model
+      options:
+        - {key: air, label: 'Air · sealed chambers'}
+        - {key: liquid, label: 'Liquid · open ports'}
+    - key: frequency
+      label: Piston motion frequency
+      options:
+        - {key: '0.5', label: '0.5 Hz'}
+        - {key: '1', label: '1 Hz'}
+        - {key: '0.25', label: '0.25 Hz'}
+  views:
+    - {key: physical, title: 'Piston, chamber volumes, and pressure', description: In air mode the particles compress and spread as the sealed volumes change. In liquid mode the arrows show flow through the ports.}
+  text_reference: true
+  reference: At the right stroke end in air mode, the left gas expands to 80.0 kPa and the right gas compresses to 133.3 kPa. The net pressure force is 53.3 N to the left.
+  model:
+    tex: 'pV=p_0V_0\ \text{(sealed air)},\qquad q_1=A_p\dot{x},\quad q_2=-A_p\dot{x}\ \text{(liquid)}'
+    text: Sealed isothermal air obeys pV = p₀V₀. With incompressible liquid and equal effective areas, the two chamber inflows are equal and opposite.
+
+signal-flow:
+  title: From integrators to a transfer function
+  stacked: true
+  figure: oscillator
+  givens: The mass starts at rest at equilibrium. Take displacement and applied force as positive to the right.
+  predict: If we replace the full block diagram with a single transfer function, what should happen to the displacement curve?
+  task: Play or scrub the force input. Trace the signals through the two integrators, combine the blocks, then compare both displacement traces at the same time.
+  prompt: Which internal signals does the full diagram expose? Where do the spring and damper terms end up in the reduced denominator?
+  choices:
+    - key: input
+      label: Applied force
+      options: [{key: step, label: 1 N step}, {key: pulse, label: 1 N pulse (0–2 s)}]
+  views:
+    - {key: motion, title: Mass–spring–damper motion, description: The mass follows the same force and timeline as the block diagram.}
+    - {key: force, title: Applied force, description: The same input is supplied to every representation.}
+    - {key: signal, title: Response through the diagram, description: Trace individual signals in the full diagram. In the reduction stages, the solid line is the integrator model and the dashed line is the reduced transfer function.}
+  reference: The 1 N step starts with 1 m/s² of acceleration. Both feedback forces initially vanish. The displacement curves from the integrators and the reduced transfer function agree throughout the run.
+  model:
+    tex: 'm\ddot{x}=F-c\dot{x}-kx,\qquad m=1\,\mathrm{kg},\quad c=2.4\,\mathrm{N\,s/m},\quad k=16\,\mathrm{N/m}'
+    text: Mass is 1 kg, damping is 2.4 N·s/m, and the spring stiffness is 16 N/m. The net force is the applied force plus the two feedback forces.
+  question:
+    prompt: When displacement is positive, what sign does the spring force have in the sum?
+    options: [Positive, Negative]
+    correct: 1
+    hints: ["Trace the arrow on a cart displaced to the right. Which way would the spring pull it?", ""]
+    feedback: The spring pulls the mass back toward equilibrium, so its contribution to the force sum is negative.
+
+convolution:
+  title: See the overlap
+  stacked: true
+  figure: oscillator
+  givens: The mass starts at rest at equilibrium. A positive force acts to the right, and displacement is measured from equilibrium.
+  predict: Will the mass stop moving when the applied force ends?
+  task: Scrub observation time t. The first three plots scan past time τ on the same scale. Their signed overlap gives the displacement marked at t in the last plot.
+  prompt: Compare the response at 2 s and 3 s. Why can the mass keep moving after the force goes back to zero? What does negative shaded area contribute?
+  choices:
+    - key: input
+      label: Input signal
+      options: [{key: pulse, label: 1 N pulse (0–2 s)}, {key: step, label: 1 N step}, {key: narrow, label: 0.10 s pulse (1 N·s)}]
+  views:
+    - {key: motion, title: Mass–spring–damper motion, description: The cart moves to the displacement calculated from the overlap below.}
+    - {key: force, title: Applied force history, description: The cursor marks the time at which we want to calculate displacement.}
+    - {key: kernel, title: Flipped and shifted impulse response, description: Contributions from later forces are zero. The kernel can have either sign.}
+    - {key: overlap, title: Signed product to integrate, description: Orange contributes positively. Green contributes negatively. Integrate both to get the selected displacement.}
+    - {key: output, title: Mass displacement, description: The marker is the signed area at the selected time.}
+  reference: The 1 N force stays on for 2 s. After it switches off, past inputs still contribute to the displacement. The spring and damper cause the motion to oscillate and decay.
+  model:
+    tex: 'x(t)=\int_0^t F(\tau)\,h(t-\tau)\,d\tau,\qquad h(t)=\frac{e^{-1.2t}\sin(\sqrt{14.56}\,t)}{\sqrt{14.56}} \quad (t\geq0)'
+    text: Displacement is the signed area of force times the shifted impulse response. The impulse response is zero at negative times.
+
+step-impulse:
+  title: A push and a tap
+  stacked: true
+  figure: oscillator
+  givens: The mass starts at equilibrium and at rest, and positive displacement is to the right.
+  predict: What happens if you keep pushing the mass? What changes if you only tap it once?
+  task: Start with a 1 N step and watch the mass settle. Then select the ideal impulse and two short pulses. Both short pulses supply 1 N·s of impulse. Compare their motion with the ideal tap.
+  prompt: Compare displacement and velocity immediately after the two idealized inputs. Why does only the sustained push shift the final position?
+  choices:
+    - key: input
+      label: Forcing case
+      options: [{key: step, label: Step · hold 1 N}, {key: impulse, label: Ideal impulse · 1 N·s}, {key: wide, label: Short pulse · 0.25 s}, {key: narrow, label: Short pulse · 0.10 s}]
+  views:
+    - {key: motion, title: Mass motion, description: The arrow indicates an applied force or the instantaneous tap. The drawing exaggerates displacement.}
+    - {key: force, title: Force input, description: For the ideal impulse, the arrow marks 1 N·s of momentum transfer and has no finite force height.}
+    - {key: time, title: Mass displacement, description: For the two finite pulses, the dashed curve is the ideal impulse response.}
+  reference: A 1 N step moves the equilibrium to 62.5 mm. A 1 N·s ideal impulse leaves position continuous but gives the 1 kg mass an immediate 1 m/s velocity jump. Once the tap is over, damping brings the mass back to its original equilibrium.
+
+modes:
+  title: Two masses, two modes
+  predict: Which motion stretches the spring between the masses?
+  task: Play the in-phase and out-of-phase releases, then try the mixture. Pause to compare the direction of motion of each mass.
+  prompt: Which pure mode oscillates faster? Explain the difference by looking at the center spring.
+  choices:
+    - key: preset
+      label: Starting motion
+      options: [{key: in-phase, label: In-phase}, {key: out-of-phase, label: Out-of-phase}, {key: mixture, label: Mixed motion}]
+  views:
+    - {key: motion, title: Coupled mass motion, description: Purple is mass 1. Orange is mass 2. The motion is exaggerated for visibility.}
+    - {key: time, title: Mass displacements over time, description: Solid purple is mass 1. Dashed orange is mass 2.}
+  reference: For equal masses of 1 kg, outer springs of 9 N/m, and a coupling spring of 8 N/m, the in-phase frequency is 3 rad/s and the out-of-phase frequency is 5 rad/s. The mixed release combines these two modes.
+
+quarter-car:
+  title: Quarter-car over a bump
+  figure: quarter-car
+  givens: Measure displacement upward from static equilibrium. The suspension spring is 16,500 N/m and the tire spring is 185,000 N/m. Compare dampers of 950 and 2,200 N·s/m over the same 60 mm bump.
+  predict: Which damping setup will give less body acceleration? Which will limit suspension travel more?
+  task: Run the same road bump with light and firm damping. Switch the plot between body acceleration and suspension travel, then use the timeline to connect a peak to the motion.
+  prompt: What changes in the first peak and the motion after the bump? Which metric would you use to judge ride comfort?
+  choices:
+    - key: setup
+      label: Animated setup
+      options: [{key: light, label: Light damping}, {key: firm, label: Firm damping}]
+    - key: metric
+      label: Plot quantity
+      options: [{key: acceleration, label: Body acceleration}, {key: travel, label: Suspension travel}]
+  views:
+    - {key: motion, title: Body and wheel over the bump, description: The purple suspension spring and green damper act in parallel. The orange tire spring connects the wheel to the road.}
+    - {key: time, title: Compare both setups, description: Solid purple is light damping. Dashed orange is firm damping.}
+  reference: Both cases use the same 290 kg body mass, 40 kg wheel mass, spring stiffnesses, and 60 mm bump. The two curves show the effect of changing the damper from 950 to 2,200 N·s/m in this passive linear model.
+
+vehicle:
+  title: Vehicle recovery replay
+  predict: After a lateral disturbance, can the dynamic state recover while the vehicle is still off its nominal path?
+  task: Run the straight or steady-turn case. Compare the top-down path with the phase trajectory at the same instant.
+  prompt: At the final time, are the changes in lateral velocity and yaw rate close to zero? Has the vehicle rejoined the nominal path?
+  choices:
+    - key: path
+      label: Nominal maneuver
+      options: [{key: straight, label: Straight recovery}, {key: turn, label: Steady-turn recovery}]
+    - key: disturbance
+      label: Initial disturbance
+      options: [{key: small, label: Small}, {key: moderate, label: Moderate}]
+  views:
+    - {key: path, title: Top-down X–Y path, description: Solid purple is the disturbed vehicle path. Dashed green is the nominal path. Both axes use the same physical scale.}
+    - {key: phase, title: Vehicle phase portrait, description: The horizontal axis is lateral velocity relative to nominal. The vertical axis is yaw rate relative to nominal.}
+  reference: In this linear bicycle model at 18 m/s, lateral velocity and yaw rate return toward their nominal values. The X–Y path can retain an offset because position accumulates motion. The project explores how nonlinear tires can change the recovery.
+
+laplace-example:
+  title: Work through a Laplace solution
+  figure: laplace-damper
+  givens: A 1 kg mass slides on a frictionless surface. The damper coefficient is 3 N·s/m, the applied step force is 6 N to the right, and the initial velocity is 1 m/s to the right.
+  predict: Which term carries the initial value into the transformed equation?
+  task: Use the free-body diagram to write the velocity equation. Select the transform of the derivative, then reveal each step when you have tried it yourself.
+  prompt: Check that the solution has the given initial value and approaches the equilibrium implied by the original equation.
+  question:
+    prompt: If V(s) is the transform of velocity, what is the transform of its derivative?
+    options: [sV, sV − 1, sV + 1]
+    correct: 1
+    hints: ["The cart already has a nonzero initial velocity. Where does it enter the derivative rule?", "", "Check the sign of the initial value in the derivative rule."]
+    feedback: The unilateral derivative rule subtracts the initial value.
+  steps:
+    - title: Write the force balance
+      note: Positive force acts to the right and the damper opposes velocity.
+      tex: 'm\dot{v}=F-cv \quad\Longrightarrow\quad \dot{v}+3v=6,\quad v(0)=1'
+      text: Applied force minus damping force equals mass times acceleration, so v′ + 3v = 6 with v(0) = 1.
+    - title: Transform the ODE
+      note: Subtract the initial value from the derivative term and collect the terms in V.
+      tex: '(s+3)V(s)=\frac{6}{s}+1'
+      text: (s + 3)V = 6/s + 1.
+    - title: Split into simple fractions
+      note: Write the transformed response as a steady contribution and a decaying contribution.
+      tex: 'V(s)=\frac{2}{s}-\frac{1}{s+3}'
+      text: V = 2/s − 1/(s + 3).
+    - title: Invert and check
+      note: At time zero the response is 1. As time increases, it approaches 2.
+      tex: 'v(t)=2-e^{-3t}'
+      text: v(t) = 2 − exp(−3t) m/s.
+
+moment-example:
+  title: Work through a moment balance
+  figure: pinned-rod
+  givens: A uniform 2 kg rod is 1.2 m long and pinned at one end. Release it from rest at 30° from the downward vertical. Its center of mass is 0.60 m from the pin.
+  predict: Where does the weight of a uniform rod act when you take moments about its pin?
+  task: Identify the weight’s line of action and its perpendicular distance from the pin. The pin reactions pass through the pivot, so they make no moment about it. Then work through the balance.
+  prompt: How would the angular acceleration change if the rod were released on the opposite side of the vertical?
+  question:
+    prompt: What is the perpendicular lever arm of the weight?
+    options: [L, L sin θ, (L/2) sin θ]
+    correct: 2
+    hints: ["Start at the pin and locate the center of mass before projecting the moment arm.", "The center of mass is halfway down the rod.", ""]
+    feedback: The center of mass is halfway along the rod. The perpendicular distance to the weight’s line of action is the horizontal offset.
+  steps:
+    - title: Write the moment of gravity
+      note: Define positive angle away from the downward vertical in the direction of the initial displacement. Gravity acts to reduce that positive angle.
+      tex: '\sum M_O=-mg\frac{L}{2}\sin\theta'
+      text: Moment about the pin = −mg(L/2)sin θ.
+    - title: Use the inertia about the pin
+      note: The moment of inertia of the uniform rod about its pinned end is 0.96 kg·m².
+      tex: 'I_O=\frac{1}{3}mL^2=0.96\,\mathrm{kg\,m^2}'
+      text: I about the pin = mL²/3 = 0.96 kg·m².
+    - title: Find the initial acceleration
+      note: The negative sign shows that the acceleration tends to bring the rod back toward the downward vertical.
+      tex: '\ddot{\theta}(0)=-\frac{3g}{2L}\sin(30^\circ)\approx-6.13\,\mathrm{rad/s^2}'
+      text: Initial angular acceleration ≈ −6.13 rad/s².
+
+tap-sum:
+  title: Add two taps
+  stacked: true
+  predict: At 3 s, will both taps move the cart to the same side of equilibrium?
+  task: Start with the first tap. Add a second tap at 1 s, then scrub to 3 s. Read the two displacements and their sum.
+  prompt: Which contribution changes if you delay only the second tap?
+  choices:
+    - key: delay
+      label: Second unit impulse
+      options: [{key: off, label: First tap only}, {key: one, label: Second tap at 1 s}, {key: two, label: Second tap at 2 s}]
+  views:
+    - {key: time, title: Displacement due to each tap and their sum, description: Purple is the first tap. Dashed green is the second. Dotted orange is their sum.}
+  text_reference: true
+  reference: A later tap has the same response shape shifted to its arrival time. At 3 s the first tap contributes negatively and the tap at 1 s contributes positively.
+
+base-response:
+  title: Test a vibration isolator
+  stacked: true
+  predict: If the floor moves through 10 mm, can the machine move more than 10 mm?
+  task: Change the driving frequency. Compare steady floor and machine motion, then locate the selected case on the amplitude-ratio curve.
+  prompt: At twice the natural frequency, does a more heavily damped mount transmit more or less displacement? Compare that answer with the resonant case.
+  choices:
+    - key: ratio
+      label: Driving frequency divided by natural frequency
+      options: [{key: '0.5', label: '0.5 × natural frequency'}, {key: '1', label: '1 × natural frequency'}, {key: '1.4142135624', label: 'Isolation boundary (√2)'}, {key: '2', label: '2 × natural frequency'}, {key: '3', label: '3 × natural frequency'}]
+    - key: damping
+      label: Damping ratio
+      options: [{key: '0.15', label: '0.15'}, {key: '0.4', label: '0.40'}]
+  views:
+    - {key: time, title: Base and machine motion in steady operation, description: Dashed green is the floor displacement. Solid purple is the machine displacement. Both are measured from equilibrium.}
+    - {key: ratio, title: Displacement transmissibility, description: The marker shows the selected driving frequency. The dashed line marks equal base and machine amplitudes.}
+  text_reference: true
+  reference: For a 1 kg machine and a 16 N/m mount the natural frequency is 4 rad/s. At a frequency ratio of √2 the two amplitudes are equal for either damping setting.
+
+representations:
+  title: One clock for motion and state
+  stacked: true
+  predict: On which axis does the state lie when the cart reverses direction?
+  task: Step the clock. Follow the cart, the point on its displacement trace, and the same instant in the phase plane.
+  prompt: Pause near a displacement extremum. What happens to the velocity and why does the phase curve cross the horizontal axis there?
+  views:
+    - {key: motion, title: Spring–mass–damper release, description: The mass starts displaced from equilibrium. No external force acts during the release.}
+    - {key: time, title: Displacement through time, description: A marker follows the free response of the released cart.}
+    - {key: phase, title: Velocity versus displacement, description: The marker follows the damped spiral toward equilibrium.}
+  text_reference: true
+  reference: The cart starts at 1 m with zero velocity. It first turns on the opposite side at about 1.57 s and −0.208 m. Both position and velocity decay toward zero.
+sliding-rod:
+  title: Drive the rod or use it as a generator
+  predict: Send current upward with the field out of the page. Which way will the rod move? Which end will become positive once it moves?
+  task: Play the current-driven trial from rest. Reverse the field and replay it. Then choose a hand-driven trial to replace the current source with a voltmeter. Try a field parallel to the rod and compare the readings.
+  choices:
+    - key: trial
+      label: What drives the rod?
+      options:
+        - {key: up, label: 'Current source · 2 A up'}
+        - {key: down, label: 'Current source · 2 A down'}
+        - {key: right, label: 'By hand · 1 m/s right'}
+        - {key: left, label: 'By hand · 1 m/s left'}
+        - {key: rest, label: 'By hand · hold still'}
+    - key: field
+      label: Magnetic field (0.50 T)
+      options:
+        - {key: out, label: Out of the page}
+        - {key: into, label: Into the page}
+        - {key: parallel, label: Upward along the rod}
+  views:
+    - {key: physical, title: Sliding conductor on rails, description: Blue dots follow conventional current. The orange F arrow shows magnetic force and the blue v arrow shows velocity. Signs beside the rod identify the higher and lower potentials.}
+  prompt: If you reverse the field while keeping the imposed velocity to the right, what happens to the meter polarity? Why can it read a voltage with zero current?
+  reference: The ideal rod is 0.20 m long, has mass 0.25 kg, and slides without friction on rails of negligible resistance. With 2 A upward and the field out of the page, the rod starts from rest under a 0.20 N rightward force. At 1 s it moves right at 0.80 m/s and the lower rail is 80 mV above the upper rail.
+

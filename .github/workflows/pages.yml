@@ -1,0 +1,52 @@
+name: Build and deploy course website
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['site/**', 'Gemfile*', '.github/workflows/pages.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build the public site
+        run: bundle exec jekyll build --source site --destination _site --baseurl "$PAGES_BASE_PATH" --strict_front_matter
+        env:
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

@@ -1,0 +1,99 @@
+{% assign demo = site.data.activities[include.id] %}
+{% assign activity_anchor = include.anchor | default: 'interactive-lab' %}
+{% assign activity_title = include.anchor | default: 'activity' | append: '-title' %}
+<section class="lab activity{% if demo.steps %} worked-example{% endif %}" id="{{ activity_anchor }}" aria-labelledby="{{ activity_title }}" data-activity="{{ include.id }}" data-search-title="{{ demo.title | escape }}">
+  <h3 class="lab-title" id="{{ activity_title }}">{{ demo.title }}</h3>
+  {% if demo.figure %}
+    {% assign diagram = site.data.activity_figures[demo.figure] %}
+    <figure class="activity-setup">
+      {% assign diagram_path = '/assets/images/activities/diagrams/' | append: demo.figure %}
+      <div class="activity-setup-views">
+        <img src="{{ diagram_path | append: '-setup.png' | relative_url }}" alt="{{ diagram.setup | escape }}" width="680" height="414" loading="lazy">
+        <img src="{{ diagram_path | append: '-fbd.png' | relative_url }}" alt="{{ diagram.fbd | escape }}" width="680" height="414" loading="lazy">
+      </div>
+      <figcaption>{{ diagram.caption }}</figcaption>
+      {% if diagram.tex %}
+        <div class="lab-equation math-expression" data-tex="{{ diagram.tex | escape }}" data-display>{{ diagram.text | escape }}</div>
+      {% endif %}
+    </figure>
+    <p><strong>Given.</strong> {{ demo.givens }}</p>
+  {% endif %}
+  <p><strong>Predict.</strong> {{ demo.predict }}</p>
+  <p><strong>Try.</strong> {{ demo.task }}</p>
+
+  {% if demo.views %}
+  <div class="activity-live" data-activity-live hidden>
+    <form class="activity-options" aria-label="Simulation settings"{% unless demo.choices %} hidden{% endunless %}>
+      {% for control in demo.choices %}
+      <label>
+        <span>{{ control.label }}</span>
+        {% if control.number %}
+          <input name="{{ control.key }}" type="number" min="{{ control.number.min }}" max="{{ control.number.max }}" step="{{ control.number.step }}" value="{{ control.number.value }}">
+        {% else %}
+          <select name="{{ control.key }}">
+            {% for option in control.options %}
+              <option value="{{ option.key }}">{{ option.label }}</option>
+            {% endfor %}
+          </select>
+        {% endif %}
+      </label>
+      {% endfor %}
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play>Play</button>
+      <button type="button" class="activity-button" data-step aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity>Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time>
+        <span class="time-value" aria-hidden="true" data-time-value>0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      {% if include.id == 'signal-flow' %}
+      {% include activity-signal-flow.html %}
+      {% endif %}
+      <div class="activity-views{% if demo.stacked %} activity-views-stacked{% endif %}">
+        {% for view in demo.views %}
+        <figure class="activity-view" data-view="{{ view.key }}">
+          <figcaption>{{ view.title }}</figcaption>
+          <canvas role="img" aria-label="{{ view.description | escape }}"></canvas>
+          <p class="activity-view-key">{{ view.description }}</p>
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout></dl>
+  </div>
+  {% endif %}
+
+  {% if demo.question %}
+    {% include activity-quiz.html question=demo.question %}
+  {% endif %}
+  {% if demo.steps %}
+    <div class="activity-steps">
+      {% for step in demo.steps %}
+      <details>
+        <summary>Step {{ forloop.index }} · {{ step.title }}</summary>
+        <p>{{ step.note }}</p>
+        <div class="lab-equation math-expression" data-tex="{{ step.tex | escape }}" data-display>{{ step.text | escape }}</div>
+      </details>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <p><strong>Explain.</strong> {{ demo.prompt }}</p>
+  {% if demo.views %}
+    <details class="activity-reference" data-activity-reference open>
+      <summary>Reference case</summary>
+      {% unless demo.text_reference %}
+      <img src="{{ '/assets/images/activities/' | append: include.id | append: '.png' | relative_url }}" alt="Snapshot of {{ demo.title | escape }}. The reference case is described below." loading="lazy">
+      {% endunless %}
+      <p>{{ demo.reference }}</p>
+      {% if demo.model %}
+      <div class="lab-equation math-expression" data-tex="{{ demo.model.tex | escape }}" data-display>{{ demo.model.text | escape }}</div>
+      {% endif %}
+    </details>
+  {% endif %}
+</section>

@@ -1,0 +1,9 @@
+{% assign skill = include.skill %}
+<section class="study-check" id="skill-check" data-skill="{{ skill.id }}" data-feedback="{{ skill.feedback | escape }}">
+<h2 id="check-your-prediction">Skill check · {{ skill.name }}</h2>
+<form><fieldset><legend>{{ skill.question }}</legend>
+{% for option in skill.options %}<label><input required type="radio" name="choice" value="{{ forloop.index0 }}" data-correct="{% if forloop.index0 == skill.answer %}yes{% endif %}" data-hint="{{ skill.hints[forloop.index0] | escape }}"> {{ option }}</label>{% endfor %}
+</fieldset><button type="submit" class="material-link" hidden>Check prediction</button><p role="status"></p></form>
+<details><summary>Worked answer</summary><p>{{ skill.feedback }}</p></details>
+{% if skill.practice %}<p><a href="{{ '/assignments/' | relative_url }}#assignment-{{ skill.practice }}">Try Assignment {{ skill.practice | plus: 0 }}</a></p>{% else %}<p><a href="{{ '/projects/05-robot-arm/' | relative_url }}">Apply feedback to robot-arm tracking</a></p>{% endif %}
+</section>

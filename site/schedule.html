@@ -1,0 +1,142 @@
+---
+title: Course Overview
+section: overview
+permalink: /
+---
+<section class="course-hero" aria-labelledby="course-title">
+  <div class="hero-copy">
+    <p class="eyebrow">ME 3050 · 3 credits</p>
+    <h1 id="course-title">Modeling and Analysis<br class="hero-break"> of Dynamic Systems</h1>
+    <p>Model physical systems, predict their response, and test what your models can explain.</p>
+  </div>
+  <img class="hero-image" src="{{ '/assets/images/course-image.jpg' | relative_url }}" alt="A humanoid robot raises one arm behind two quadruped robots in the lab" width="1718" height="2117" fetchpriority="high">
+</section>
+
+<div class="course-overview" id="course-overview">
+  <section aria-labelledby="course-description-title">
+    <h2 id="course-description-title">Course Description</h2>
+    <p>This course presents techniques for developing and analyzing models of mechanical, electrical, electromechanical, fluid and thermal systems. Transient, steady-state and frequency response are determined using analytical and numerical methods. Covers tools for stability analysis and state-space representation. Covers linear free- and forced-vibrations in single- and multi-degree-of-freedom systems with lumped-parameters representation, methods of vibration absorption and isolations.</p>
+  </section>
+  <section aria-labelledby="course-objectives-title">
+    <h2 id="course-objectives-title">Course Learning Objectives</h2>
+    <p>Develop mathematical models for mechanical, electrical, electromechanical and fluid systems.</p>
+  </section>
+</div>
+
+<section class="course-schedule" id="course-schedule" aria-labelledby="course-schedule-title">
+  <header class="section-heading">
+    <h2 id="course-schedule-title">Course schedule</h2>
+    <p>Expand a topic to open a web lecture or its PDF. <a href="{{ '/exams/' | relative_url }}">Study by exam</a>.</p>
+  </header>
+  {% assign lectures = site.lectures | sort: 'number' %}
+  {% assign units = lectures | group_by: 'unit' %}
+  {% for unit in units %}
+    <details class="schedule-unit">
+      <summary>{{ unit.name }}</summary>
+      <ol class="lecture-list">
+        {% for lesson in unit.items %}
+          <li class="schedule-row">
+            <p class="row-title"><span class="lecture-number"><span class="sr-only">Lecture </span>{{ lesson.number }}</span><span>{{ lesson.title }}</span></p>
+            {% include lecture-links.html lesson=lesson schedule=true %}
+          </li>
+        {% endfor %}
+      </ol>
+    </details>
+  {% endfor %}
+</section>
+
+<section class="skill-section" id="skills" aria-labelledby="skills-title">
+  <h2 id="skills-title">Practice a skill</h2>
+  <p>Choose an experiment, make a prediction, and check it in the lecture. Completed checks are marked on this device.</p>
+  <section class="cart-preview" aria-labelledby="cart-preview-title">
+    <div class="cart-preview-intro">
+      <h3 id="cart-preview-title">Can you stop the cart from bouncing?</h3>
+      <p>Release a 1 kg cart from rest, 10 cm to the right of equilibrium, on a 16 N/m spring. Find the smallest damping that keeps its displacement from going below zero.</p>
+    </div>
+    <div class="cart-experiment">
+      <div data-preview-controls hidden>
+        <label for="preview-damping">Damping <output for="preview-damping">2.4 N·s/m</output></label>
+        <input type="range" id="preview-damping" min="0" max="16" step="0.2" value="2.4">
+        <div class="preview-buttons">
+          <button type="button" data-lab-play>Play</button>
+          <button type="button" data-lab-step aria-label="Step forward 0.06 seconds">Step</button>
+          <button type="button" data-preview-reset>Reset time</button>
+        </div>
+      </div>
+      <figure data-preview-stage>
+        <svg viewBox="0 0 390 154" role="img" aria-label="Cart attached to a spring and sliding damper" aria-describedby="preview-position">
+          <g fill="none" stroke="#62586d" stroke-width="2">
+            <path d="M53 38V105H368 M242 109v16"/>
+          </g>
+          <g fill="none" stroke="#562f83" stroke-width="2">
+            <path d="M53 59h20"/>
+            <g transform="translate(73 59)">
+              <path data-coil transform="scale(1.73958333 1)" vector-effect="non-scaling-stroke" d="M0 0l4 5 8 -10 8 10 8 -10 8 10 8 -10 8 10 8 -10 8 10 8 -10 8 10 8 -10 4 5"/>
+            </g>
+          </g>
+          <path d="M53 86H76 M186 79H76v14h110" fill="none" stroke="#176454" stroke-width="2"/>
+          <g data-moving-cart transform="translate(50 0)">
+            <path d="M190 59h20" fill="none" stroke="#562f83" stroke-width="2"/>
+            <path d="M130 80v12 M130 86h80" fill="none" stroke="#176454" stroke-width="2.5"/>
+            <rect x="210" y="42" width="64" height="63" rx="3" fill="#f0e8f8" stroke="#562f83" stroke-width="2"/>
+            <text x="242" y="79" fill="#562f83">Mass</text>
+          </g>
+          <text x="80" y="43" fill="#562f83">Spring</text>
+          <text x="82" y="76" fill="#176454">Damper</text>
+          <text x="242" y="144" fill="#62586d">Equilibrium</text>
+        </svg>
+        <figcaption id="preview-position">Position 10.0 cm</figcaption>
+      </figure>
+    </div>
+    <figure class="cart-history" hidden>
+      <figcaption>Displacement over time <span>(cm)</span></figcaption>
+      <div class="cart-chart">
+        <div class="cart-y-ticks" aria-hidden="true"><span>+10</span><strong>0</strong><span>−10</span></div>
+        <svg role="img" aria-label="Cart displacement in centimeters versus time in seconds. The dashed line marks equilibrium." aria-describedby="preview-position preview-crossing">
+          <rect x="0" y="50%" width="100%" height="50%" fill="#f7f3fa"/>
+          <line x2="100%" y1="50%" y2="50%" stroke="#62586d" stroke-dasharray="5 4"/>
+          <svg viewBox="0 -11 6 22" preserveAspectRatio="none">
+            <polyline data-trace fill="none" stroke="#562f83" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <circle data-crossing cy="50%" r="4" fill="white" stroke="#562f83" stroke-width="2" visibility="hidden"/>
+          <circle data-current-position r="4" fill="#562f83"/>
+        </svg>
+        <div class="cart-x-ticks" aria-hidden="true">{% for second in (0..6) %}<span>{{ second }}</span>{% endfor %}</div>
+        <span class="cart-x-title">Time (s)</span>
+      </div>
+      <p id="preview-crossing" role="status"></p>
+    </figure>
+    <label class="preview-time" hidden>Time <input type="range" min="0" max="300" step="1" value="0" data-lab-time><span data-lab-time-value>0.00 s</span></label>
+    <a data-preview-lecture href="{{ '/lectures/04-second-order-systems/?case=challenge#interactive-lab' | relative_url }}">Explore this cart in Lecture 4</a>
+  </section>
+  <script type="module" src="{{ '/assets/js/cart-preview.js' | relative_url }}?v=history1"></script>
+  <ul class="skill-grid">{% for skill in site.data.skills %}
+    <li><a href="{{ skill.url | relative_url }}">{{ skill.name }}</a><span>{{ skill.outcome }}</span><span class="skill-exams">{% for id in skill.exams %}{% assign exam = site.data.exams | where: 'id', id | first %}<a href="{{ '/exams/' | relative_url }}#{{ id }}">{{ exam.name }}{% if id == 'final-exam' %} prep{% endif %}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}</span><small data-practiced="{{ skill.id }}" hidden>✓ Practiced</small></li>{% endfor %}
+  </ul>
+</section>
+
+<section class="instructor-bio" id="instructor-bio" aria-labelledby="instructor-bio-title">
+  <img class="instructor-photo" src="{{ '/assets/images/instructor.png' | relative_url }}" alt="Portrait of {{ site.instructor }}" width="199" height="307" loading="lazy">
+  <div class="instructor-about">
+    <h2 id="instructor-bio-title">About the instructor</h2>
+    <p class="instructor-name">{{ site.instructor }}, Ph.D.</p>
+    <p>I’m a postdoctoral researcher in Clemson’s Department of Mechanical Engineering, where I earned my Ph.D. in 2026. My research uses data-driven models and control to help legged robots move and keep their balance on challenging terrain.</p>
+    <ul class="profile-links" aria-label="Instructor profiles">
+      <li>{% include external-link.html url="https://scholar.google.com/citations?hl=en&user=-kMTFjwAAAAJ" label="Google Scholar" icon="/assets/vendor/fontawesome/google-scholar.svg" %}</li>
+      <li>{% include external-link.html url="https://www.linkedin.com/in/sriramsundarks/" label="LinkedIn" icon="/assets/vendor/fontawesome/linkedin.svg" %}</li>
+      <li>{% include external-link.html url="https://github.com/sriram-2502" label="GitHub" icon="/assets/vendor/fontawesome/github.svg" %}</li>
+    </ul>
+  </div>
+</section>
+
+<section class="related-course" aria-labelledby="creative-inquiry-title">
+  <div>
+    <p class="eyebrow">Clemson Creative Inquiry</p>
+    <h2 id="creative-inquiry-title">Mission Control</h2>
+    <p>In my one-credit Creative Inquiry course, students build a hand-gesture interface and use it to guide a quadruped robot through a maze. They start in simulation and then test on hardware.</p>
+  </div>
+  {% include external-link.html url="https://dyco-ai.github.io/go1_gesture_tracking/" label="Explore Mission Control" class="text-link" %}
+</section>
+
+<p class="course-history">I previously taught ME 3050 at Clemson University in Fall 2026.</p>
+

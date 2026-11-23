@@ -1,0 +1,16 @@
+---
+title: Projects
+section: projects
+permalink: /projects/
+---
+<header class="page-intro"><h1>Projects</h1><p class="lede">Use a dynamic model to explain what a physical system does, then compare the model with data or simulations.</p></header>
+<div class="project-grid">
+  {% assign projects = site.projects | sort: 'number' %}
+  {% for project in projects %}
+  <article class="project-card">
+    {% if project.image %}<img src="{{ project.image | relative_url }}" alt="{{ project.alt | escape }}" width="560" height="240" loading="lazy">{% endif %}
+    <div class="project-card-body"><p class="eyebrow">Project {{ project.number }} · {{ project.domain }}</p><h2><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h2><p>{{ project.summary }}</p>{% assign skill = site.data.skills | where: 'id', project.skill | first %}<p>Practice <a href="{{ skill.url | relative_url }}">{{ skill.name }}</a></p><a class="text-link" href="{{ project.url | relative_url }}">View project<span class="sr-only"> {{ project.title }}</span> <span aria-hidden="true">→</span></a></div>
+  </article>
+  {% endfor %}
+</div>
+

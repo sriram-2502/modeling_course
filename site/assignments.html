@@ -1,0 +1,17 @@
+---
+title: Assignments
+section: assignments
+permalink: /assignments/
+summary: Eight homework sets for modeling and analysis of dynamic systems.
+---
+<header class="page-intro"><h1>Assignments</h1><p class="lede">Download the problem sets that accompany the lectures.</p></header>
+<ol class="index-list assignment-list">
+  {% for item in site.data.assignments %}
+  <li id="assignment-{{ item.number }}">
+    <span class="lecture-number" aria-hidden="true">{{ item.number }}</span>
+    <div><h2>{{ item.title }}</h2><p>Review {% for example in item.review %}<a href="{{ example.url | relative_url }}">{{ example.label }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}</p>{% if item.summary %}<p>{{ item.summary }}</p>{% endif %}</div>
+    <a class="material-link" href="{{ item.pdf | relative_url }}">Problem set PDF<span class="sr-only"> for {{ item.title }}</span></a>
+  </li>
+  {% endfor %}
+</ol>
+

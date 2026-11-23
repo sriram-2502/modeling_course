@@ -1,0 +1,18 @@
+oscillator:
+  setup: A one kilogram mass slides horizontally. A parallel spring of 16 N/m and damper of 2.4 N·s/m connect it to the wall.
+  fbd: Applied force points right. Spring and damping forces point left for positive displacement and velocity. Weight and normal reaction balance vertically.
+  caption: Take the positive x direction to the right. Weight and the normal reaction balance vertically.
+laplace-damper:
+  setup: A one kilogram block on a frictionless surface connects to the wall through a damper of 3 N·s/m. A 6 N force and the initial velocity point right.
+  fbd: The applied force points right, the damper opposes positive velocity, the normal force points up, and weight points down.
+  caption: Define velocity as positive to the right. The applied force is six newtons and the damper opposes the motion.
+pinned-rod:
+  setup: The 1.2 m pinned rod is 30 degrees to the right of the downward vertical. Its center of mass is 0.60 m from the pivot.
+  fbd: The pin reactions act at O and weight acts downward at the center. The horizontal distance from the pin to the line of action of weight is shown.
+  caption: Measure the angle from the downward vertical. The pin reactions pass through O. The weight’s lever arm is the horizontal distance from O to its line of action.
+quarter-car:
+  setup: A 290 kg body and 40 kg wheel are joined by a parallel suspension spring and dashpot. A tire spring connects the wheel to the moving road.
+  fbd: On the body, both suspension force arrows point downward. On the wheel, the equal and opposite arrows point upward, with the tire force acting upward for positive road displacement relative to the wheel.
+  caption: Arrows show the directions for positive relative displacements and velocities. Gravity is already accounted for by measuring from static equilibrium.
+  tex: 'F_s=k_s(z_s-z_u),\qquad F_d=c_s(\dot{z}_s-\dot{z}_u),\qquad F_t=k_t(r-z_u)'
+  text: The spring and damper use body displacement and velocity relative to the wheel. The tire force uses road height relative to the wheel.

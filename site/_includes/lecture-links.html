@@ -1,0 +1,11 @@
+{% assign lesson = include.lesson %}
+<div class="material-links">
+  {% if include.schedule %}
+    <a class="material-link web-link" href="{{ lesson.url | relative_url }}">Web lecture<span class="sr-only"> for {{ lesson.title }}</span></a>
+  {% else %}
+    {% if lesson.notes %}<a class="material-link" href="{{ lesson.notes | relative_url }}">{% if lesson.number == "20" or lesson.number == "21" %}Shared fluid notes (PDF){% else %}Handwritten notes (PDF){% endif %}<span class="sr-only"> for {{ lesson.title }}</span></a>{% endif %}
+    {% if lesson.supplement %}<a class="material-link" href="{{ lesson.supplement | relative_url }}">Complex roots derivation (PDF)<span class="sr-only"> for {{ lesson.title }}</span></a>{% endif %}
+  {% endif %}
+  {% if lesson.slides %}<a class="material-link" href="{{ lesson.slides | relative_url }}">{{ lesson.pdf_label | default: 'Lecture PDF' }}<span class="sr-only"> for {{ lesson.title }}</span></a>{% endif %}
+</div>
+

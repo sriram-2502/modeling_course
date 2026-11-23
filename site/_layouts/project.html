@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ '/projects/' | relative_url }}">Projects</a><span aria-hidden="true">/</span><span>Project {{ page.number }}</span></nav>
+<article class="lesson">
+  <header class="page-intro">
+    <p class="eyebrow">Project {{ page.number }} · {{ page.domain }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.summary }}</p>
+    <div class="material-links">
+      <a class="material-link" href="{{ page.handout | relative_url }}">Project handout (PDF)</a>
+      {% if page.guide %}<a class="material-link" href="{{ page.guide | relative_url }}">Code guide (PDF)</a>{% endif %}
+      {% if page.starter %}<a class="material-link" href="{{ page.starter | relative_url }}">Starter code (ZIP)</a>{% endif %}
+    </div>
+  </header>
+  <div class="prose">{{ content }}</div>
+</article>
+

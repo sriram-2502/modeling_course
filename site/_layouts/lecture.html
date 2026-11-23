@@ -1,0 +1,48 @@
+---
+layout: default
+---
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ '/lectures/' | relative_url }}">Lectures</a><span aria-hidden="true">/</span><span>Lecture {{ page.number }}</span></nav>
+<article class="lesson" data-lecture-number="{{ page.number }}" data-lecture-title="{{ page.title | escape }}">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture {{ page.number }} · {{ page.unit }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.summary }}</p>
+    {% assign exam = site.data.exams | where: 'id', page.study | first %}
+    <p><a href="{{ '/exams/' | relative_url }}#{{ exam.id }}">{{ exam.name }} {% if exam.id == 'final-exam' %}suggested preparation{% else %}study guide{% endif %}</a></p>
+    {% include lecture-links.html lesson=page %}
+  </header>
+  <div class="prose">
+    {% if page.opening_questions %}
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        {% for question in page.opening_questions %}<li>{{ question | markdownify }}</li>{% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    {{ content }}
+    {% for skill in site.data.skills %}{% if skill.lesson == page.number %}
+    {% include skill-check.html skill=skill %}{% endif %}{% endfor %}
+    {% for hw in site.data.assignments %}{% for example in hw.review %}{% if example.lesson == page.number %}
+    <p><a href="{{ '/assignments/' | relative_url }}#assignment-{{ hw.number }}">Practice with Assignment {{ hw.number | plus: 0 }} · {{ hw.title }}</a></p>{% break %}{% endif %}{% endfor %}{% endfor %}
+    {% if page.takeaways %}
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        {% for takeaway in page.takeaways %}<li>{{ takeaway | markdownify }}</li>{% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    {% assign ordered = site.lectures | sort: 'number' %}
+    {% for lesson in ordered %}
+      {% if lesson.url == page.url %}
+        {% unless forloop.first %}{% assign preceding = forloop.index0 | minus: 1 %}{% assign previous = ordered[preceding] %}<a href="{{ previous.url | relative_url }}"><small>Previous lecture</small>{{ previous.title }}</a>{% endunless %}
+        {% unless forloop.last %}{% assign next = ordered[forloop.index] %}<a href="{{ next.url | relative_url }}" class="next"><small>Next lecture</small>{{ next.title }}</a>{% endunless %}
+      {% endif %}
+    {% endfor %}
+  </nav>
+</article>
+

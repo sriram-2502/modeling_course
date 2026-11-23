@@ -1,0 +1,67 @@
+---
+title: Exam study guide
+permalink: /exams/
+section: exams
+summary: Concepts, worked examples and practice for Exam 1, Exam 2 and the Final Exam.
+---
+<div class="exam-guide">
+  <header class="page-intro">
+    <h1>Exam study guide</h1>
+    <p class="lede">Choose your exam. Open a topic to review its lecture, or go straight to the practice problems.</p>
+    <nav class="exam-picker" aria-label="Choose an exam">
+      {% for exam in site.data.exams %}<a href="#{{ exam.id }}" aria-controls="{{ exam.id }}">{{ exam.name }}</a>{% endfor %}
+    </nav>
+  </header>
+  {% for exam in site.data.exams %}
+  <section class="exam-panel" id="{{ exam.id }}" aria-labelledby="{{ exam.id }}-title">
+    <header class="exam-banner">
+      <p class="eyebrow">{{ exam.name }}</p>
+      <h2 id="{{ exam.id }}-title">{{ exam.topic }}</h2>
+      <p>{{ exam.intro }}</p>
+    </header>
+    <div class="exam-body">
+      {% for group in exam.groups %}
+      <section class="exam-topic-group">
+        <h3>{{ group.heading }}</h3>
+        <ul class="exam-cards">
+          {% for topic in group.topics %}
+          {% assign lecture_path = topic.url | split: '#' | first %}
+          {% assign lesson = site.lectures | where: 'url', lecture_path | first %}
+          <li><a class="exam-card" href="{{ topic.url | relative_url }}">
+            <strong>{{ topic.action }}</strong>
+            <small>Lecture {{ lesson.number }} · {{ lesson.title }}</small>
+          </a></li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endfor %}
+    </div>
+    <section class="exam-practice">
+      <h3>Practice problems</h3>
+      {% if exam.review %}
+      {% assign review_path = exam.review.url | split: '#' | first %}
+      {% assign lesson = site.lectures | where: 'url', review_path | first %}
+      <a class="exam-review" href="{{ exam.review.url | relative_url }}">
+        <strong>Try the {{ exam.name }} review</strong>
+        <small>Lecture {{ lesson.number }} · Three problems with hints and worked solutions</small>
+      </a>
+      {% else %}
+      <details class="exam-review">
+        <summary>Try a final review problem · From circuit to temperature</summary>
+        <small>Lectures 17 and 22 · Electrical circuits and thermal systems</small>
+        <p>A series RC circuit has R = 2 kΩ and C = 5 mF. A heated enclosure has a thermal resistance of 0.5 K/W. What thermal capacitance gives the same time constant? What fraction of a step change will both systems complete in 10 s?</p>
+        <details><summary>Check your reasoning</summary><p>The electrical time constant is 10 s. Set the thermal resistance times thermal capacitance equal to 10 s to obtain 20 J/K. Both stable first-order systems complete about 63% of their change in 10 s.</p></details>
+      </details>
+      {% endif %}
+      <ul class="exam-sets" aria-label="Homework practice">
+        {% for number in exam.assignments %}
+        {% for assignment in site.data.assignments %}{% if assignment.number == number %}
+        <li><a href="{{ '/assignments/' | relative_url }}#assignment-{{ number }}"><strong>Assignment {{ number | plus: 0 }}</strong><small>{{ assignment.title }}</small></a></li>
+        {% break %}{% endif %}{% endfor %}
+        {% endfor %}
+      </ul>
+    </section>
+  </section>
+  {% endfor %}
+</div>
+<script src="{{ '/assets/js/exam-guide.js' | relative_url }}" defer></script>

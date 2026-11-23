@@ -1,0 +1,455 @@
+first-order:
+  title: Explore the time constant
+  prediction: How will a larger time constant affect the rise to the same final value?
+  task: Compare the three presets. Look for the time at which each curve first reaches approximately 0.63.
+  equations:
+    - tex: '\tau\dot{x} + x = 1,\qquad x(0)=0'
+      text: 'τ x′ + x = 1, with x(0) = 0.'
+    - tex: 'x(t)=1-e^{-t/\tau}'
+      text: 'x(t) = 1 − exp(−t/τ).'
+  prompt: What changes in the initial slope and the time to reach equilibrium? Why does the final value stay the same?
+  pole_note: A larger time constant moves the pole toward the origin and slows the decay of the transient.
+  control: Time constant
+  symbol: {tex: '\tau', text: 'τ'}
+  unit: s
+  min: 0.25
+  max: 3
+  step: 0.05
+  initial: 1
+  presets:
+    - {label: Fast, value: 0.5}
+    - {label: Reference, value: 1}
+    - {label: Slow, value: 2}
+  reference_heading: Response at t = 1 s
+  reference:
+    - {parameter: '0.5 s', response: '0.865'}
+    - {parameter: '1 s', response: '0.632'}
+    - {parameter: '2 s', response: '0.393'}
+second-order:
+  title: Explore damping and free response
+  animation: Cart position and parallel spring and damper
+  prediction: Which damping cases will cross equilibrium? If you increase spring stiffness and hold the damper fixed, will the poles move left, right, or farther from the real axis?
+  task: Compare the damping presets. Switch to damping coefficient to change m, c, and k independently. Move one slider at a time and watch the roots move.
+  equations:
+    - tex: 'm\ddot{x}+c\dot{x}+kx=0'
+      text: 'm x″ + c x′ + kx = 0.'
+    - tex: '\omega_n=\sqrt{\frac{k}{m}},\qquad \zeta=\frac{c}{2\sqrt{mk}}'
+      text: 'ωₙ = √(k/m), and ζ = c/[2√(mk)].'
+    - tex: 'x(0)=0.10\,\mathrm{m},\qquad \dot{x}(0)=0'
+      text: 'Initial displacement is 0.10 m and the initial velocity is zero.'
+  prompt: Set c to 8 N·s/m at the starting mass and stiffness. Where do the two roots meet? Increase c further and identify the slower root.
+  pole_title: Characteristic roots
+  pole_note: The real part determines the decay rate and the magnitude of the imaginary part sets the oscillation frequency. Two coincident roots are marked ×2.
+  damping_modes: true
+  control: Damping ratio
+  mode: ratio
+  symbol: {tex: '\zeta', text: 'ζ'}
+  min: 0
+  max: 2
+  step: 0.05
+  initial: 0.3
+  parameters:
+    - key: damping
+      mode: coefficient
+      control: Damping coefficient
+      symbol: {tex: 'c', text: 'c'}
+      unit: N·s/m
+      min: 0
+      max: 32
+      step: 0.1
+      initial: 2.4
+    - key: mass
+      control: Mass
+      symbol: {tex: 'm', text: 'm'}
+      unit: kg
+      min: 0.5
+      max: 4
+      step: 0.25
+      initial: 1
+    - key: stiffness
+      control: Spring constant
+      symbol: {tex: 'k', text: 'k'}
+      unit: N/m
+      min: 4
+      max: 64
+      step: 1
+      initial: 16
+  parameter_note: Ratio mode adjusts the damper to keep the selected ratio fixed. Coefficient mode keeps the selected damper fixed as you change mass or stiffness.
+  presets:
+    - {label: Undamped, value: 0}
+    - {label: Underdamped, value: 0.3}
+    - {label: Critical, value: 1}
+    - {label: Overdamped, value: 1.5}
+  reference_heading: Displacement at 1 s
+  reference_note: These reference plots and values use the starting mass of 1 kg and spring constant of 16 N/m.
+  reference:
+    - {parameter: 'ζ = 0', tex: '\zeta=0', response: '−0.0654 m'}
+    - {parameter: 'ζ = 0.30', tex: '\zeta=0.30', response: '−0.0294 m'}
+    - {parameter: 'ζ = 1', tex: '\zeta=1', response: '0.0092 m'}
+    - {parameter: 'ζ = 1.50', tex: '\zeta=1.50', response: '0.0254 m'}
+rc:
+  title: Charge an RC circuit
+  animation: Ammeter in series and voltmeter across the capacitor
+  prediction: How will a larger resistance affect the capacitor voltage after 1 s?
+  task: Apply a 5 V step to an initially uncharged capacitor. Vary resistance and capacitance separately.
+  equations:
+    - tex: 'RC\,\frac{dv_C}{dt}+v_C=V_{\mathrm{in}}'
+      text: 'RC dv_C/dt + v_C = V_in.'
+    - tex: 'v_C(t)=V_{\mathrm{in}}\left(1-e^{-t/(RC)}\right)'
+      text: 'For a constant voltage step, v_C(t) = V_in[1 − exp(−t/(RC))].'
+  prompt: Find the time to reach about 3.16 V. How does it change with resistance? Explain why all three curves approach 5 V.
+  pole_note: Increasing either resistance or capacitance increases RC and moves the pole closer to zero. Try changing both while keeping their product constant.
+  control: Resistance
+  symbol: {tex: 'R', text: 'R'}
+  unit: kΩ
+  min: 0.25
+  max: 3
+  step: 0.05
+  initial: 1
+  parameters:
+    - key: capacitance
+      control: Capacitance
+      symbol: {tex: 'C', text: 'C'}
+      unit: mF
+      min: 0.5
+      max: 2
+      step: 0.05
+      initial: 1
+  presets:
+    - {label: '0.5 kΩ', value: 0.5}
+    - {label: '1 kΩ', value: 1}
+    - {label: '2 kΩ', value: 2}
+  reference_heading: Capacitor voltage at t = 1 s
+  reference_note: The reference cases use a 1 mF capacitor.
+  reference:
+    - {parameter: '0.5 kΩ', response: '4.32 V'}
+    - {parameter: '1 kΩ', response: '3.16 V'}
+    - {parameter: '2 kΩ', response: '1.97 V'}
+rl:
+  title: Change the time constant of an RL circuit
+  animation: Ammeter in series and voltmeter across the inductor
+  prediction: Will more resistance make the current rise faster or slower? How will the final current change?
+  task: Apply a 5 V step with zero initial current. In turn, change the resistance and the inductance.
+  equations:
+    - tex: 'L\dot i+Ri=u(t),\qquad s=-\frac{R}{L}'
+      text: 'L i′ + Ri = u(t). The pole is at −R/L.'
+  pole_note: Increasing resistance moves the RL pole farther left. In the RC circuit, increasing resistance moves the pole toward zero.
+  prompt: Double the inductance and resistance together. Which features of the response change?
+  control: Resistance
+  symbol: {tex: 'R', text: 'R'}
+  unit: Ω
+  min: 0.5
+  max: 5
+  step: 0.05
+  initial: 2
+  parameters:
+    - {key: inductance, control: Inductance, symbol: {tex: 'L', text: 'L'}, unit: H, min: 0.5, max: 2, step: 0.05, initial: 1}
+  presets:
+    - {label: '1 Ω', value: 1}
+    - {label: '2 Ω', value: 2}
+    - {label: '4 Ω', value: 4}
+  table_only: true
+  reference_heading: Pole at L = 1 H
+  reference:
+    - {parameter: '1 Ω', response: '−1 s⁻¹'}
+    - {parameter: '2 Ω', response: '−2 s⁻¹'}
+    - {parameter: '4 Ω', response: '−4 s⁻¹'}
+rlc:
+  title: Follow the poles of an RLC circuit
+  animation: Watch the sign on the ammeter and the direction of the markers
+  prediction: Can the capacitor voltage overshoot a 5 V source step? What happens to the poles as you increase resistance?
+  task: Start with a 1 H inductor and 1 F capacitor. Switch between the three resistance presets, then change inductance or capacitance.
+  equations:
+    - tex: 'LC\ddot v_C+RC\dot v_C+v_C=u(t)'
+      text: 'LC v_C″ + RC v_C′ + v_C = u(t).'
+    - tex: '\frac{V_C(s)}{U(s)}=\frac{1}{LCs^2+RCs+1}'
+      text: 'V_C(s)/U(s) = 1/(LCs² + RCs + 1).'
+  pole_note: The capacitor and inductor store energy. Increasing resistance moves the conjugate poles together on the real axis at critical damping. Beyond that point the poles split along the real axis.
+  prompt: Find the resistance at which ringing disappears. Change the inductance and explain why the threshold moves.
+  control: Resistance
+  symbol: {tex: 'R', text: 'R'}
+  unit: Ω
+  min: 0.2
+  max: 5
+  step: 0.05
+  initial: 0.5
+  parameters:
+    - {key: inductance, control: Inductance, symbol: {tex: 'L', text: 'L'}, unit: H, min: 0.5, max: 2, step: 0.05, initial: 1}
+    - {key: capacitance, control: Capacitance, symbol: {tex: 'C', text: 'C'}, unit: F, min: 0.5, max: 2, step: 0.05, initial: 1}
+  presets:
+    - {label: '0.5 Ω', value: 0.5}
+    - {label: '2 Ω', value: 2}
+    - {label: '4 Ω', value: 4}
+  table_only: true
+  reference_heading: Poles at L = 1 H and C = 1 F
+  reference:
+    - {parameter: '0.5 Ω', response: '−0.25 ± 0.968j s⁻¹'}
+    - {parameter: '2 Ω', response: '−1 s⁻¹, repeated'}
+    - {parameter: '4 Ω', response: '−0.268 s⁻¹ and −3.732 s⁻¹'}
+motor:
+  title: Explore armature resistance and load inertia
+  animation: Magnetic forces, shaft speed, and back EMF
+  instruments:
+    - {key: speed, label: Shaft speed, unit: rad/s}
+    - {key: current, label: Armature current, unit: A}
+    - {key: backEmf, label: Back EMF, unit: V}
+    - {key: force, label: Force per winding side, unit: N}
+    - {key: torque, label: Drive torque, unit: N·m}
+    - {key: loadTorque, label: Opposing load torque, unit: N·m}
+  prediction: When an opposing load switches on, how will the back EMF and armature current change?
+  task: Start at 5 V from rest. Scrub across 2 s, when the selected load switches on. Compare speed, back EMF, and current before and after the load arrives.
+  equations:
+    - tex: 'L=0.5\,\mathrm{H},\quad b=0.04\,\mathrm{N\,m\,s/rad}'
+      text: 'Armature inductance is 0.5 H. Viscous drag is 0.04 N·m·s/rad.'
+    - tex: 'K_t=0.1\,\mathrm{N\,m/A},\quad K_e=0.1\,\mathrm{V\,s/rad}'
+      text: 'Motor constants are 0.1 N·m/A for torque and 0.1 V·s/rad for back EMF.'
+  pole_note: The poles belong to the coupled electrical and mechanical model. They depend on resistance and inertia as well as on the coupling through torque and back EMF.
+  prompt: Explain why the shaft slows and the armature current increases after the load switches on.
+  control: Armature resistance
+  symbol: {tex: 'R', text: 'R'}
+  unit: Ω
+  min: 0.5
+  max: 4
+  step: 0.05
+  initial: 2
+  parameters:
+    - {key: inertia, control: Shaft inertia, symbol: {tex: 'J', text: 'J'}, unit: kg·m², min: 0.01, max: 0.05, step: 0.002, initial: 0.02}
+    - {key: load, control: Load torque at 2 s, unit: N·m, min: 0, max: 0.10, step: 0.01, initial: 0.08}
+  presets:
+    - {label: '0.5 Ω', value: 0.5}
+    - {label: '2 Ω', value: 2}
+    - {label: '4 Ω', value: 4}
+  table_only: true
+  reference_note: These speeds use zero load torque.
+  reference_heading: Steady shaft speed
+  reference:
+    - {parameter: '0.5 Ω', response: '16.67 rad/s'}
+    - {parameter: '2 Ω', response: '5.56 rad/s'}
+    - {parameter: '4 Ω', response: '2.94 rad/s'}
+feedback:
+  title: Move the closed-loop poles
+  animation: Controller force on the cart
+  prediction: If you turn up the proportional gain, will oscillations decay faster?
+  task: The target steps to 1 m. Select 48 N/m and press Play. The orange arrow starts at the actuator on the cart. Watch it reverse when the cart passes the target, then increase the damping and try again.
+  equations:
+    - tex: 'F=K_p(r-x),\qquad \frac{X(s)}{R(s)}=\frac{K_p}{ms^2+cs+k+K_p}'
+      text: 'F = K_p(r − x). The closed-loop transfer function is K_p/(ms² + cs + k + K_p).'
+  pole_note: In the underdamped range, changing proportional gain at fixed mass and damper changes the imaginary part while the real part stays at minus c divided by twice the mass.
+  prompt: Compare two gains at the same damping. Which gain tracks the desired position more closely in steady state? What happens to the frequency of the oscillations?
+  control: Proportional gain
+  symbol: {tex: 'K_p', text: 'K_p'}
+  unit: N/m
+  min: 1
+  max: 64
+  step: 1
+  initial: 16
+  parameters:
+    - {key: damping, control: Damping coefficient, symbol: {tex: 'c', text: 'c'}, unit: N·s/m, min: 0.5, max: 24, step: 0.1, initial: 2.4}
+  presets:
+    - {label: '8 N/m', value: 8}
+    - {label: '16 N/m', value: 16}
+    - {label: '48 N/m', value: 48}
+  table_only: true
+  reference_heading: Steady position for a 1 m command
+  reference:
+    - {parameter: '8 N/m', response: '0.333 m'}
+    - {parameter: '16 N/m', response: '0.500 m'}
+    - {parameter: '48 N/m', response: '0.750 m'}
+draining:
+  title: Drain a tank
+  flow_plot: true
+  time_caption: Water level versus time
+  animation: Falling liquid level and slowing outflow
+  prediction: What happens to the time to empty if the outlet area doubles?
+  task: Start at 0.60 m with no inflow. Hold the tank area at 0.020 m² and discharge coefficient at 0.62. Vary the outlet area.
+  equations:
+    - tex: 'A\,\frac{dh}{dt}=-C_dA_o\sqrt{2gh}'
+      text: 'A dh/dt = −C_d A_o √(2gh).'
+    - tex: 't_{\mathrm{empty}}=\frac{A}{C_dA_o}\sqrt{\frac{2h_0}{g}}'
+      text: 'Time to empty = [A/(C_d A_o)]√(2h₀/g).'
+  prompt: Compare the simulated times to empty. Why is the liquid level falling fastest at the beginning?
+  control: Outlet area
+  unit: cm²
+  min: 1
+  max: 4
+  step: 0.1
+  initial: 2
+  presets:
+    - {label: '1 cm²', value: 1}
+    - {label: '2 cm²', value: 2}
+    - {label: '4 cm²', value: 4}
+  reference_heading: Time to empty
+  reference:
+    - {parameter: '1 cm²', response: '112.82 s'}
+    - {parameter: '2 cm²', response: '56.41 s'}
+    - {parameter: '4 cm²', response: '28.21 s'}
+tank-levels:
+  title: Fill and drain two tanks
+  flow_plot: true
+  time_caption: Water levels versus time
+  animation: Water levels and flow through a pair of tanks
+  prediction: When the pump shuts off, will both levels fall immediately?
+  task: Start with empty tanks. The pump runs for 30 s, then shuts off. Set the pump flow and scrub across 30 s. Watch both waterlines and the transfer arrow.
+  equations:
+    - tex: 'A\dot h_1=q_{\mathrm{in}}-q_{12},\qquad A\dot h_2=q_{12}-q_{\mathrm{out}}'
+      text: 'Tank 1 gains inlet flow and loses transfer flow. Tank 2 gains transfer flow and loses outlet flow.'
+    - tex: 'q_{12}=(A/\tau)h_1,\qquad q_{\mathrm{out}}=(A/\tau)h_2,\qquad \tau=20\,\mathrm{s}'
+      text: 'With linear, freely discharging outlets, each outlet flow is proportional to that tank’s water level. Each tank has a 20 s time constant.'
+  prompt: Why can Tank 2 keep filling after the pump shuts off? Use the two flow rates in its mass balance.
+  control: Pump flow
+  unit: L/s
+  min: 0.20
+  max: 0.65
+  step: 0.05
+  initial: 0.50
+  presets:
+    - {label: '0.25 L/s', value: 0.25}
+    - {label: '0.5 L/s', value: 0.5}
+    - {label: '0.65 L/s', value: 0.65}
+  table_only: true
+  reference_heading: Water levels at pump shutoff
+  reference:
+    - {parameter: '0.25 L/s', response: 'Tank 1 is 0.194 m and Tank 2 is 0.111 m.'}
+    - {parameter: '0.5 L/s', response: 'Tank 1 is 0.388 m and Tank 2 is 0.221 m.'}
+    - {parameter: '0.65 L/s', response: 'Tank 1 is 0.505 m and Tank 2 is 0.287 m.'}
+thermal:
+  title: Heat a thermal enclosure
+  animation: Body and room thermometers show the temperature difference
+  prediction: What changes if the enclosure stores more heat per degree?
+  task: Begin at 20 °C with a 50 W heater. Vary thermal capacitance and thermal resistance separately.
+  equations:
+    - tex: 'C_{\mathrm{th}}\frac{dT}{dt}=P-\frac{T-T_a}{R_{\mathrm{th}}}'
+      text: 'C_th dT/dt = P − (T − T_a)/R_th.'
+    - tex: '\tau=R_{\mathrm{th}}C_{\mathrm{th}},\qquad T_\infty=T_a+PR_{\mathrm{th}}'
+      text: 'τ = R_th C_th, and the final temperature is T_a + P R_th.'
+  prompt: Which parameter can change the time constant while leaving the final temperature unchanged?
+  pole_note: Either parameter moves the pole by changing the product of resistance and capacitance. Only the thermal resistance changes the final temperature for the same heater power.
+  control: Thermal capacitance
+  unit: J/K
+  min: 100
+  max: 500
+  step: 25
+  initial: 250
+  parameters:
+    - {key: resistance, control: Thermal resistance, symbol: {tex: 'R_{\mathrm{th}}', text: 'R_th'}, unit: K/W, min: 0.2, max: 0.8, step: 0.05, initial: 0.4}
+  presets:
+    - {label: '125 J/K', value: 125}
+    - {label: '250 J/K', value: 250}
+    - {label: '500 J/K', value: 500}
+  reference_heading: Temperature at t = 100 s
+  reference_note: The reference cases use a thermal resistance of 0.4 K/W.
+  reference:
+    - {parameter: '125 J/K', response: '37.29 °C'}
+    - {parameter: '250 J/K', response: '32.64 °C'}
+    - {parameter: '500 J/K', response: '27.87 °C'}
+mixing:
+  title: Follow salt through two tanks
+  flow_plot: true
+  time_caption: Salt concentration versus time
+  animation: Salt concentration in both tanks at constant water level
+  prediction: Which tank reaches half the inlet concentration first?
+  task: Start with fresh water in both 2 L tanks. At time zero, switch the inlet to 1 g/L. The flow into and out of each tank is equal, so the waterlines stay level as salt concentration increases. Change the common flow rate and watch the color and concentration readings.
+  equations:
+    - tex: 'V\dot c_1=q(c_{\mathrm{in}}-c_1),\qquad V\dot c_2=q(c_1-c_2)'
+      text: 'V times the rate of change of concentration equals q times the difference between the inlet and outlet concentrations of each tank.'
+  prompt: Explain why the second tank starts with zero slope even though the inlet concentration changes instantly.
+  control: Flow rate
+  unit: L/s
+  min: 0.25
+  max: 1
+  step: 0.05
+  initial: 0.5
+  presets:
+    - {label: '0.25 L/s', value: 0.25}
+    - {label: '0.5 L/s', value: 0.5}
+    - {label: '1 L/s', value: 1}
+  table_only: true
+  reference_heading: Time constant per tank
+  reference:
+    - {parameter: '0.25 L/s', response: '8 s'}
+    - {parameter: '0.5 L/s', response: '4 s'}
+    - {parameter: '1 L/s', response: '2 s'}
+thermal-pair:
+  title: Watch two bodies exchange heat
+  animation: Both thermometers use the same temperature scale
+  prediction: Where will the two temperatures meet if both bodies have the same thermal capacitance?
+  task: Set both heater powers to zero and neglect losses to the room. Start at 60 °C and 20 °C with 100 J/K in each body. Change the connecting resistance and scrub time.
+  equations:
+    - tex: 'C\dot T_1=-q_{12},\qquad C\dot T_2=q_{12},\qquad q_{12}=(T_1-T_2)/R_{12}'
+      text: 'The hot body loses exactly the heat that the cold body receives. The heat rate is the temperature difference divided by the resistance.'
+  prompt: Explain why changing the resistance changes how fast the bodies approach 40 °C while conserving total thermal energy.
+  control: Connecting resistance
+  unit: K/W
+  min: 0.2
+  max: 1
+  step: 0.05
+  initial: 0.5
+  presets:
+    - {label: '0.2 K/W', value: 0.2}
+    - {label: '0.5 K/W', value: 0.5}
+    - {label: '1 K/W', value: 1}
+  table_only: true
+  reference_heading: Temperature-difference time constant
+  reference:
+    - {parameter: '0.2 K/W', response: '10 s'}
+    - {parameter: '0.5 K/W', response: '25 s'}
+    - {parameter: '1 K/W', response: '50 s'}
+ladder:
+  title: Watch one RC stage load the other
+  animation: Meters show node voltages and current between stages
+  prediction: Which node begins changing immediately after a 5 V step?
+  task: Use the same 1 mF capacitance at each node. Both resistors share the value on the slider. Scrub time to compare the two node voltages.
+  equations:
+    - tex: 'RC\dot v_1=u-2v_1+v_2,\qquad RC\dot v_2=v_1-v_2'
+      text: 'RC times node 1’s voltage rate equals u minus twice v1 plus v2. RC times node 2’s voltage rate equals v1 minus v2.'
+  prompt: Why does the second capacitor draw current from the first node while the node voltages differ?
+  control: Resistance per stage
+  unit: kΩ
+  min: 0.5
+  max: 2
+  step: 0.05
+  initial: 1
+  presets:
+    - {label: '0.5 kΩ', value: 0.5}
+    - {label: '1 kΩ', value: 1}
+    - {label: '2 kΩ', value: 2}
+  table_only: true
+  reference_heading: Isolated-stage RC
+  reference:
+    - {parameter: '0.5 kΩ', response: '0.5 s'}
+    - {parameter: '1 kΩ', response: '1 s'}
+    - {parameter: '2 kΩ', response: '2 s'}
+galvanometer:
+  title: Follow the pointer after a current step
+  animation: The coil’s force couple moves the pointer
+  instruments:
+    - {key: pointerAngle, label: Pointer angle, unit: °}
+    - {key: current, label: Coil current, unit: mA, scale: 1000}
+    - {key: backEmf, label: Back EMF, unit: mV, scale: 1000}
+    - {key: force, label: Force per winding side, unit: mN, scale: 1000}
+    - {key: torque, label: Drive torque, unit: mN·m, scale: 1000}
+    - {key: springTorque, label: Spring torque, unit: mN·m, scale: 1000}
+  prediction: Can the pointer overshoot the reading for a constant current?
+  task: Select Light and press Play. Watch the orange needle pass the dashed target, then find the same crossing on the time plot. Try Critical at the same current and compare how the pointer approaches the target.
+  equations:
+    - tex: 'J\ddot\theta+b\dot\theta+k\theta=K_t i'
+      text: 'The inertia, damping, and spring torques balance the torque from current.'
+  prompt: Which settings ring? Use the torque balance to explain why changing damping leaves the final reading unchanged at a fixed coil current.
+  control: Viscous damping
+  unit: N·m·s/rad
+  min: 0.003
+  max: 0.03
+  step: 0.001
+  initial: 0.006
+  parameters:
+    - {key: driveCurrent, control: Current step, unit: mA, min: 5, max: 30, step: 1, initial: 20}
+  presets:
+    - {label: Light, value: 0.006}
+    - {label: Critical, value: 0.012}
+    - {label: Heavy, value: 0.024}
+  table_only: true
+  reference_heading: Response
+  reference:
+    - {parameter: '0.006 N·m·s/rad', response: 'Underdamped'}
+    - {parameter: '0.012 N·m·s/rad', response: 'Critically damped'}
+    - {parameter: '0.024 N·m·s/rad', response: 'Overdamped'}

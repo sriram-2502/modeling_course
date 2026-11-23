@@ -1,0 +1,7 @@
+{% assign control = include.control %}
+{% assign control_id = include.prefix | append: '-' | append: include.id %}
+<div class="lab-control"{% if control.mode %} data-damping-control="{{ control.mode }}"{% if control.mode == 'coefficient' %} hidden{% endif %}{% endif %}>
+  <label for="{{ control_id }}">{{ control.control }}{% if control.symbol %} <span class="math-expression" data-tex="{{ control.symbol.tex | escape }}">{{ control.symbol.text }}</span>{% endif %}</label>
+  <output id="{{ control_id }}-readout" for="{{ control_id }}" data-unit="{{ control.unit }}"></output>
+  <input type="range" id="{{ control_id }}" min="{{ control.min }}" max="{{ control.max }}" step="{{ control.step }}" value="{{ control.initial }}" aria-describedby="{{ control_id }}-readout"{% if include.parameter %} data-parameter="{{ include.parameter }}"{% endif %}>
+</div>

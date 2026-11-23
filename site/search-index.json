@@ -1,0 +1,17 @@
+---
+layout: null
+permalink: /search-index.json
+---
+[
+  {% assign entries = site.lectures | concat: site.projects | concat: site.pages | where_exp: 'entry', 'entry.section' | where_exp: 'entry', 'entry.layout != "lecture" or entry.number' %}
+  {% for entry in entries %}
+  {"title":{{ entry.title | jsonify }},"url":{{ entry.url | relative_url | jsonify }},"summary":{{ entry.summary | default: '' | jsonify }},"text":{{ entry.content | markdownify | strip_html | normalize_whitespace | jsonify }}}{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  {% for entry in entries %}{% assign experiments = entry.content | experiment_entries: entry.url %}
+  {% for demo in experiments %},{"title":{{ demo.title | jsonify }},"url":{{ demo.url | relative_url | jsonify }},"summary":{{ entry.title | jsonify }},"text":"Interactive worked example"}{% endfor %}{% endfor %}
+  {% for item in site.data.assignments %},{"title":{{ item.number | plus: 0 | prepend: 'Assignment ' | append: ' · ' | append: item.title | jsonify }},"url":{{ '/assignments/#assignment-' | append: item.number | relative_url | jsonify }},"summary":{{ item.title | jsonify }},"text":"Practice problems"}{% endfor %}
+  {% for skill in site.data.skills %},{"title":{{ skill.name | jsonify }},"url":{{ skill.url | relative_url | jsonify }},"summary":{{ skill.outcome | jsonify }},"text":{{ skill.aliases | jsonify }},"keywords":{{ skill.aliases | jsonify }}}{% endfor %}
+  {% for exam in site.data.exams %},{"title":{{ exam.name | append: ' study guide' | jsonify }},"url":{{ '/exams/#' | append: exam.id | relative_url | jsonify }},"summary":{{ exam.topic | jsonify }},"text":{{ exam.description | jsonify }},"keywords":{{ exam.name | downcase | jsonify }}}{% endfor %}
+  ,{"title":"Damper force and power","url":{{ '/lectures/12-dampers/#interactive-lab' | relative_url | jsonify }},"summary":"Follow a shock absorber’s force and energy loss.","text":"shock absorber dashpot","keywords":"shock absorber dashpot"}
+  ,{"title":"Frequency response and vibration isolation","url":{{ '/lectures/04-second-order-systems/#frequency-response' | relative_url | jsonify }},"summary":"Measure steady motion as the road frequency changes.","text":"resonance frequency response transmissibility base excitation","keywords":"resonance frequency response vibration isolation"}
+]

@@ -1,0 +1,13 @@
+<form class="activity-quiz" data-activity-quiz data-answer="{{ include.question.correct }}" data-feedback="{{ include.question.feedback | escape }}">
+  <fieldset>
+    <legend>{{ include.question.prompt }}</legend>
+    {% for option in include.question.options %}
+    <label><input type="radio" name="prediction" value="{{ forloop.index0 }}" data-hint="{{ include.question.hints[forloop.index0] | escape }}" required> <span>{{ option }}</span></label>
+    {% endfor %}
+  </fieldset>
+  <div class="activity-quiz-actions">
+    <button type="submit" class="activity-button" hidden>Check prediction</button>
+    <p data-quiz-status role="status"></p>
+  </div>
+</form>
+<noscript><details><summary>Check your prediction</summary><p>{{ include.question.feedback }}</p></details></noscript>

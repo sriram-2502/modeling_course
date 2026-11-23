@@ -1,0 +1,202 @@
+[
+  {
+    "id": "balance",
+    "name": "Physical modeling",
+    "lesson": "09",
+    "url": "/lectures/09-rigid-body-dynamics/#interactive-lab",
+    "outcome": "Draw the forces and predict the initial rotation of a pinned rod.",
+    "aliases": "free body diagram torque moment balance",
+    "question": "A uniform rod hangs from a pin at one end. Where does its weight act?",
+    "options": [
+      "At the pin",
+      "At its center of mass",
+      "At its free end"
+    ],
+    "answer": 1,
+    "hints": [
+      "The pin supplies a reaction. Think about how the rod’s mass is distributed.",
+      "",
+      "The rod’s mass is distributed along its length."
+    ],
+    "feedback": "A uniform rod’s center of mass lies halfway along its length.",
+    "practice": "04",
+    "exams": [
+      "exam-2"
+    ]
+  },
+  {
+    "id": "first-order",
+    "name": "First-order systems",
+    "lesson": "03",
+    "url": "/lectures/03-first-order-systems/#interactive-lab",
+    "outcome": "Estimate a time constant from a step response.",
+    "aliases": "time constant lag first order exponential 63 percent",
+    "question": "A sensor starts at 20 °C and settles at 40 °C. What does it read after one time constant?",
+    "options": [
+      "12.6 °C",
+      "32.6 °C",
+      "40 °C"
+    ],
+    "answer": 1,
+    "hints": [
+      "Apply the 63% to the temperature change, then add the starting value.",
+      "",
+      "At one time constant, some of the initial error remains."
+    ],
+    "feedback": "The sensor has completed 63% of its 20 °C rise.",
+    "practice": "01",
+    "exams": [
+      "exam-1"
+    ]
+  },
+  {
+    "id": "vibration",
+    "name": "Second-order systems and vibration",
+    "lesson": "04",
+    "url": "/lectures/04-second-order-systems/#interactive-lab",
+    "outcome": "Stop a released cart from crossing equilibrium.",
+    "aliases": "mass spring damper damping roots critical damping",
+    "question": "For a 1 kg cart and a 16 N/m spring released from rest, what is the smallest damping coefficient that prevents crossing equilibrium?",
+    "options": [
+      "4 N·s/m",
+      "8 N·s/m",
+      "16 N·s/m"
+    ],
+    "answer": 1,
+    "hints": [
+      "Check whether the roots still have an imaginary part.",
+      "",
+      "This is overdamped. Try the boundary at which the roots first coincide."
+    ],
+    "feedback": "Critical damping gives c = 2√(mk) = 8 N·s/m.",
+    "practice": "02",
+    "exams": [
+      "exam-1",
+      "exam-2"
+    ]
+  },
+  {
+    "id": "inputs",
+    "name": "Laplace transforms and convolution",
+    "lesson": "06",
+    "url": "/lectures/06-convolution/#two-taps",
+    "outcome": "Add the displacements caused by two taps.",
+    "aliases": "impulse overlap convolution push step Laplace",
+    "question": "A tap occurs at 1 s. At observation time 3 s, which impulse-response value weights that tap?",
+    "options": [
+      "h(1)",
+      "h(2)",
+      "h(3)"
+    ],
+    "answer": 1,
+    "hints": [
+      "The argument measures the age of the tap.",
+      "",
+      "This would be the age of a tap delivered at time zero."
+    ],
+    "feedback": "The response has evolved for 3 − 1 = 2 seconds.",
+    "practice": "03",
+    "exams": [
+      "exam-1"
+    ]
+  },
+  {
+    "id": "transfer",
+    "name": "Transfer functions and block diagrams",
+    "lesson": "13",
+    "url": "/lectures/13-transfer-functions-and-diagrams/#interactive-lab",
+    "outcome": "Trace an applied force through two integrators to displacement.",
+    "aliases": "transfer function signal flow integrator block diagram",
+    "question": "Starting from acceleration, what signal leaves the first integrator?",
+    "options": [
+      "Displacement",
+      "Velocity",
+      "Net force"
+    ],
+    "answer": 1,
+    "hints": [
+      "Displacement comes after the second integration.",
+      "",
+      "Net force divided by mass supplies the acceleration."
+    ],
+    "feedback": "Integrating acceleration yields the change in velocity.",
+    "practice": "05",
+    "exams": [
+      "exam-1",
+      "exam-2"
+    ]
+  },
+  {
+    "id": "states",
+    "name": "State space and coupled systems",
+    "lesson": "14",
+    "url": "/lectures/14-coupled-systems/#a-passive-quarter-car",
+    "outcome": "Choose the states required to replay a quarter-car bump.",
+    "aliases": "state space quarter car suspension coupled systems",
+    "question": "To predict the next instant in a two-mass suspension with known road input, which initial values suffice?",
+    "options": [
+      "The two heights",
+      "Both heights and both velocities",
+      "Body acceleration alone"
+    ],
+    "answer": 1,
+    "hints": [
+      "The same heights can occur while the masses are moving in opposite directions.",
+      "",
+      "One output does not determine the whole initial state."
+    ],
+    "feedback": "Each independent mass contributes position and velocity.",
+    "practice": "05",
+    "exams": [
+      "exam-2"
+    ]
+  },
+  {
+    "id": "stability",
+    "name": "Stability and phase portraits",
+    "lesson": "15",
+    "url": "/lectures/15-phase-portraits-and-stability/#interactive-lab",
+    "outcome": "Predict which way a displaced pendulum will move.",
+    "aliases": "phase plane eigenvalues equilibria linearization",
+    "question": "At a turning point of a swinging pendulum, which coordinate of its angle–velocity portrait is zero?",
+    "options": [
+      "Angle",
+      "Angular velocity"
+    ],
+    "answer": 1,
+    "hints": [
+      "The angle is generally largest in magnitude at the turning point.",
+      ""
+    ],
+    "feedback": "The pendulum momentarily stops and reverses angular direction.",
+    "practice": "06",
+    "exams": [
+      "exam-1",
+      "exam-2"
+    ]
+  },
+  {
+    "id": "feedback",
+    "name": "Feedback control",
+    "lesson": "24",
+    "url": "/lectures/24-feedback-control/#interactive-lab",
+    "outcome": "Predict the tracking error of a spring-loaded position controller.",
+    "aliases": "feedback proportional controller steady state error",
+    "question": "A proportional controller holds a mass against a stretched spring. Why is a steady position error needed?",
+    "options": [
+      "It supplies controller force",
+      "It keeps the damper moving"
+    ],
+    "answer": 0,
+    "hints": [
+      "",
+      "At steady position the damper velocity is zero."
+    ],
+    "feedback": "The steady controller force equals gain times error and balances the spring.",
+    "practice": null,
+    "exams": [
+      "exam-2",
+      "final-exam"
+    ]
+  }
+]

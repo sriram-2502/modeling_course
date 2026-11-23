@@ -1,0 +1,11 @@
+---
+title: Search
+permalink: /search/
+---
+<header class="page-intro"><h1>Search the course</h1><p class="lede">Find a lecture, project, or course page.</p></header>
+<section data-search-results data-index="{{ '/search-index.json' | relative_url }}" aria-label="Search results">
+  <p data-search-status role="status"></p>
+  <ol class="search-results" data-search-list></ol>
+</section>
+<noscript><p>Browse the <a href="{{ '/lectures/' | relative_url }}">lecture index</a> to find a topic.</p></noscript>
+

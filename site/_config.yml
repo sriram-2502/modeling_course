@@ -1,0 +1,28 @@
+title: ME 3050
+description: Modeling and Analysis of Dynamic Systems at Clemson University
+course_name: Modeling and Analysis of Dynamic Systems
+instructor: Sriram Krishnamoorthy
+email: sriramk@clemson.edu
+baseurl: ""
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+strict_front_matter: true
+liquid:
+  error_mode: strict
+collections:
+  lectures:
+    output: true
+    permalink: /lectures/:name/
+  projects:
+    output: true
+    permalink: /projects/:name/
+defaults:
+  - scope: {path: "", type: lectures}
+    values: {layout: lecture, section: lectures, math: true}
+  - scope: {path: "", type: projects}
+    values: {layout: project, section: projects}
+  - scope: {path: ""}
+    values: {layout: default}
+

@@ -1,0 +1,186 @@
+[
+  {
+    "id": "exam-1",
+    "name": "Exam 1",
+    "topic": "Foundations of dynamic response",
+    "description": "The archived exam asked students to use impulse response and convolution, classify equilibria of a nonlinear first-order equation, derive a transfer function and damping regimes, and recover transient and steady response by inverse Laplace transform.",
+    "assignments": [
+      "01",
+      "02",
+      "03"
+    ],
+    "intro": "Use roots to predict motion, then calculate how a system responds to an input.",
+    "groups": [
+      {
+        "heading": "Predict the motion",
+        "topics": [
+          {
+            "url": "/lectures/03-first-order-systems/#phase-lines-and-local-linearization",
+            "label": "First-Order Systems",
+            "action": "Classify equilibria on a phase line"
+          },
+          {
+            "url": "/lectures/04-second-order-systems/#from-an-ode-to-its-roots",
+            "label": "Second-Order Systems",
+            "action": "Predict oscillation from the roots"
+          }
+        ]
+      },
+      {
+        "heading": "Find the response to an input",
+        "topics": [
+          {
+            "url": "/lectures/05-laplace-transforms/#solve-and-invert",
+            "label": "Laplace Transforms",
+            "action": "Recover a response by inverse Laplace transform"
+          },
+          {
+            "url": "/lectures/06-convolution/#two-taps",
+            "label": "Convolution and System Response",
+            "action": "Add the responses to two taps"
+          },
+          {
+            "url": "/lectures/07-transfer-functions/#pick-the-input-and-output-first",
+            "label": "Transfer Functions and Stability",
+            "action": "Find the poles of a transfer function"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "url": "/lectures/08-exam-1-review/#practice",
+      "label": "Exam 1 Review"
+    }
+  },
+  {
+    "id": "exam-2",
+    "name": "Exam 2",
+    "topic": "Mechanical models and stability",
+    "description": "The archived exam covered series spring–damper forces, drum and load kinematics, position–velocity and position–momentum state choices, and gain-dependent stability after block reduction. Reuse the transform and pole tools from Exam 1.",
+    "assignments": [
+      "04",
+      "05",
+      "06"
+    ],
+    "intro": "Start with forces and motion, then use the model to explain stability.",
+    "groups": [
+      {
+        "heading": "Model the mechanism",
+        "topics": [
+          {
+            "url": "/lectures/09-rigid-body-dynamics/#start-with-a-free-body-diagram",
+            "label": "Rigid-Body Dynamics",
+            "action": "Draw a free-body diagram"
+          },
+          {
+            "url": "/lectures/10-drive-kinematics/#no-slip-links-rotation-and-translation",
+            "label": "Drive Kinematics",
+            "action": "Relate shaft rotation to load speed"
+          },
+          {
+            "url": "/lectures/11-springs-and-state-space/#from-an-ode-to-state-equations",
+            "label": "Springs and State Space",
+            "action": "Choose states for a spring and mass"
+          },
+          {
+            "url": "/lectures/12-dampers/#where-energy-goes",
+            "label": "Dampers and State Space",
+            "action": "Calculate damper force and power"
+          }
+        ]
+      },
+      {
+        "heading": "Analyze the model",
+        "topics": [
+          {
+            "url": "/lectures/13-transfer-functions-and-diagrams/#interactive-lab",
+            "label": "Transfer Functions and Block Diagrams",
+            "action": "Trace and reduce an integrator diagram"
+          },
+          {
+            "url": "/lectures/14-coupled-systems/#a-passive-quarter-car",
+            "label": "Coupled Systems and the Quarter-Car Model",
+            "action": "Write coupled balances for a quarter-car"
+          },
+          {
+            "url": "/lectures/15-phase-portraits-and-stability/#read-the-phase-portrait",
+            "label": "Phase Portraits and Stability",
+            "action": "Read stability from a phase portrait"
+          }
+        ]
+      }
+    ],
+    "review": {
+      "url": "/lectures/16-exam-2-review/#practice",
+      "label": "Exam 2 Review"
+    }
+  },
+  {
+    "id": "final-exam",
+    "name": "Final Exam",
+    "topic": "Suggested preparation across domains",
+    "description": "Use the later lectures to practice circuit, motor, fluid and thermal balances. Carry a model through state space and transfer functions, then close a feedback loop. Revisit earlier skills as needed. This is a suggested study route. The archived course materials do not specify the final exam scope.",
+    "assignments": [
+      "07",
+      "08"
+    ],
+    "intro": "Practice applying the same modeling tools across circuits, motors, fluids, and heat transfer. The final exam scope is unconfirmed.",
+    "groups": [
+      {
+        "heading": "Follow energy and flow",
+        "topics": [
+          {
+            "url": "/lectures/17-electrical-circuits/#a-series-rlc-circuit",
+            "label": "Electrical Circuits",
+            "action": "Model a series RLC circuit"
+          },
+          {
+            "url": "/lectures/17-electrical-circuits/#stage-loading",
+            "label": "RC Stage Loading",
+            "action": "Explain loading between circuit stages"
+          },
+          {
+            "url": "/lectures/18-electromechanical-coupling/#interactive-lab",
+            "label": "Electromechanical Coupling",
+            "action": "Predict magnetic force and induced voltage polarity"
+          },
+          {
+            "url": "/lectures/19-dc-motors/#dc-motor",
+            "label": "Galvanometers and DC Motors",
+            "action": "Connect motor current, torque, and speed"
+          },
+          {
+            "url": "/lectures/20-fluid-systems/#filling-and-draining-demo",
+            "label": "Fluid Systems and Mass Conservation",
+            "action": "Predict when a tank level peaks"
+          },
+          {
+            "url": "/lectures/21-fluid-analogies/#coupled-actuator-model",
+            "label": "Fluid Systems and Electrical Analogies",
+            "action": "Relate piston pressure to force"
+          },
+          {
+            "url": "/lectures/22-thermal-systems/#a-lumped-thermal-model",
+            "label": "Thermal Systems",
+            "action": "Predict a body’s temperature response"
+          }
+        ]
+      },
+      {
+        "heading": "Connect model representations",
+        "topics": [
+          {
+            "url": "/lectures/23-system-representations/#one-release",
+            "label": "Connecting System Representations",
+            "action": "Follow one release in time and in the phase plane"
+          },
+          {
+            "url": "/lectures/24-feedback-control/#close-the-equations",
+            "label": "Introduction to Feedback Control",
+            "action": "Predict how feedback changes tracking error"
+          }
+        ]
+      }
+    ]
+  }
+]

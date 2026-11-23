@@ -1,0 +1,7 @@
+/docs/
+/.build/
+/.bundle/
+/.jekyll-cache/
+/site/.jekyll-cache/
+/_site/
+

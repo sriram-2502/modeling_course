@@ -1,0 +1,34 @@
+<figure class="signal-diagram">
+  <figcaption>Reduce the diagram one stage at a time</figcaption>
+  <div class="signal-stages" role="group" aria-label="Diagram reduction stage">
+    <button type="button" data-reduction="0" aria-pressed="true">1 · Trace the integrators</button>
+    <button type="button" data-reduction="1" aria-pressed="false">2 · Combine the blocks</button>
+    <button type="button" data-reduction="2" aria-pressed="false">3 · Close the loop</button>
+  </div>
+  <div class="signal-stage" data-diagram-stage="0">
+  {% include example-diagram.html id='transfer-integrators' %}
+  <div class="signal-controls" role="group" aria-label="Signal to plot">
+    <button type="button" data-signal="force" aria-pressed="true">Applied force <span data-signal-value="force"></span></button>
+    <button type="button" data-signal="net" aria-pressed="false">Net force <span data-signal-value="net"></span></button>
+    <button type="button" data-signal="acceleration" aria-pressed="false">Acceleration <span data-signal-value="acceleration"></span></button>
+    <button type="button" data-signal="velocity" aria-pressed="false">Velocity <span data-signal-value="velocity"></span></button>
+    <button type="button" data-signal="position" aria-pressed="false">Displacement <span data-signal-value="position"></span></button>
+    <button type="button" data-signal="damper" aria-pressed="false">Damper force <span data-signal-value="damper"></span></button>
+    <button type="button" data-signal="spring" aria-pressed="false">Spring force <span data-signal-value="spring"></span></button>
+  </div>
+  <p class="signal-caption">Choose a signal to see its time history. The green buttons highlight the signals that feed your selection.</p>
+  </div>
+  <div class="signal-stage" data-diagram-stage="1" hidden>
+    {% include example-diagram.html id='transfer-loop' %}
+    <div class="signal-controls" role="group" aria-label="Signal to plot">
+      <button type="button" data-signal="force" aria-pressed="false">Applied force <span data-signal-value="force"></span></button>
+      <button type="button" data-signal="net" aria-pressed="false">Force sum <span data-signal-value="net"></span></button>
+      <button type="button" data-signal="position" aria-pressed="false">Displacement <span data-signal-value="position"></span></button>
+    </div>
+    <p class="signal-caption">Multiply the mass gain and both integrators in series. Since \(V=sX\) for zero initial conditions, combine the feedback branches as \(cV+kX=(cs+k)X\).</p>
+  </div>
+  <div class="signal-stage" data-diagram-stage="2" hidden>
+    {% include example-diagram.html id='transfer-reduced' %}
+    <p class="signal-caption">For negative feedback, \(X/F=G/(1+GH)\). Substituting the two blocks gives the equivalent transfer function. The plot overlays its displacement with the full integrator model using the same input and timeline.</p>
+  </div>
+</figure>

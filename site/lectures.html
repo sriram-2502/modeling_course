@@ -1,0 +1,19 @@
+---
+title: Lectures
+section: lectures
+permalink: /lectures/
+---
+<header class="page-intro"><h1>Lectures</h1><p class="lede">Read the lectures by topic, with figures, worked examples, and simulations on the lecture pages.</p></header>
+{% assign ordered = site.lectures | sort: 'number' %}
+{% assign units = ordered | group_by: 'unit' %}
+{% for unit in units %}
+<section class="index-section" aria-labelledby="lectures-{{ forloop.index }}">
+  <h2 id="lectures-{{ forloop.index }}">{{ unit.name }}</h2>
+  <ol class="index-list">
+    {% for lesson in unit.items %}
+    <li><span class="lecture-number"><span class="sr-only">Lecture </span>{{ lesson.number }}</span><div><h3><a href="{{ lesson.url | relative_url }}">{{ lesson.title }}</a></h3><p>{{ lesson.summary }}</p></div></li>
+    {% endfor %}
+  </ol>
+</section>
+{% endfor %}
+

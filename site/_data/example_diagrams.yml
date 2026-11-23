@@ -1,0 +1,66 @@
+mass-spring-damper:
+  alt: A mass on a horizontal surface is connected to a fixed wall by a spring and a viscous damper in parallel. The applied force and positive displacement point right.
+  caption: The spring and damper experience the same displacement from the wall. Measure positive displacement to the right from equilibrium.
+spring-connections:
+  alt: Two spring arrangements. The parallel springs share both end supports. The series springs are joined end to end.
+  caption: In parallel, the springs share displacement. In series, they carry the same force.
+pendulum:
+  alt: A point mass on a link of length ell, at angle theta from the downward vertical. Gravity points down and the link force passes through the pivot.
+  caption: The link force passes through the pivot. Gravity supplies the moment about the pivot.
+drive-train:
+  alt: Two external gear pitch circles touch. The marked angular velocities have opposite senses.
+  caption: The pitch circles have the same tangential speed at contact. The gear with fewer teeth turns faster.
+rc:
+  alt: Series loop with an input voltage source, resistor R, and capacitor C. The current arrow points clockwise and the capacitor voltage is positive at its top terminal.
+  caption: Use clockwise current and measure capacitor voltage from the bottom terminal to the top. The lab starts with an uncharged capacitor and a 5 V step.
+rl:
+  alt: Series loop with a voltage source, resistor R, and inductor L. The current arrow points clockwise.
+  caption: The inductor current is the state. Increasing inductance slows the current change for a fixed resistance.
+rlc:
+  alt: Series loop with a voltage source, resistor R, inductor L, and capacitor C. Current is clockwise and the capacitor voltage is measured top relative to bottom.
+  caption: The current is shared by all three elements. The lab measures the capacitor voltage after a 5 V step with zero initial voltage and current.
+rc-ladder:
+  alt: A voltage source drives two series resistors. A capacitor connects each node to the grounded bottom wire.
+  caption: Measure both node voltages from the bottom ground wire. Their difference drives current between the stages.
+dc-motor:
+  alt: The source drives armature resistance and inductance in series with the motor, where shaft speed creates back EMF. The shaft drives inertia and drag against an opposing load torque.
+  caption: Current produces shaft torque. Shaft speed produces a back EMF that reduces the voltage available to drive the current.
+galvanometer:
+  alt: A coil sits between north and south magnetic poles. The field points right. The left winding carries current into the page and is forced down. The right winding carries current out of the page and is forced up.
+  caption: A cross marks current into the page and a dot marks current out of the page. The two forces produce a counterclockwise torque that moves the pointer.
+galvanometer-fbd:
+  alt: Free-body diagram of the galvanometer rotor. Drive torque is counterclockwise. Spring and damping torques are clockwise for the positive angle and speed shown.
+  caption: Free-body diagram for positive pointer angle and angular velocity. The spring opposes the angle and the damper opposes the angular velocity.
+dc-motor-fbd:
+  alt: Free-body diagram of the motor rotor. The electromagnetic torque drives the rotor counterclockwise. The friction torque and applied load oppose positive rotation.
+  caption: Free-body diagram for positive shaft speed and opposing load. The net torque accelerates the combined rotor and load inertia.
+tank:
+  alt: A tank with cross-sectional area A has a marked liquid height h above its outlet. Inflow enters from above and outflow exits through an opening of area A o.
+  caption: Measure the head from the outlet elevation to the free surface. In the draining lab the inlet flow is zero.
+mixing-tanks:
+  alt: Inlet liquid enters tank 1, whose outlet feeds tank 2. The volumes, concentrations, and flow rates are labeled.
+  caption: Each outlet carries the concentration of its own well-mixed tank.
+hydraulic-actuator:
+  alt: A piston separates two fluid chambers. Flow enters chamber 1 and leaves chamber 2 as the piston moves to the right.
+  caption: Positive motion increases the left volume and decreases the right volume. Use the effective area for each chamber when finding its pressure force.
+thermal:
+  alt: Heater power flows into a body with temperature T and thermal capacitance. Heat leaves through a resistance to ambient temperature.
+  caption: The heater adds energy. The thermal resistance governs how quickly heat leaves for a given temperature difference.
+thermal-pair:
+  alt: Two thermal bodies each receive heat from a separate heater. A shared thermal resistance carries heat from body 1 to body 2 when body 1 is hotter.
+  caption: With flow defined from body 1 to body 2, the connecting heat rate appears with opposite signs in the two energy balances.
+feedback:
+  alt: A summing junction subtracts measured position from desired position. The controller multiplies the error by proportional gain, and the resulting force goes into the mass–spring–damper plant.
+  caption: The controller converts position error into force. The measured position returns to the negative input of the summing junction.
+transfer-outputs:
+  alt: The force input passes through a block equal to one over m s squared plus c s plus k. The output junction gives displacement. A following block multiplies displacement by s to give velocity.
+  caption: Read displacement at the branch and velocity after multiplying by s. Both outputs come from the same applied force.
+transfer-integrators:
+  alt: Applied force enters the positive input of the main summing junction. A second junction adds the spring and damper terms and sends their sum to the negative input. Net force passes through the mass gain and two integrators.
+  caption: The lower junction adds the spring and damper terms. The upper junction subtracts their sum from the applied force.
+transfer-loop:
+  alt: The net force passes through G equal to one over m s squared. The output displacement passes through H equal to c s plus k and then feeds the minus input of the sum.
+  caption: The forward block combines the mass gain and two integrators. The feedback block combines the spring and damper.
+transfer-reduced:
+  alt: The force input passes through one equivalent block with denominator m s squared plus c s plus k. The output is displacement.
+  caption: The reduced block maps force to displacement with zero initial conditions.

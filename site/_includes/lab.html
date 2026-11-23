@@ -1,0 +1,101 @@
+{% assign lab = site.data.labs[include.id] %}
+{% assign anchor = include.anchor | default: 'interactive-lab' %}
+{% assign prefix = include.anchor | default: 'lab' %}
+<section class="lab" id="{{ anchor }}" aria-labelledby="{{ prefix }}-title" data-model="{{ include.id }}" data-search-title="{{ lab.title | escape }}">
+  <h3 class="lab-title" id="{{ prefix }}-title">{{ lab.title }}</h3>
+  <p><strong>Predict.</strong> {{ lab.prediction }}</p>
+  <p><strong>Try.</strong> {{ lab.task }}</p>
+  {% if lab.equations %}
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    {% for equation in lab.equations %}
+    <div class="lab-equation math-expression" data-tex="{{ equation.tex | escape }}" data-display>{{ equation.text | escape }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="lab-live" hidden>
+    {% if lab.damping_modes %}
+    <label class="lab-select">
+      <span>Control damping by</span>
+      <select data-damping-mode>
+        <option value="ratio">Damping ratio (ζ)</option>
+        <option value="coefficient">Damping coefficient (c)</option>
+      </select>
+    </label>
+    {% endif %}
+    <div class="lab-controls">
+      {% include lab-slider.html control=lab id='parameter' prefix=prefix %}
+      {% for parameter in lab.parameters %}
+        {% include lab-slider.html control=parameter id=parameter.key parameter=parameter.key prefix=prefix %}
+      {% endfor %}
+    </div>
+    {% if lab.parameter_note %}<p class="lab-parameter-note">{{ lab.parameter_note }}</p>{% endif %}
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      {% for preset in lab.presets %}<button type="button" data-value="{{ preset.value }}" aria-pressed="false">{{ preset.label }}</button>{% endfor %}
+      <button class="reset" type="button" data-reset>Reset</button>
+    </div>
+    {% if lab.animation %}
+    <figure class="lab-motion">
+      <figcaption>{{ lab.animation }}</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="{{ lab.animation | escape }}" aria-describedby="{{ prefix }}-live-state"></canvas>
+      {% if lab.instruments %}
+      <dl class="lab-motion-value lab-instruments" id="{{ prefix }}-live-state">
+        {% for instrument in lab.instruments %}
+        <div>
+          <dt>{{ instrument.label }}</dt>
+          <dd data-instrument="{{ instrument.key }}" data-unit="{{ instrument.unit }}" data-scale="{{ instrument.scale | default: 1 }}"></dd>
+        </div>
+        {% endfor %}
+      </dl>
+      {% else %}
+      <p class="lab-motion-value" id="{{ prefix }}-live-state"></p>
+      {% endif %}
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play>Play</button>
+      <button type="button" class="activity-button" data-lab-step aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time>
+        <span class="time-value" aria-hidden="true" data-lab-time-value></span>
+      </label>
+    </div>
+    {% endif %}
+    <div class="lab-plots{% if lab.pole_note or lab.flow_plot %} lab-plots-paired{% endif %}">
+      <figure>
+        <figcaption>{{ lab.time_caption | default: 'Time response' }}</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="{{ prefix }}-key"></canvas>
+        <p class="lab-key" id="{{ prefix }}-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      {% if lab.flow_plot %}
+      <figure>
+        <figcaption>Flow versus time</figcaption>
+        <canvas class="lab-chart lab-flow-chart" role="img" aria-label="Flow rate versus time" aria-describedby="{{ prefix }}-flow-key"></canvas>
+        <ul class="lab-flow-key" id="{{ prefix }}-flow-key"></ul>
+      </figure>
+      {% endif %}
+      {% if lab.pole_note %}
+      <figure>
+        <figcaption>{{ lab.pole_title | default: 'System poles' }}</figcaption>
+        <canvas class="lab-pole-chart" role="img" aria-label="Real versus imaginary pole plot"></canvas>
+      </figure>
+      {% endif %}
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  {% if lab.pole_note %}<p>{{ lab.pole_note }}</p>{% endif %}
+  <p><strong>Explain.</strong> {{ lab.prompt }}</p>
+  <details class="lab-reference">
+    <summary>Compare reference {% unless lab.table_only %}plots and {% endunless %}values</summary>
+    {% if lab.reference_note %}<p>{{ lab.reference_note }}</p>{% endif %}
+    {% unless lab.table_only %}
+    <figure><img src="{{ '/assets/images/labs/' | append: include.id | append: '.png' | relative_url }}" alt="Time responses for the preset cases. Use the table below to compare their numerical values." width="1022" height="504" loading="lazy"></figure>
+    {% endunless %}
+    <table>
+      <thead><tr><th scope="col">{{ lab.control }}</th><th scope="col">{{ lab.reference_heading }}</th></tr></thead>
+      <tbody>{% for row in lab.reference %}<tr><th scope="row">{% if row.tex %}<span class="math-expression" data-tex="{{ row.tex | escape }}">{{ row.parameter }}</span>{% else %}{{ row.parameter }}{% endif %}</th><td>{{ row.response }}</td></tr>{% endfor %}</tbody>
+    </table>
+  </details>
+</section>
