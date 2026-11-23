@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connecting System Representations · ME 3050</title>
+  <meta name="description" content="Explain how ODEs, state space, transfer functions, and phase portraits describe the same dynamics.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+  <script type="module" src="/modeling_course/assets/js/activities.js?v=1795471675"></script>
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 23</span></nav>
+<article class="lesson" data-lecture-number="23" data-lecture-title="Connecting System Representations">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 23 · System representations and feedback</p>
+    <h1>Connecting System Representations</h1>
+    <p class="lede">Explain how ODEs, state space, transfer functions, and phase portraits describe the same dynamics.</p>
+    
+    <p><a href="/modeling_course/exams/#final-exam">Final Exam suggested preparation</a></p>
+    
+<div class="material-links">
+  
+    
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-23.pdf">Lecture PDF<span class="sr-only"> for Connecting System Representations</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>Which representation would you choose to compare two measured outputs from the same state model?</p>
+</li><li><p>Why can an eigenvalue appear in a state model and be absent from a particular transfer function?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="separate-the-model-from-its-representation">Separate the model from its representation</h2>
+
+<p>An ODE states the governing balance. A state model makes the evolving variables explicit. A block diagram exposes how signals and integrations connect. A transfer function describes one input-to-output map under zero initial conditions.</p>
+
+<p>For \(\dot{z}=Az+Bu\) and \(y=Cz+Du\), take the Laplace transform with zero initial state to obtain</p>
+
+\[G(s)=C(sI-A)^{-1}B+D.\]
+
+<p>The roots of \(\det(sI-A)\) are eigenvalues. In a minimal realization they also appear as transfer-function poles. Modes that cancel in an input-output map can still appear in the state model.</p>
+
+<h2 id="one-release">Follow one release through every representation</h2>
+
+<p>Release a 1 kg mass from 1 m at zero speed. Use \(c=2\,\mathrm{N\,s/m}\) and \(k=5\,\mathrm{N/m}\). There is no applied force after release. How can there be motion when the input is zero?</p>
+
+<p>The force balance gives \(\ddot x+2\dot x+5x=f\). Writing \(z=[x,\dot x]^T\) gives</p>
+
+\[\dot z=\begin{bmatrix}0&amp;1\\-5&amp;-2\end{bmatrix}z+\begin{bmatrix}0\\1\end{bmatrix}f.\]
+
+<p>The characteristic roots, eigenvalues, and force-to-position transfer-function poles are all \(-1\pm2j\). With the given initial state the free response is \(x(t)=e^{-t}(\cos 2t+\tfrac12\sin 2t)\) m. The transfer function \(1/(s^2+2s+5)\) describes the separate zero-state response to force. Here the initial spring energy supplies the motion.</p>
+
+<section class="lab activity" id="interactive-lab" aria-labelledby="activity-title" data-activity="representations" data-search-title="One clock for motion and state">
+  <h3 class="lab-title" id="activity-title">One clock for motion and state</h3>
+  
+  <p><strong>Predict.</strong> On which axis does the state lie when the cart reverses direction?</p>
+  <p><strong>Try.</strong> Step the clock. Follow the cart, the point on its displacement trace, and the same instant in the phase plane.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings" hidden="">
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views activity-views-stacked">
+        
+        <figure class="activity-view" data-view="motion">
+          <figcaption>Spring–mass–damper release</figcaption>
+          <canvas role="img" aria-label="The mass starts displaced from equilibrium. No external force acts during the release."></canvas>
+          <p class="activity-view-key">The mass starts displaced from equilibrium. No external force acts during the release.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="time">
+          <figcaption>Displacement through time</figcaption>
+          <canvas role="img" aria-label="A marker follows the free response of the released cart."></canvas>
+          <p class="activity-view-key">A marker follows the free response of the released cart.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="phase">
+          <figcaption>Velocity versus displacement</figcaption>
+          <canvas role="img" aria-label="The marker follows the damped spiral toward equilibrium."></canvas>
+          <p class="activity-view-key">The marker follows the damped spiral toward equilibrium.</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> Pause near a displacement extremum. What happens to the velocity and why does the phase curve cross the horizontal axis there?</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <p>The cart starts at 1 m with zero velocity. It first turns on the opposite side at about 1.57 s and −0.208 m. Both position and velocity decay toward zero.</p>
+      
+    </details>
+  
+</section>
+
+<p><strong>Can a measurement hide a mode?</strong> Take two independent states satisfying \(\dot z_1=-z_1+u\) and \(\dot z_2=-3z_2+u\). Measuring only \(z_1\) gives \(Y/U=1/(s+1)\) even though the state matrix also has eigenvalue \(-3\). Measuring \(z_1+z_2\) reveals both modes. Choosing the sensor is part of choosing the model’s output.</p>
+
+<h2 id="transfer-the-method-to-another-domain">Transfer the method to another domain</h2>
+
+<p>Compare a first-order RC circuit, a thermal enclosure, and a tank with a linear outlet. Each has a storage element and a loss or resistance path. The variables and units change, but the first-order time constant, equilibrium, and exponential response carry over. Choose which representation best answers the measurement or design question.</p>
+
+<p>Compare the single real pole of the <a href="/modeling_course/lectures/17-electrical-circuits/#a-series-rc-circuit">series RC circuit</a> with the pole of the <a href="/modeling_course/lectures/22-thermal-systems/#a-lumped-thermal-model">thermal enclosure</a>. Match the time constants in seconds to make the normalized responses coincide.</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--compare-electrical-and-thermal-time-constants">Worked example · Compare electrical and thermal time constants</h3>
+
+  <p>A 10 kΩ resistor with a 2 mF capacitor gives a time constant of 20 s. So does a thermal resistance of 0.2 K/W with a thermal capacitance of 100 J/K. Both models have a pole at \(-0.05\,\mathrm{s}^{-1}\) and complete about 63% of their step response in 20 s.</p>
+
+</section>
+
+    
+    
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Choose a representation to match the question. ODEs show balances, state equations expose internal variables, and transfer functions describe input-to-output behavior.</p>
+</li><li><p>In a minimal realization, the state-matrix eigenvalues are the transfer-function poles. A canceled mode can still affect internal motion in a nonminimal realization.</p>
+</li><li><p>First-order systems in different domains share the same normalized step response when their time constants match.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/22-thermal-systems/"><small>Previous lecture</small>Thermal Systems</a>
+        <a href="/modeling_course/lectures/24-feedback-control/" class="next"><small>Next lecture</small>Introduction to Feedback Control</a>
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

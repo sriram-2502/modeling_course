@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introduction to Feedback Control · ME 3050</title>
+  <meta name="description" content="Use a feedback diagram to explain how a controller changes a system’s response.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  <script type="module" src="/modeling_course/assets/js/labs.js?v=1795471675"></script>
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 24</span></nav>
+<article class="lesson" data-lecture-number="24" data-lecture-title="Introduction to Feedback Control">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 24 · System representations and feedback</p>
+    <h1>Introduction to Feedback Control</h1>
+    <p class="lede">Use a feedback diagram to explain how a controller changes a system’s response.</p>
+    
+    <p><a href="/modeling_course/exams/#final-exam">Final Exam suggested preparation</a></p>
+    
+<div class="material-links">
+  
+    
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-24.pdf">Lecture PDF<span class="sr-only"> for Introduction to Feedback Control</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>Where does the tracking error come from in a negative-feedback loop?</p>
+</li><li><p>If you increase proportional gain on the mass–spring–damper system, what happens to tracking error and to the oscillation you see?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="trace-the-loop">Trace the loop</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/feedback.svg" alt="A summing junction subtracts measured position from desired position. The controller multiplies the error by proportional gain, and the resulting force goes into the mass–spring–damper plant." loading="lazy" />
+  <figcaption>The controller converts position error into force. The measured position returns to the negative input of the summing junction.</figcaption>
+</figure>
+
+<p>A reference describes the desired output. A sensor measures the actual output, and the error is the reference minus the measurement. A controller uses this error to choose the plant input. Disturbances can enter the plant even when the reference is fixed.</p>
+
+<h2 id="close-the-equations">Close the equations</h2>
+
+<p>For unity negative feedback, plant \(G(s)\), and controller \(C(s)\), the reference-to-output transfer function is</p>
+
+\[\frac{C(s)G(s)}{1+C(s)G(s)}.\]
+
+<p>The characteristic equation after algebraic reduction shows how feedback can change the poles. For \(G(s)=1/(ms^2+cs+k)\) and \(C(s)=K_p\), the closed-loop denominator becomes \(ms^2+cs+k+K_p\).</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--find-the-steady-tracking-error">Worked example · Find the steady tracking error</h3>
+
+  <p>At rest, the spring force \(kx\) balances the controller force \(K_p(r-x)\). If both stiffness and proportional gain are 16 N/m, a 1 m command settles at \(x=K_pr/(k+K_p)=0.5\,\mathrm m\). The remaining 0.5 m error keeps the controller pushing against the spring.</p>
+
+</section>
+
+<section class="lab" id="interactive-lab" aria-labelledby="lab-title" data-model="feedback" data-search-title="Move the closed-loop poles">
+  <h3 class="lab-title" id="lab-title">Move the closed-loop poles</h3>
+  <p><strong>Predict.</strong> If you turn up the proportional gain, will oscillations decay faster?</p>
+  <p><strong>Try.</strong> The target steps to 1 m. Select 48 N/m and press Play. The orange arrow starts at the actuator on the cart. Watch it reverse when the cart passes the target, then increase the damping and try again.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="F=K_p(r-x),\qquad \frac{X(s)}{R(s)}=\frac{K_p}{ms^2+cs+k+K_p}" data-display="">F = K_p(r − x). The closed-loop transfer function is K_p/(ms² + cs + k + K_p).</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="lab-parameter">Proportional gain <span class="math-expression" data-tex="K_p">K_p</span></label>
+  <output id="lab-parameter-readout" for="lab-parameter" data-unit="N/m"></output>
+  <input type="range" id="lab-parameter" min="1" max="64" step="1" value="16" aria-describedby="lab-parameter-readout" />
+</div>
+
+      
+        
+
+<div class="lab-control">
+  <label for="lab-damping">Damping coefficient <span class="math-expression" data-tex="c">c</span></label>
+  <output id="lab-damping-readout" for="lab-damping" data-unit="N·s/m"></output>
+  <input type="range" id="lab-damping" min="0.5" max="24" step="0.1" value="2.4" aria-describedby="lab-damping-readout" data-parameter="damping" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="8" aria-pressed="false">8 N/m</button><button type="button" data-value="16" aria-pressed="false">16 N/m</button><button type="button" data-value="48" aria-pressed="false">48 N/m</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Controller force on the cart</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Controller force on the cart" aria-describedby="lab-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="lab-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Time response</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="lab-key"></canvas>
+        <p class="lab-key" id="lab-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      
+      <figure>
+        <figcaption>System poles</figcaption>
+        <canvas class="lab-pole-chart" role="img" aria-label="Real versus imaginary pole plot"></canvas>
+      </figure>
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  <p>In the underdamped range, changing proportional gain at fixed mass and damper changes the imaginary part while the real part stays at minus c divided by twice the mass.</p>
+  <p><strong>Explain.</strong> Compare two gains at the same damping. Which gain tracks the desired position more closely in steady state? What happens to the frequency of the oscillations?</p>
+  <details class="lab-reference">
+    <summary>Compare reference values</summary>
+    
+    
+    <table>
+      <thead><tr><th scope="col">Proportional gain</th><th scope="col">Steady position for a 1 m command</th></tr></thead>
+      <tbody><tr><th scope="row">8 N/m</th><td>0.333 m</td></tr><tr><th scope="row">16 N/m</th><td>0.500 m</td></tr><tr><th scope="row">48 N/m</th><td>0.750 m</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+<p><strong>Trace a disturbance.</strong> Keep the command fixed and apply an additional positive steady force \(d\) to the mass. After transients settle, \(kx=K_p(r-x)+d\). The change in equilibrium position is \(d/(k+K_p)\). Compare this disturbance response with the reference response above: the denominator is shared, but the two inputs enter at different places.</p>
+
+<h2 id="what-the-three-actions-do">What the three actions do</h2>
+
+<p>Proportional action responds to the current error. Integral action accumulates error and can remove steady error under appropriate stable conditions. Derivative action reacts to the rate of change and can be sensitive to measurement noise. Compare performance and stability before treating a higher gain as an improvement.</p>
+
+    
+    
+<section class="study-check" id="skill-check" data-skill="feedback" data-feedback="The steady controller force equals gain times error and balances the spring.">
+<h2 id="check-your-prediction">Skill check · Feedback control</h2>
+<form><fieldset><legend>A proportional controller holds a mass against a stretched spring. Why is a steady position error needed?</legend>
+<label><input required type="radio" name="choice" value="0" data-correct="yes" data-hint=""> It supplies controller force</label><label><input required type="radio" name="choice" value="1" data-correct="" data-hint="At steady position the damper velocity is zero."> It keeps the damper moving</label>
+</fieldset><button type="submit" class="material-link" hidden>Check prediction</button><p role="status"></p></form>
+<details><summary>Worked answer</summary><p>The steady controller force equals gain times error and balances the spring.</p></details>
+<p><a href="/modeling_course/projects/05-robot-arm/">Apply feedback to robot-arm tracking</a></p>
+</section>
+
+    
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Negative feedback subtracts the measured output from the reference. The controller turns that error into a plant input.</p>
+</li><li><p>Proportional gain changes the closed-loop poles. In the mass–spring–damper example, it adds to the stiffness term and reduces steady tracking error for a position step.</p>
+</li><li><p>Integral action can remove steady error when the loop remains stable. Derivative action responds to the rate of change and can amplify measurement noise.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/23-system-representations/"><small>Previous lecture</small>Connecting System Representations</a>
+        
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

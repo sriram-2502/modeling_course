@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exam 1 Review · ME 3050</title>
+  <meta name="description" content="Practice moving between ODEs, equilibria, Laplace transforms, and time responses.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+  
+  
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 08</span></nav>
+<article class="lesson" data-lecture-number="08" data-lecture-title="Exam 1 Review">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 08 · Dynamic response and modeling foundations</p>
+    <h1>Exam 1 Review</h1>
+    <p class="lede">Practice moving between ODEs, equilibria, Laplace transforms, and time responses.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-1">Exam 1 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-08-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Exam 1 Review</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-08.pdf">Lecture PDF<span class="sr-only"> for Exam 1 Review</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>Before solving a first-order equation, can you predict the initial direction and final value of the response?</p>
+</li><li><p>If you are given a measured force history and an impulse response, which solution method uses both directly?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="practice">Test yourself</h2>
+
+<p>Try each problem on paper before opening the hint or solution.</p>
+
+<h3 id="predict-the-direction">Predict the direction</h3>
+
+<p>A sensor starts above its steady reading. Sketch its stable first-order response to a constant input. Could it cross the steady value?</p>
+
+<details>
+  <summary>Hint</summary>
+
+  <p>Write the error as \(e=x-x_e\).</p>
+
+</details>
+
+<details>
+  <summary>Check the reasoning</summary>
+
+  <p>The error obeys \(\dot e=-e/\tau\). Its sign stays positive, so the reading falls monotonically toward equilibrium. <a href="/modeling_course/lectures/03-first-order-systems/#solve-the-constant-input-model">Revisit the lecture example</a>.</p>
+
+</details>
+
+<h3 id="calculate-a-response">Calculate a response</h3>
+
+<p>A resting cart has \(\dot v+2v=u\). A unit step is applied. Find the impulse response and use it to obtain the velocity at 1 s.</p>
+
+<details>
+  <summary>Hint</summary>
+
+  <p>Take \(V/U\) with zero initial velocity. Integrate the impulse response over the past second.</p>
+
+</details>
+
+<details>
+  <summary>Check the reasoning</summary>
+
+  <p>The impulse response is \(h(t)=e^{-2t}\) for \(t\geq0\). Its integral gives \(v(1)=(1-e^{-2})/2\approx0.432\) in the chosen velocity units. <a href="/modeling_course/lectures/06-convolution/#two-taps">Revisit the lecture example</a>.</p>
+
+</details>
+
+<h3 id="diagnose-a-damping-claim">Diagnose a damping claim</h3>
+
+<p>A classmate says a 1 kg cart with \(k=9\) N/m and \(c=4\) N·s/m must be overdamped because the damping coefficient exceeds one. What do the roots say?</p>
+
+<details>
+  <summary>Hint</summary>
+
+  <p>Use \(c^2-4mk\) or compute the dimensionless damping ratio.</p>
+
+</details>
+
+<details>
+  <summary>Check the reasoning</summary>
+
+  <p>The discriminant is \(16-36=-20\). The poles are \(-2\pm j\sqrt5\) per second and the motion is underdamped. The critical coefficient is 6 N·s/m. <a href="/modeling_course/lectures/04-second-order-systems/#from-an-ode-to-its-roots">Revisit the lecture example</a>.</p>
+
+</details>
+
+<h2 id="a-modeling-and-analysis-sequence">A modeling and analysis sequence</h2>
+
+<p>State the input, response, initial conditions, and units. For a first-order model, solve for its equilibrium and compare the initial state to that equilibrium. For a second-order model, derive the characteristic equation and classify its roots before solving for constants.</p>
+
+<h2 id="choose-a-solution-route">Choose a solution route</h2>
+
+<p>Use the direct ODE method for free response or simple constant inputs. Use Laplace transforms when a forced input or initial conditions make the time-domain algebra less convenient. Use convolution when the impulse response and input history are known. Derive a transfer function under zero initial conditions, then apply the input separately.</p>
+
+<h2 id="check-your-result">Check your result</h2>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--check-a-first-order-response">Worked example · Check a first-order response</h3>
+
+  <p>For \(\dot{x}+3x=6\) with \(x(0)=0\), the equilibrium is \(2\) and the time constant is \(1/3\,\mathrm{s}\). Predict the sign of the initial slope before solving. The solution \(x(t)=2(1-e^{-3t})\) begins at zero, has initial slope \(6\), and approaches \(2\).</p>
+
+</section>
+
+<p>For a nonlinear model, locate equilibria first and only then linearize about the equilibrium of interest.</p>
+
+    
+    
+    <p><a href="/modeling_course/assignments/#assignment-03">Practice with Assignment 3 · Practice Questions for Exam 1</a></p>
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Write down the input, output, units, and initial conditions before choosing a method.</p>
+</li><li><p>Use equilibria and characteristic roots to predict the response. Use Laplace transforms for forced equations and convolution when the impulse response is given.</p>
+</li><li><p>Check the initial value, initial slope, and expected long-time behavior against the original equation.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/07-transfer-functions/"><small>Previous lecture</small>Transfer Functions and Stability</a>
+        <a href="/modeling_course/lectures/09-rigid-body-dynamics/" class="next"><small>Next lecture</small>Rigid-Body Dynamics</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

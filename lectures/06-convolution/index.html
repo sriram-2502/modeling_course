@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Convolution and System Response · ME 3050</title>
+  <meta name="description" content="Find the output of a linear time-invariant model by accumulating shifted impulse responses.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+  <script type="module" src="/modeling_course/assets/js/activities.js?v=1795471675"></script>
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 06</span></nav>
+<article class="lesson" data-lecture-number="06" data-lecture-title="Convolution and System Response">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 06 · Dynamic response and modeling foundations</p>
+    <h1>Convolution and System Response</h1>
+    <p class="lede">Find the output of a linear time-invariant model by accumulating shifted impulse responses.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-1">Exam 1 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-06-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Convolution and System Response</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-06.pdf">Lecture PDF<span class="sr-only"> for Convolution and System Response</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>A two-second push ends. How can it still affect the spring–mass–damper displacement later?</p>
+</li><li><p>How can the response to a single tap predict the response to a full force history?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="two-taps">What does one earlier tap contribute?</h2>
+
+<p>Imagine giving the cart a quick push to the right with your fingertip and immediately letting go. That brief contact is the <strong>tap</strong>. Its <strong>impulse</strong> \(J=\int F(t)\,dt\) is the area under the force–time curve. For example, a 100 N force applied for 0.01 s delivers \(1\,\mathrm{N\,s}\) of impulse.</p>
+
+<p>In the demo, the contact is so short compared with one oscillation that we model it as instantaneous. The 1 kg cart starts at rest at equilibrium. A rightward impulse of \(1\,\mathrm{N\,s}\) increases its velocity by \(\Delta v=J/m=1\,\mathrm{m/s}\). Its position is continuous through the tap. Once contact ends, the spring and damper govern the motion.</p>
+
+<p>Tap the cart at 0 s and again at 1 s. Pause at 3 s. The first response is three seconds old, so it contributes \(J h(3)\) to the displacement. The second is two seconds old, so it contributes \(J h(2)\). Here \(h\) gives displacement per unit impulse after that much time has elapsed. Both taps pushed to the right. Can one contribution now point left?</p>
+
+<section class="lab activity" id="tap-experiment" aria-labelledby="tap-experiment-title" data-activity="tap-sum" data-search-title="Add two taps">
+  <h3 class="lab-title" id="tap-experiment-title">Add two taps</h3>
+  
+  <p><strong>Predict.</strong> At 3 s, will both taps move the cart to the same side of equilibrium?</p>
+  <p><strong>Try.</strong> Start with the first tap. Add a second tap at 1 s, then scrub to 3 s. Read the two displacements and their sum.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings">
+      
+      <label>
+        <span>Second unit impulse</span>
+        
+          <select name="delay">
+            
+              <option value="false">First tap only</option>
+            
+              <option value="one">Second tap at 1 s</option>
+            
+              <option value="two">Second tap at 2 s</option>
+            
+          </select>
+        
+      </label>
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views activity-views-stacked">
+        
+        <figure class="activity-view" data-view="time">
+          <figcaption>Displacement due to each tap and their sum</figcaption>
+          <canvas role="img" aria-label="Purple is the first tap. Dashed green is the second. Dotted orange is their sum."></canvas>
+          <p class="activity-view-key">Purple is the first tap. Dashed green is the second. Dotted orange is their sum.</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> Which contribution changes if you delay only the second tap?</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <p>A later tap has the same response shape shifted to its arrival time. At 3 s the first tap contributes negatively and the tap at 1 s contributes positively.</p>
+      
+    </details>
+  
+</section>
+
+<p>Now divide a sustained force into slices. A slice at past time \(\tau\) delivers impulse \(F(\tau)\Delta\tau\). At the observation time \(t\) its displacement contribution is approximately \(F(\tau)\Delta\tau\,h(t-\tau)\). Sum the slices and shrink their widths to obtain the integral below.</p>
+
+<h2 id="from-an-impulse-to-an-arbitrary-input">From an impulse to an arbitrary input</h2>
+
+<p>A linear time-invariant system’s impulse response \(h(t)\) describes its zero-state response to a unit impulse. Linearity lets us scale a contribution by the input value and add contributions. Time invariance lets us shift \(h\) by the time at which the contribution is applied.</p>
+
+<p>For causal signals and zero initial conditions,</p>
+
+\[y(t)=\int_0^t h(t-\tau)u(\tau)\,d\tau.\]
+
+<p>The term \(h(t-\tau)\) describes the amount of response left at \(t\) from input applied at \(\tau\). The Laplace-domain relation is \(Y(s)=H(s)U(s)\).</p>
+
+<p>For the mass–spring–damper system, take \(u=F\) and \(y=x\). The impulse response \(h(t)\) describes the displacement caused by one unit of impulse area. The integral adds the displacement contributions from all earlier portions of the force.</p>
+
+<section class="lab activity" id="interactive-lab" aria-labelledby="activity-title" data-activity="convolution" data-search-title="See the overlap">
+  <h3 class="lab-title" id="activity-title">See the overlap</h3>
+  
+    
+    <figure class="activity-setup">
+      
+      <div class="activity-setup-views">
+        <img src="/modeling_course/assets/images/activities/diagrams/oscillator-setup.png" alt="A one kilogram mass slides horizontally. A parallel spring of 16 N/m and damper of 2.4 N·s/m connect it to the wall." width="680" height="414" loading="lazy" />
+        <img src="/modeling_course/assets/images/activities/diagrams/oscillator-fbd.png" alt="Applied force points right. Spring and damping forces point left for positive displacement and velocity. Weight and normal reaction balance vertically." width="680" height="414" loading="lazy" />
+      </div>
+      <figcaption>Take the positive x direction to the right. Weight and the normal reaction balance vertically.</figcaption>
+      
+    </figure>
+    <p><strong>Given.</strong> The mass starts at rest at equilibrium. A positive force acts to the right, and displacement is measured from equilibrium.</p>
+  
+  <p><strong>Predict.</strong> Will the mass stop moving when the applied force ends?</p>
+  <p><strong>Try.</strong> Scrub observation time t. The first three plots scan past time τ on the same scale. Their signed overlap gives the displacement marked at t in the last plot.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings">
+      
+      <label>
+        <span>Input signal</span>
+        
+          <select name="input">
+            
+              <option value="pulse">1 N pulse (0–2 s)</option>
+            
+              <option value="step">1 N step</option>
+            
+              <option value="narrow">0.10 s pulse (1 N·s)</option>
+            
+          </select>
+        
+      </label>
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views activity-views-stacked">
+        
+        <figure class="activity-view" data-view="motion">
+          <figcaption>Mass–spring–damper motion</figcaption>
+          <canvas role="img" aria-label="The cart moves to the displacement calculated from the overlap below."></canvas>
+          <p class="activity-view-key">The cart moves to the displacement calculated from the overlap below.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="force">
+          <figcaption>Applied force history</figcaption>
+          <canvas role="img" aria-label="The cursor marks the time at which we want to calculate displacement."></canvas>
+          <p class="activity-view-key">The cursor marks the time at which we want to calculate displacement.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="kernel">
+          <figcaption>Flipped and shifted impulse response</figcaption>
+          <canvas role="img" aria-label="Contributions from later forces are zero. The kernel can have either sign."></canvas>
+          <p class="activity-view-key">Contributions from later forces are zero. The kernel can have either sign.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="overlap">
+          <figcaption>Signed product to integrate</figcaption>
+          <canvas role="img" aria-label="Orange contributes positively. Green contributes negatively. Integrate both to get the selected displacement."></canvas>
+          <p class="activity-view-key">Orange contributes positively. Green contributes negatively. Integrate both to get the selected displacement.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="output">
+          <figcaption>Mass displacement</figcaption>
+          <canvas role="img" aria-label="The marker is the signed area at the selected time."></canvas>
+          <p class="activity-view-key">The marker is the signed area at the selected time.</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> Compare the response at 2 s and 3 s. Why can the mass keep moving after the force goes back to zero? What does negative shaded area contribute?</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <img src="/modeling_course/assets/images/activities/convolution.png" alt="Snapshot of See the overlap. The reference case is described below." loading="lazy" />
+      
+      <p>The 1 N force stays on for 2 s. After it switches off, past inputs still contribute to the displacement. The spring and damper cause the motion to oscillate and decay.</p>
+      
+      <div class="lab-equation math-expression" data-tex="x(t)=\int_0^t F(\tau)\,h(t-\tau)\,d\tau,\qquad h(t)=\frac{e^{-1.2t}\sin(\sqrt{14.56}\,t)}{\sqrt{14.56}} \quad (t\geq0)" data-display="">Displacement is the signed area of force times the shifted impulse response. The impulse response is zero at negative times.</div>
+      
+    </details>
+  
+</section>
+
+<p><a href="/modeling_course/lectures/07-transfer-functions/#add-the-input">Compare a step, an ideal impulse, and two finite pulses on this same mass</a>.</p>
+
+<section class="worked-example">
+
+  <h2 id="worked-response-to-a-two-second-push">Worked response to a two-second push</h2>
+
+  <p>Let \(g(t)\) be the displacement produced by a sustained 1 N step on this same mass. It is the accumulated impulse response \(g(t)=\int_0^t h(\lambda)\,d\lambda\) for \(t\geq0\), and zero for \(t&lt;0\). A 1 N force that turns off at 2 s is a positive step at time zero and a negative step at 2 s. Linearity and time shifting give</p>
+
+\[x(t)=g(t)-g(t-2).\]
+
+  <p>Before 2 s, only the first term contributes. After 2 s, the force is zero and the two displacement responses continue to combine. This gives the same result as integrating \(F(\tau)h(t-\tau)\) over the time the force was applied. For nonzero initial conditions, add the free response separately.</p>
+
+</section>
+
+<h2 id="check-the-endpoints">Check the endpoints</h2>
+
+<p>For an ordinary initial displacement with no impulse in the displacement signal, \(x(0^+)=\lim_{s\to\infty}sX(s)\). For a rational transform, if all poles of \(sX(s)\) lie strictly in the left half-plane, \(x(\infty)=\lim_{s\to0}sX(s)\). The resting, damped cart returns to zero after a finite push. A sustained 1 N step on the 16 N/m spring instead settles at 0.0625 m. Check the endpoint against the force balance before accepting a transform calculation.</p>
+
+<p><a href="/modeling_course/materials/lectures/examples-convolution.pdf">Convolution practice examples (PDF)</a></p>
+
+    
+    
+<section class="study-check" id="skill-check" data-skill="inputs" data-feedback="The response has evolved for 3 − 1 = 2 seconds.">
+<h2 id="check-your-prediction">Skill check · Laplace transforms and convolution</h2>
+<form><fieldset><legend>A tap occurs at 1 s. At observation time 3 s, which impulse-response value weights that tap?</legend>
+<label><input required type="radio" name="choice" value="0" data-correct="" data-hint="The argument measures the age of the tap."> h(1)</label><label><input required type="radio" name="choice" value="1" data-correct="yes" data-hint=""> h(2)</label><label><input required type="radio" name="choice" value="2" data-correct="" data-hint="This would be the age of a tap delivered at time zero."> h(3)</label>
+</fieldset><button type="submit" class="material-link" hidden>Check prediction</button><p role="status"></p></form>
+<details><summary>Worked answer</summary><p>The response has evolved for 3 − 1 = 2 seconds.</p></details>
+<p><a href="/modeling_course/assignments/#assignment-03">Try Assignment 3</a></p>
+</section>
+
+    
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Convolution adds the shifted, weighted impulse responses from all earlier input contributions.</p>
+</li><li><p>A finite rectangular push is a step followed by a delayed step of opposite sign. Their shifted responses add.</p>
+</li><li><p>Convolution gives the zero-state response. Add the free response when the initial conditions are nonzero.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/05-laplace-transforms/"><small>Previous lecture</small>Laplace Transforms</a>
+        <a href="/modeling_course/lectures/07-transfer-functions/" class="next"><small>Next lecture</small>Transfer Functions and Stability</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

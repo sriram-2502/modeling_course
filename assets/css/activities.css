@@ -1,0 +1,88 @@
+.activity-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 8px 14px; }
+.activity-options label { display: grid; align-content: start; gap: 4px; color: var(--diploma); font-weight: 680; font-size: .82rem; }
+.activity-options select, .activity-options input[type="number"] {
+  min-width: 0; width: 100%; min-height: 39px; padding: 5px 8px; border: 1px solid #d9cce5;
+  border-radius: 6px; background: #fff; color: var(--ink);
+}
+.activity-playback { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 12px 0 14px; }
+.activity-button {
+  border: 1px solid #d5c8df; border-radius: 6px; background: white; color: var(--purple);
+  padding: 4px 10px; min-height: 37px; cursor: pointer; font-size: .81rem; font-weight: 700;
+}
+.activity-button:not(:disabled):hover { background: var(--tint); border-color: var(--purple); }
+.activity-button.primary { background: var(--purple); color: white; min-width: 4.8em; }
+.activity-button.primary:not(:disabled):hover { background: var(--diploma); }
+.activity-button:disabled { opacity: .65; cursor: default; }
+.activity-time { display: flex; flex: 1 1 235px; min-width: 0; align-items: center; gap: 8px; color: var(--muted); font-size: .8rem; padding-inline: 4px; }
+.activity-time input { flex: 1; min-width: 0; min-height: 33px; accent-color: var(--purple); margin: 0; }
+.time-value { flex: 0 0 auto; min-width: 4.5ch; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.activity-views { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.prose .activity-view {
+  display: flex; flex-direction: column; min-width: 0; margin: 0;
+  border: 1px solid var(--line); border-radius: 8px; background: white;
+}
+.activity-view:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.prose .activity-view figcaption { padding: 7px 10px 3px; color: var(--diploma); font-size: .81rem; font-weight: 700; }
+.activity-view canvas { display: block; flex: 1 1 auto; width: 100%; height: clamp(190px, 24vw, 246px); }
+.activity-views-stacked { grid-template-columns: minmax(0, 1fr); }
+.activity-views-stacked .activity-view canvas { height: clamp(150px, 20vw, 205px); }
+.activity-view[data-view="phase"] canvas { cursor: default; }
+.activity[data-activity="representations"] [data-view="phase"] canvas {
+  flex: none; width: min(100%, 28rem); height: auto; aspect-ratio: 1; align-self: center;
+}
+.activity[data-activity="pendulum"] .activity-view[data-view="phase"] canvas { cursor: crosshair; }
+.activity-view .activity-view-key { margin: 0; padding: 5px 10px 8px; color: var(--muted); line-height: 1.4; font-size: .74rem; }
+.activity-readout { display: flex; flex-wrap: wrap; gap: 5px 16px; margin: 10px 0 14px; }
+.activity-readout div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 5px; }
+.activity-readout dt { color: var(--muted); font-size: .79rem; }
+.activity-readout dd { margin: 0; color: var(--ink); font-size: .82rem; font-weight: 680; font-variant-numeric: tabular-nums; }
+.prose .activity-setup { margin: .75rem 0 .85rem; padding: 7px; border: 1px solid var(--line); border-radius: 8px; background: white; }
+.activity-setup-views { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.prose .activity-setup img { display: block; width: 100%; height: auto; max-height: none; }
+.prose .activity-setup figcaption { margin: 4px 5px 0; }
+
+.prose .signal-diagram { margin: 0 0 10px; padding: 11px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.prose .signal-diagram > figcaption { margin-bottom: 8px; color: var(--ink); font-weight: 700; }
+.signal-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 92px), 1fr)); gap: 6px; }
+.signal-diagram button {
+  min-width: 0; min-height: 44px; padding: 6px; border: 1px solid #e0d4eb;
+  border-radius: 6px; background: #faf7fd; color: var(--ink); font-size: .71rem; font-weight: 700;
+  line-height: 1.25; cursor: pointer;
+}
+.signal-diagram button span { display: block; margin-top: 4px; color: var(--muted); font-size: .7rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.signal-diagram button.feeds-selected { border-color: #6f927b; background: #eff8f1; }
+.signal-diagram button[aria-pressed="true"] { border-color: var(--purple); background: var(--tint); }
+.signal-stages { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 9px; }
+.signal-stages button { flex: 0 1 auto; padding-inline: 9px; }
+.signal-stage .signal-caption { color: var(--muted); font-size: .78rem; margin: 8px 0 0; }
+.prose .signal-stage .example-diagram { margin: 0 0 10px; max-width: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .signal-stage:not([hidden]) { animation: reveal-diagram .22s ease-out; }
+  @keyframes reveal-diagram { from { opacity: .35; transform: translateY(3px); } }
+}
+
+.activity-quiz { margin-bottom: 13px; }
+.activity-quiz fieldset { min-width: 0; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; }
+.activity-quiz legend { max-width: 100%; padding-inline: 4px; color: var(--diploma); font-size: .85rem; font-weight: 700; }
+.activity-quiz label { display: flex; align-items: center; min-height: 34px; gap: 6px; cursor: pointer; font-size: .84rem; }
+.activity-quiz input { accent-color: var(--purple); }
+.activity-quiz-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 7px; }
+.activity-quiz-actions p { flex: 1 1 165px; margin: 0; color: var(--muted); font-size: .81rem; }
+.activity-quiz-actions p[data-correct="true"] { color: #176454; }
+.activity-steps { margin: 14px 0; }
+.activity .activity-steps details { padding: 7px 10px; margin: 5px 0; border: 1px solid var(--line); border-radius: 7px; background: white; }
+.activity-steps .lab-equation { text-align: left; }
+.activity-reference img { display: block; width: 100%; margin: 9px 0 4px; border: 1px solid var(--line); border-radius: 7px; }
+
+@media (max-width: 640px) {
+  .activity-views { grid-template-columns: minmax(0, 1fr); }
+  .activity-setup-views { grid-template-columns: minmax(0, 1fr); }
+  .activity-view canvas { height: 213px; }
+}
+@media (max-width: 480px) {
+  .activity-playback .activity-time { flex-basis: 100%; }
+}
+@media (pointer: coarse), (max-width: 1024px) {
+  .activity-button, .activity-time input, .activity-options select, .activity-options input[type="number"], .activity-quiz label { min-height: 44px; }
+  .activity-options select, .activity-options input[type="number"] { font-size: 1rem; }
+}

@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fluid Systems and Mass Conservation · ME 3050</title>
+  <meta name="description" content="Derive liquid-level and mixing models from conservation of mass.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  <script type="module" src="/modeling_course/assets/js/labs.js?v=1795471675"></script>
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 20</span></nav>
+<article class="lesson" data-lecture-number="20" data-lecture-title="Fluid Systems and Mass Conservation">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 20 · Electrical, fluid, and thermal systems</p>
+    <h1>Fluid Systems and Mass Conservation</h1>
+    <p class="lede">Derive liquid-level and mixing models from conservation of mass.</p>
+    
+    <p><a href="/modeling_course/exams/#final-exam">Final Exam suggested preparation</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-20-notes.pdf">Shared fluid notes (PDF)<span class="sr-only"> for Fluid Systems and Mass Conservation</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-20.pdf">Lecture PDF<span class="sr-only"> for Fluid Systems and Mass Conservation</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>Does a freely draining tank lose height fastest when it is full or nearly empty?</p>
+</li><li><p>If one tank feeds another, can the second tank keep filling after the pump turns off?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="set-up-the-stored-quantity">Set up the stored quantity</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/tank.svg" alt="A tank with cross-sectional area A has a marked liquid height h above its outlet. Inflow enters from above and outflow exits through an opening of area A o." loading="lazy" />
+  <figcaption>Measure the head from the outlet elevation to the free surface. In the draining lab the inlet flow is zero.</figcaption>
+</figure>
+
+<p>For an incompressible liquid of density \(\rho\), mass flow is \(\rho\) times volumetric flow. A constant-area tank with height \(h\) stores volume \(Ah\). Its balance is \(A\,dh/dt=q_{\mathrm{in}}-q_{\mathrm{out}}\). With variable geometry, replace \(A\) by the cross-sectional area at the current height.</p>
+
+<h2 id="drainage-and-torricellis-law">Drainage and Torricelli’s law</h2>
+
+<p>With atmospheric pressure above the liquid and at the outlet, neglect surface velocity and use an ideal outlet model corrected by a discharge coefficient. Then \(q_{\mathrm{out}}=C_dA_o\sqrt{2gh}\). For zero inflow and constant \(A\), integrating the height equation gives</p>
+
+\[\sqrt{h}=\sqrt{h_0}-\frac{C_dA_o}{A}\sqrt{\frac{g}{2}}\,t\]
+
+<p>until the tank empties.</p>
+
+<section class="lab" id="interactive-lab" aria-labelledby="lab-title" data-model="draining" data-search-title="Drain a tank">
+  <h3 class="lab-title" id="lab-title">Drain a tank</h3>
+  <p><strong>Predict.</strong> What happens to the time to empty if the outlet area doubles?</p>
+  <p><strong>Try.</strong> Start at 0.60 m with no inflow. Hold the tank area at 0.020 m² and discharge coefficient at 0.62. Vary the outlet area.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="A\,\frac{dh}{dt}=-C_dA_o\sqrt{2gh}" data-display="">A dh/dt = −C_d A_o √(2gh).</div>
+    
+    <div class="lab-equation math-expression" data-tex="t_{\mathrm{empty}}=\frac{A}{C_dA_o}\sqrt{\frac{2h_0}{g}}" data-display="">Time to empty = [A/(C_d A_o)]√(2h₀/g).</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="lab-parameter">Outlet area</label>
+  <output id="lab-parameter-readout" for="lab-parameter" data-unit="cm²"></output>
+  <input type="range" id="lab-parameter" min="1" max="4" step="0.1" value="2" aria-describedby="lab-parameter-readout" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="1" aria-pressed="false">1 cm²</button><button type="button" data-value="2" aria-pressed="false">2 cm²</button><button type="button" data-value="4" aria-pressed="false">4 cm²</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Falling liquid level and slowing outflow</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Falling liquid level and slowing outflow" aria-describedby="lab-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="lab-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Water level versus time</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="lab-key"></canvas>
+        <p class="lab-key" id="lab-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      <figure>
+        <figcaption>Flow versus time</figcaption>
+        <canvas class="lab-chart lab-flow-chart" role="img" aria-label="Flow rate versus time" aria-describedby="lab-flow-key"></canvas>
+        <ul class="lab-flow-key" id="lab-flow-key"></ul>
+      </figure>
+      
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  
+  <p><strong>Explain.</strong> Compare the simulated times to empty. Why is the liquid level falling fastest at the beginning?</p>
+  <details class="lab-reference">
+    <summary>Compare reference plots and values</summary>
+    
+    
+    <figure><img src="/modeling_course/assets/images/labs/draining.png" alt="Time responses for the preset cases. Use the table below to compare their numerical values." width="1022" height="504" loading="lazy" /></figure>
+    
+    <table>
+      <thead><tr><th scope="col">Outlet area</th><th scope="col">Time to empty</th></tr></thead>
+      <tbody><tr><th scope="row">1 cm²</th><td>112.82 s</td></tr><tr><th scope="row">2 cm²</th><td>56.41 s</td></tr><tr><th scope="row">4 cm²</th><td>28.21 s</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+<h2 id="fill-and-drain-two-tanks">Fill and drain two tanks</h2>
+
+<p>Here two tanks with the same cross-sectional area of 0.020 m² are connected in cascade. Tank 1 discharges freely into Tank 2, and Tank 2 discharges to a drain. With a linear outlet law, each outflow is proportional to the water depth in its own tank. A tank rises when more water flows in than out, and falls when more flows out than in.</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--why-tank-2-keeps-rising">Worked example · Why Tank 2 keeps rising</h3>
+
+  <p>At pump shutoff in the default case, Tank 1 is about 0.388 m deep and Tank 2 is about 0.221 m deep. With a 20 s outlet time constant, the second tank’s height changes at about \((0.388-0.221)/20=0.00835\,\mathrm{m/s}\). The positive sign means the downstream tank is still rising.</p>
+
+</section>
+
+<section class="lab" id="filling-and-draining-demo" aria-labelledby="filling-and-draining-demo-title" data-model="tank-levels" data-search-title="Fill and drain two tanks">
+  <h3 class="lab-title" id="filling-and-draining-demo-title">Fill and drain two tanks</h3>
+  <p><strong>Predict.</strong> When the pump shuts off, will both levels fall immediately?</p>
+  <p><strong>Try.</strong> Start with empty tanks. The pump runs for 30 s, then shuts off. Set the pump flow and scrub across 30 s. Watch both waterlines and the transfer arrow.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="A\dot h_1=q_{\mathrm{in}}-q_{12},\qquad A\dot h_2=q_{12}-q_{\mathrm{out}}" data-display="">Tank 1 gains inlet flow and loses transfer flow. Tank 2 gains transfer flow and loses outlet flow.</div>
+    
+    <div class="lab-equation math-expression" data-tex="q_{12}=(A/\tau)h_1,\qquad q_{\mathrm{out}}=(A/\tau)h_2,\qquad \tau=20\,\mathrm{s}" data-display="">With linear, freely discharging outlets, each outlet flow is proportional to that tank’s water level. Each tank has a 20 s time constant.</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="filling-and-draining-demo-parameter">Pump flow</label>
+  <output id="filling-and-draining-demo-parameter-readout" for="filling-and-draining-demo-parameter" data-unit="L/s"></output>
+  <input type="range" id="filling-and-draining-demo-parameter" min="0.2" max="0.65" step="0.05" value="0.5" aria-describedby="filling-and-draining-demo-parameter-readout" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="0.25" aria-pressed="false">0.25 L/s</button><button type="button" data-value="0.5" aria-pressed="false">0.5 L/s</button><button type="button" data-value="0.65" aria-pressed="false">0.65 L/s</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Water levels and flow through a pair of tanks</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Water levels and flow through a pair of tanks" aria-describedby="filling-and-draining-demo-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="filling-and-draining-demo-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Water levels versus time</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="filling-and-draining-demo-key"></canvas>
+        <p class="lab-key" id="filling-and-draining-demo-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      <figure>
+        <figcaption>Flow versus time</figcaption>
+        <canvas class="lab-chart lab-flow-chart" role="img" aria-label="Flow rate versus time" aria-describedby="filling-and-draining-demo-flow-key"></canvas>
+        <ul class="lab-flow-key" id="filling-and-draining-demo-flow-key"></ul>
+      </figure>
+      
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  
+  <p><strong>Explain.</strong> Why can Tank 2 keep filling after the pump shuts off? Use the two flow rates in its mass balance.</p>
+  <details class="lab-reference">
+    <summary>Compare reference values</summary>
+    
+    
+    <table>
+      <thead><tr><th scope="col">Pump flow</th><th scope="col">Water levels at pump shutoff</th></tr></thead>
+      <tbody><tr><th scope="row">0.25 L/s</th><td>Tank 1 is 0.194 m and Tank 2 is 0.111 m.</td></tr><tr><th scope="row">0.5 L/s</th><td>Tank 1 is 0.388 m and Tank 2 is 0.221 m.</td></tr><tr><th scope="row">0.65 L/s</th><td>Tank 1 is 0.505 m and Tank 2 is 0.287 m.</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+<details>
+  <summary>Why can the second tank still rise after pump shutoff?</summary>
+
+  <p>Trace the pipe between the tanks. The upstream tank still supplies \(q_{12}\). Tank 2 reaches its peak when \(q_{12}=q_{\mathrm{out},2}\). Step past shutoff and compare that crossing with the peak on the level plot.</p>
+
+</details>
+
+<h2 id="mixing-is-a-separate-balance">Mixing is a separate balance</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/mixing-tanks.svg" alt="Inlet liquid enters tank 1, whose outlet feeds tank 2. The volumes, concentrations, and flow rates are labeled." loading="lazy" />
+  <figcaption>Each outlet carries the concentration of its own well-mixed tank.</figcaption>
+</figure>
+
+<p>If the tank is well mixed, the concentration in the outlet equals the current tank concentration. Write the balance for dissolved salt as input salt rate minus output salt rate. For two tanks in cascade, the first tank’s outlet concentration becomes the second tank’s inlet concentration.</p>
+
+<section class="lab" id="mixing-demo" aria-labelledby="mixing-demo-title" data-model="mixing" data-search-title="Follow salt through two tanks">
+  <h3 class="lab-title" id="mixing-demo-title">Follow salt through two tanks</h3>
+  <p><strong>Predict.</strong> Which tank reaches half the inlet concentration first?</p>
+  <p><strong>Try.</strong> Start with fresh water in both 2 L tanks. At time zero, switch the inlet to 1 g/L. The flow into and out of each tank is equal, so the waterlines stay level as salt concentration increases. Change the common flow rate and watch the color and concentration readings.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="V\dot c_1=q(c_{\mathrm{in}}-c_1),\qquad V\dot c_2=q(c_1-c_2)" data-display="">V times the rate of change of concentration equals q times the difference between the inlet and outlet concentrations of each tank.</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="mixing-demo-parameter">Flow rate</label>
+  <output id="mixing-demo-parameter-readout" for="mixing-demo-parameter" data-unit="L/s"></output>
+  <input type="range" id="mixing-demo-parameter" min="0.25" max="1" step="0.05" value="0.5" aria-describedby="mixing-demo-parameter-readout" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="0.25" aria-pressed="false">0.25 L/s</button><button type="button" data-value="0.5" aria-pressed="false">0.5 L/s</button><button type="button" data-value="1" aria-pressed="false">1 L/s</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Salt concentration in both tanks at constant water level</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Salt concentration in both tanks at constant water level" aria-describedby="mixing-demo-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="mixing-demo-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Salt concentration versus time</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="mixing-demo-key"></canvas>
+        <p class="lab-key" id="mixing-demo-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      <figure>
+        <figcaption>Flow versus time</figcaption>
+        <canvas class="lab-chart lab-flow-chart" role="img" aria-label="Flow rate versus time" aria-describedby="mixing-demo-flow-key"></canvas>
+        <ul class="lab-flow-key" id="mixing-demo-flow-key"></ul>
+      </figure>
+      
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  
+  <p><strong>Explain.</strong> Explain why the second tank starts with zero slope even though the inlet concentration changes instantly.</p>
+  <details class="lab-reference">
+    <summary>Compare reference values</summary>
+    
+    
+    <table>
+      <thead><tr><th scope="col">Flow rate</th><th scope="col">Time constant per tank</th></tr></thead>
+      <tbody><tr><th scope="row">0.25 L/s</th><td>8 s</td></tr><tr><th scope="row">0.5 L/s</th><td>4 s</td></tr><tr><th scope="row">1 L/s</th><td>2 s</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+
+    
+    
+    <p><a href="/modeling_course/assignments/#assignment-08">Practice with Assignment 8 · Fluid Systems</a></p>
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>A tank rises while inflow exceeds outflow. In a cascade, the second tank can keep rising after the pump shuts off because the first tank is still draining into it.</p>
+</li><li><p>With Torricelli drainage and no inflow, outflow scales with the square root of the height. The level falls more slowly as the tank empties.</p>
+</li><li><p>Track dissolved salt with its own balance. The second well-mixed tank receives the first tank’s concentration, so its concentration starts with zero slope after an inlet step into initially fresh water.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/19-dc-motors/"><small>Previous lecture</small>Galvanometers and DC Motors</a>
+        <a href="/modeling_course/lectures/21-fluid-analogies/" class="next"><small>Next lecture</small>Fluid Systems and Electrical Analogies</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

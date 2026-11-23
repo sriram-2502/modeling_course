@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase Portraits and Stability · ME 3050</title>
+  <meta name="description" content="Relate equilibria, linearization, eigenvalues, and the geometry of trajectories.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+  <script type="module" src="/modeling_course/assets/js/activities.js?v=1795471675"></script>
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 15</span></nav>
+<article class="lesson" data-lecture-number="15" data-lecture-title="Phase Portraits and Stability">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 15 · Mechanical systems and stability</p>
+    <h1>Phase Portraits and Stability</h1>
+    <p class="lede">Relate equilibria, linearization, eigenvalues, and the geometry of trajectories.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-2">Exam 2 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-15-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Phase Portraits and Stability</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-15.pdf">Lecture PDF<span class="sr-only"> for Phase Portraits and Stability</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>A pendulum is at rest in either the hanging or upright position. What happens after a small nudge in each case?</p>
+</li><li><p>What can an angle–velocity plot reveal that a sketch of the pendulum’s path through space cannot?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="find-the-equilibria-first">Find the equilibria first</h2>
+
+<p>For \(\dot{z}=f(z,u)\) with fixed input \(\bar{u}\), an equilibrium \(z_e\) satisfies \(f(z_e,\bar{u})=0\). The Jacobian \(A\) at that point maps small displacements in state to first-order changes in the dynamics. The linearized system describes nearby motion. Large perturbations can expose nonlinear behavior absent from the linear model.</p>
+
+<p>At the hanging equilibrium of a damped simple pendulum, use angular displacement \(\theta\) and angular velocity \(\omega\). The local acceleration is \(\dot\omega\approx-(g/\ell)\theta-b\omega\) with \(b&gt;0\). Around the upright position the gravity term reverses sign. A small positive angle with zero initial speed then accelerates farther away. Inspect the arrows on the horizontal axis first.</p>
+
+<h2 id="read-the-phase-portrait">Read the phase portrait</h2>
+
+<p>Each point represents a full state. The vector field gives the initial direction of motion, and the trajectory follows those directions through time. For two real eigenvalues, the eigendirections describe straight trajectories of a linear model. A saddle has one growing and one decaying direction. A stable focus spirals inward as time advances.</p>
+
+<section class="worked-example">
+
+  <h2 id="pendulum-example">Pendulum example</h2>
+
+  <figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/pendulum.svg" alt="A point mass on a link of length ell, at angle theta from the downward vertical. Gravity points down and the link force passes through the pivot." loading="lazy" />
+  <figcaption>The link force passes through the pivot. Gravity supplies the moment about the pivot.</figcaption>
+</figure>
+
+  <p>The states are angle and angular velocity. The downward and upright equilibria have zero angular velocity but different local dynamics. Near the upright equilibrium, gravity amplifies small departures in an unforced pendulum. Near the downward equilibrium it restores the angle. Positive damping turns small oscillations about the downward equilibrium into decaying motion.</p>
+
+</section>
+
+<section class="lab activity" id="interactive-lab" aria-labelledby="activity-title" data-activity="pendulum" data-search-title="Pendulum and phase portrait">
+  <h3 class="lab-title" id="activity-title">Pendulum and phase portrait</h3>
+  
+  <p><strong>Predict.</strong> If you release the pendulum near the upright position, which way will it move?</p>
+  <p><strong>Try.</strong> Try the starting cases or tap a point in the phase portrait. Play the motion, then pause and use the time slider to compare the views at the same instant.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings">
+      
+      <label>
+        <span>Starting case</span>
+        
+          <select name="preset">
+            
+              <option value="gentle">Gentle release</option>
+            
+              <option value="large">Large release</option>
+            
+              <option value="upright">Near upright</option>
+            
+              <option value="custom">Custom</option>
+            
+          </select>
+        
+      </label>
+      
+      <label>
+        <span>Initial angle (rad)</span>
+        
+          <input name="angle" type="number" min="-3.14" max="3.14" step="0.01" value="0.45" />
+        
+      </label>
+      
+      <label>
+        <span>Initial ang. vel. (rad/s)</span>
+        
+          <input name="velocity" type="number" min="-8" max="8" step="0.01" value="0" />
+        
+      </label>
+      
+      <label>
+        <span>Small-angle comparison</span>
+        
+          <select name="overlay">
+            
+              <option value="off">Hide</option>
+            
+              <option value="on">Show</option>
+            
+          </select>
+        
+      </label>
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views">
+        
+        <figure class="activity-view" data-view="motion">
+          <figcaption>Pendulum motion</figcaption>
+          <canvas role="img" aria-label="Solid pendulum is nonlinear. Dashed pendulum is the small-angle comparison when enabled."></canvas>
+          <p class="activity-view-key">Solid pendulum is nonlinear. Dashed pendulum is the small-angle comparison when enabled.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="phase">
+          <figcaption>Phase portrait</figcaption>
+          <canvas role="img" aria-label="Tap to choose an initial state. The filled center marks the hanging equilibrium and the two open circles mark the upright equilibrium."></canvas>
+          <p class="activity-view-key">Tap to choose an initial state. The filled center marks the hanging equilibrium and the two open circles mark the upright equilibrium.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="time">
+          <figcaption>Angle over time</figcaption>
+          <canvas role="img" aria-label="Solid curve is nonlinear. Dashed curve is the small-angle comparison when enabled."></canvas>
+          <p class="activity-view-key">Solid curve is nonlinear. Dashed curve is the small-angle comparison when enabled.</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> Where do trajectories spiral inward? How does the small-angle prediction change as the release point moves away from the hanging position?</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <img src="/modeling_course/assets/images/activities/pendulum.png" alt="Snapshot of Pendulum and phase portrait. The reference case is described below." loading="lazy" />
+      
+      <p>With a small release from rest, the pendulum oscillates and its path spirals toward the hanging equilibrium. Near the upright equilibrium, gravity drives it away. The linear comparison is taken about the hanging equilibrium.</p>
+      
+      <div class="lab-equation math-expression" data-tex="\ddot{\theta}+0.45\dot{\theta}+9.81\sin\theta=0" data-display="">A 1 m pendulum with light damping follows θ″ + 0.45θ′ + 9.81 sin θ = 0.</div>
+      
+    </details>
+  
+</section>
+
+<p><a href="/modeling_course/projects/03-lateral-stability/">Try the vehicle recovery replay in Keeping a Vehicle Stable</a> to compare a physical X–Y path with a phase portrait.</p>
+
+    
+    
+<section class="study-check" id="skill-check" data-skill="stability" data-feedback="The pendulum momentarily stops and reverses angular direction.">
+<h2 id="check-your-prediction">Skill check · Stability and phase portraits</h2>
+<form><fieldset><legend>At a turning point of a swinging pendulum, which coordinate of its angle–velocity portrait is zero?</legend>
+<label><input required type="radio" name="choice" value="0" data-correct="" data-hint="The angle is generally largest in magnitude at the turning point."> Angle</label><label><input required type="radio" name="choice" value="1" data-correct="yes" data-hint=""> Angular velocity</label>
+</fieldset><button type="submit" class="material-link" hidden>Check prediction</button><p role="status"></p></form>
+<details><summary>Worked answer</summary><p>The pendulum momentarily stops and reverses angular direction.</p></details>
+<p><a href="/modeling_course/assignments/#assignment-06">Try Assignment 6</a></p>
+</section>
+
+    
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>A phase portrait shows states and their direction of change. A pendulum state contains both angle and angular velocity.</p>
+</li><li><p>Linearize about the equilibrium of interest. Eigenvalues describe nearby motion, and large disturbances can expose nonlinear behavior.</p>
+</li><li><p>The upright pendulum has a growing direction. With positive damping, small disturbances decay about the hanging equilibrium.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/14-coupled-systems/"><small>Previous lecture</small>Coupled Systems and the Quarter-Car Model</a>
+        <a href="/modeling_course/lectures/16-exam-2-review/" class="next"><small>Next lecture</small>Exam 2 Review</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

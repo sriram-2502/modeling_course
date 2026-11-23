@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Second-Order Systems · ME 3050</title>
+  <meta name="description" content="Connect characteristic roots to the free response of a mass–spring–damper system.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  <script type="module" src="/modeling_course/assets/js/labs.js?v=1795471675"></script>
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+  <script type="module" src="/modeling_course/assets/js/activities.js?v=1795471675"></script>
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 04</span></nav>
+<article class="lesson" data-lecture-number="04" data-lecture-title="Second-Order Systems">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 04 · Dynamic response and modeling foundations</p>
+    <h1>Second-Order Systems</h1>
+    <p class="lede">Connect characteristic roots to the free response of a mass–spring–damper system.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-1">Exam 1 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-04-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Second-Order Systems</span></a>
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-04-complex-roots.pdf">Complex roots derivation (PDF)<span class="sr-only"> for Second-Order Systems</span></a>
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-04.pdf">Lecture PDF<span class="sr-only"> for Second-Order Systems</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>If you pull a mass away from equilibrium and release it, will it cross the equilibrium position?</p>
+</li><li><p>Where do the roots move when you stiffen the spring and keep the mass and damper fixed?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="from-an-ode-to-its-roots">From an ODE to its roots</h2>
+
+<p>A second-order model needs two initial conditions, typically displacement \(x(0)\) and velocity \(\dot{x}(0)\). For the homogeneous equation \(a\ddot{x}+b\dot{x}+cx=0\), substitute the trial solution \(x=Ce^{st}\). Differentiation introduces factors of \(s\) and \(s^2\). Cancel the common nonzero exponential to obtain \(as^2+bs+c=0\).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Characteristic roots</th>
+      <th style="text-align: left">Real-valued free response</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Two distinct real roots \(s_1\) and \(s_2\)</td>
+      <td style="text-align: left">\(C_1e^{s_1t}+C_2e^{s_2t}\)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Repeated root \(s\)</td>
+      <td style="text-align: left">\((C_1+C_2t)e^{st}\)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Conjugate roots \(\alpha\pm j\beta\)</td>
+      <td style="text-align: left">\(e^{\alpha t}[C_1\cos(\beta t)+C_2\sin(\beta t)]\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The initial conditions determine \(C_1\) and \(C_2\). For a conjugate pair, \(\alpha\) governs the envelope and \(\beta\) gives the angular frequency. Negative real parts give decay, positive real parts give growth, and a purely imaginary nonzero pair produces sustained oscillation.</p>
+
+<h2 id="build-a-massspringdamper-model">Build a mass–spring–damper model</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/mass-spring-damper.svg" alt="A mass on a horizontal surface is connected to a fixed wall by a spring and a viscous damper in parallel. The applied force and positive displacement point right." loading="lazy" />
+  <figcaption>The spring and damper experience the same displacement from the wall. Measure positive displacement to the right from equilibrium.</figcaption>
+</figure>
+
+<p>Take positive displacement \(x\) to the right and measure it from equilibrium. The spring contributes \(-kx\) and the viscous damper contributes \(-c\dot{x}\). Newton’s second law gives</p>
+
+\[m\ddot{x}+c\dot{x}+kx=f(t).\]
+
+<p>Here \(m\) is in kg, \(c\) in N·s/m, and \(k\) in N/m. Set \(f(t)=0\) for free response. Dividing by \(m\) gives \(\ddot{x}+2\beta\dot{x}+\omega_n^2x=0\), where \(\beta=c/(2m)\) is the damping rate and \(\omega_n=\sqrt{k/m}\) is the undamped natural frequency. The damping ratio \(\zeta=\beta/\omega_n\) is dimensionless, and the roots are \(s=-\beta\pm\sqrt{\beta^2-\omega_n^2}\).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Damping ratio</th>
+      <th style="text-align: left">What to expect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">\(\zeta=0\)</td>
+      <td style="text-align: left">Sustained oscillation at \(\omega_n\)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(0&lt;\zeta&lt;1\)</td>
+      <td style="text-align: left">Decaying oscillation at \(\omega_d=\omega_n\sqrt{1-\zeta^2}\)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\zeta=1\)</td>
+      <td style="text-align: left">Repeated root at \(-\omega_n\), at the boundary between oscillatory and non-oscillatory behavior</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">\(\zeta&gt;1\)</td>
+      <td style="text-align: left">Two negative real roots. The slower mode can dominate the return to equilibrium.</td>
+    </tr>
+  </tbody>
+</table>
+
+<section class="lab" id="interactive-lab" aria-labelledby="lab-title" data-model="second-order" data-search-title="Explore damping and free response">
+  <h3 class="lab-title" id="lab-title">Explore damping and free response</h3>
+  <p><strong>Predict.</strong> Which damping cases will cross equilibrium? If you increase spring stiffness and hold the damper fixed, will the poles move left, right, or farther from the real axis?</p>
+  <p><strong>Try.</strong> Compare the damping presets. Switch to damping coefficient to change m, c, and k independently. Move one slider at a time and watch the roots move.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="m\ddot{x}+c\dot{x}+kx=0" data-display="">m x″ + c x′ + kx = 0.</div>
+    
+    <div class="lab-equation math-expression" data-tex="\omega_n=\sqrt{\frac{k}{m}},\qquad \zeta=\frac{c}{2\sqrt{mk}}" data-display="">ωₙ = √(k/m), and ζ = c/[2√(mk)].</div>
+    
+    <div class="lab-equation math-expression" data-tex="x(0)=0.10\,\mathrm{m},\qquad \dot{x}(0)=0" data-display="">Initial displacement is 0.10 m and the initial velocity is zero.</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <label class="lab-select">
+      <span>Control damping by</span>
+      <select data-damping-mode="">
+        <option value="ratio">Damping ratio (ζ)</option>
+        <option value="coefficient">Damping coefficient (c)</option>
+      </select>
+    </label>
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control" data-damping-control="ratio">
+  <label for="lab-parameter">Damping ratio <span class="math-expression" data-tex="\zeta">ζ</span></label>
+  <output id="lab-parameter-readout" for="lab-parameter" data-unit=""></output>
+  <input type="range" id="lab-parameter" min="0" max="2" step="0.05" value="0.3" aria-describedby="lab-parameter-readout" />
+</div>
+
+      
+        
+
+<div class="lab-control" data-damping-control="coefficient" hidden="">
+  <label for="lab-damping">Damping coefficient <span class="math-expression" data-tex="c">c</span></label>
+  <output id="lab-damping-readout" for="lab-damping" data-unit="N·s/m"></output>
+  <input type="range" id="lab-damping" min="0" max="32" step="0.1" value="2.4" aria-describedby="lab-damping-readout" data-parameter="damping" />
+</div>
+
+      
+        
+
+<div class="lab-control">
+  <label for="lab-mass">Mass <span class="math-expression" data-tex="m">m</span></label>
+  <output id="lab-mass-readout" for="lab-mass" data-unit="kg"></output>
+  <input type="range" id="lab-mass" min="0.5" max="4" step="0.25" value="1" aria-describedby="lab-mass-readout" data-parameter="mass" />
+</div>
+
+      
+        
+
+<div class="lab-control">
+  <label for="lab-stiffness">Spring constant <span class="math-expression" data-tex="k">k</span></label>
+  <output id="lab-stiffness-readout" for="lab-stiffness" data-unit="N/m"></output>
+  <input type="range" id="lab-stiffness" min="4" max="64" step="1" value="16" aria-describedby="lab-stiffness-readout" data-parameter="stiffness" />
+</div>
+
+      
+    </div>
+    <p class="lab-parameter-note">Ratio mode adjusts the damper to keep the selected ratio fixed. Coefficient mode keeps the selected damper fixed as you change mass or stiffness.</p>
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="0" aria-pressed="false">Undamped</button><button type="button" data-value="0.3" aria-pressed="false">Underdamped</button><button type="button" data-value="1" aria-pressed="false">Critical</button><button type="button" data-value="1.5" aria-pressed="false">Overdamped</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Cart position and parallel spring and damper</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Cart position and parallel spring and damper" aria-describedby="lab-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="lab-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Time response</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="lab-key"></canvas>
+        <p class="lab-key" id="lab-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      
+      <figure>
+        <figcaption>Characteristic roots</figcaption>
+        <canvas class="lab-pole-chart" role="img" aria-label="Real versus imaginary pole plot"></canvas>
+      </figure>
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  <p>The real part determines the decay rate and the magnitude of the imaginary part sets the oscillation frequency. Two coincident roots are marked ×2.</p>
+  <p><strong>Explain.</strong> Set c to 8 N·s/m at the starting mass and stiffness. Where do the two roots meet? Increase c further and identify the slower root.</p>
+  <details class="lab-reference">
+    <summary>Compare reference plots and values</summary>
+    <p>These reference plots and values use the starting mass of 1 kg and spring constant of 16 N/m.</p>
+    
+    <figure><img src="/modeling_course/assets/images/labs/second-order.png" alt="Time responses for the preset cases. Use the table below to compare their numerical values." width="1022" height="504" loading="lazy" /></figure>
+    
+    <table>
+      <thead><tr><th scope="col">Damping ratio</th><th scope="col">Displacement at 1 s</th></tr></thead>
+      <tbody><tr><th scope="row"><span class="math-expression" data-tex="\zeta=0">ζ = 0</span></th><td>−0.0654 m</td></tr><tr><th scope="row"><span class="math-expression" data-tex="\zeta=0.30">ζ = 0.30</span></th><td>−0.0294 m</td></tr><tr><th scope="row"><span class="math-expression" data-tex="\zeta=1">ζ = 1</span></th><td>0.0092 m</td></tr><tr><th scope="row"><span class="math-expression" data-tex="\zeta=1.50">ζ = 1.50</span></th><td>0.0254 m</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+<section class="worked-example">
+
+  <h2 id="worked-example">Worked example</h2>
+
+  <p>Use the layout above with a 1 kg mass, a 4 N·s/m damper, and a 5 N/m spring. Pull the mass 0.10 m to the right and release it from rest. What displacement will you measure as it returns toward equilibrium?</p>
+
+  <p>For \(\ddot{x}+4\dot{x}+5x=0\), the roots are \(-2\pm j\). With \(x(0)=0.10\,\mathrm{m}\) and \(\dot{x}(0)=0\), evaluating the response and its derivative at \(t=0\) gives \(C_1=0.10\) and \(C_2=0.20\). The resulting displacement is</p>
+
+\[x(t)=0.10e^{-2t}\bigl(\cos t+2\sin t\bigr)\ \mathrm{m}.\]
+
+  <p><a href="?case=worked#interactive-lab">Run these exact values in the cart simulation</a>. A release from 1 m scales every displacement by ten and gives the same roots.</p>
+
+  <p>Its envelope decays at \(2\,\mathrm{s}^{-1}\) and its period is \(2\pi\,\mathrm{s}\).</p>
+
+  <p>For comparison, \(\ddot{x}+6\dot{x}+9x=0\) has the repeated root \(-3\), so its free response has the form \((C_1+C_2t)e^{-3t}\). The equation \(\ddot{x}-4\dot{x}+3x=0\) has positive roots at \(1\) and \(3\), so a nonzero mode grows.</p>
+
+</section>
+
+<h2 id="from-free-to-forced-response">From free to forced response</h2>
+
+<p>Free response isolates the effect of initial displacement and velocity. The quarter-car problem introduces road motion as an input, so the forcing frequency matters too. In <a href="/modeling_course/assignments/#assignment-02">Assignment 2</a>, identify which part of the solution decays and which part remains while the road input continues.</p>
+
+<h2 id="frequency-response">When does a mount isolate vibration?</h2>
+
+<p>Imagine a machine mounted on a vibrating floor. The floor moves through a fixed amplitude \(Y\) while the forcing frequency \(\omega\) changes. How large is the machine’s <strong>absolute</strong> displacement \(X\) after the transient dies away?</p>
+
+<p>The spring and damper connect the mass to the moving floor. With upward displacement positive for both, their forces depend on relative motion. Newton’s law gives</p>
+
+\[m\ddot x+c(\dot x-\dot y)+k(x-y)=0.\]
+
+<p>For sinusoidal base motion, the steady displacement amplitude ratio is</p>
+
+\[T=\frac{X}{Y}=\sqrt{\frac{1+(2\zeta r)^2}{(1-r^2)^2+(2\zeta r)^2}},\qquad r=\frac{\omega}{\omega_n}.\]
+
+<p>At low frequency the mass follows the floor. Near resonance it can travel farther than the floor. Above \(r=\sqrt{2}\), the mass displacement amplitude is smaller than the base amplitude. This criterion applies to the steady sinusoidal displacement comparison.</p>
+
+<section class="lab activity" id="isolation-demo" aria-labelledby="isolation-demo-title" data-activity="base-response" data-search-title="Test a vibration isolator">
+  <h3 class="lab-title" id="isolation-demo-title">Test a vibration isolator</h3>
+  
+  <p><strong>Predict.</strong> If the floor moves through 10 mm, can the machine move more than 10 mm?</p>
+  <p><strong>Try.</strong> Change the driving frequency. Compare steady floor and machine motion, then locate the selected case on the amplitude-ratio curve.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings">
+      
+      <label>
+        <span>Driving frequency divided by natural frequency</span>
+        
+          <select name="ratio">
+            
+              <option value="0.5">0.5 × natural frequency</option>
+            
+              <option value="1">1 × natural frequency</option>
+            
+              <option value="1.4142135624">Isolation boundary (√2)</option>
+            
+              <option value="2">2 × natural frequency</option>
+            
+              <option value="3">3 × natural frequency</option>
+            
+          </select>
+        
+      </label>
+      
+      <label>
+        <span>Damping ratio</span>
+        
+          <select name="damping">
+            
+              <option value="0.15">0.15</option>
+            
+              <option value="0.4">0.40</option>
+            
+          </select>
+        
+      </label>
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views activity-views-stacked">
+        
+        <figure class="activity-view" data-view="time">
+          <figcaption>Base and machine motion in steady operation</figcaption>
+          <canvas role="img" aria-label="Dashed green is the floor displacement. Solid purple is the machine displacement. Both are measured from equilibrium."></canvas>
+          <p class="activity-view-key">Dashed green is the floor displacement. Solid purple is the machine displacement. Both are measured from equilibrium.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="ratio">
+          <figcaption>Displacement transmissibility</figcaption>
+          <canvas role="img" aria-label="The marker shows the selected driving frequency. The dashed line marks equal base and machine amplitudes."></canvas>
+          <p class="activity-view-key">The marker shows the selected driving frequency. The dashed line marks equal base and machine amplitudes.</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> At twice the natural frequency, does a more heavily damped mount transmit more or less displacement? Compare that answer with the resonant case.</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <p>For a 1 kg machine and a 16 N/m mount the natural frequency is 4 rad/s. At a frequency ratio of √2 the two amplitudes are equal for either damping setting.</p>
+      
+    </details>
+  
+</section>
+
+<p><strong>How would a vibration absorber differ?</strong> An isolator changes the transmission path from the floor. A tuned absorber adds a second moving mass. In the ideal undamped, force-driven case, tune its spring and mass so that \(\sqrt{k_a/m_a}\) equals the forcing frequency. The absorber can then supply the opposing spring force while the primary mass has zero steady harmonic displacement. Detuning and damping change that result.</p>
+
+<h2 id="two-applications-from-the-lecture">Two applications from the lecture</h2>
+
+<p><strong>Pendulum and humanoid balance.</strong> Near the hanging position, the small-angle, undamped model satisfies \(\ddot{\theta}+(g/\ell)\theta=0\). Near the upright position, the sign changes to \(\ddot{\theta}-(g/\ell)\theta=0\). The first model has purely imaginary roots and bounded oscillations. The upright model has a positive root and a growing mode, which explains why a standing robot needs a means of stabilizing its motion.</p>
+
+<p><strong>Passive quarter-car.</strong> A one-mass model captures one mode. Adding independent body and wheel motion introduces a second mass and four states. The suspension forces depend on the relative body and wheel motion. The tire spring depends on the difference between wheel displacement and road height. <a href="/modeling_course/lectures/14-coupled-systems/">Lecture 14</a> develops the coupled equations.</p>
+
+    
+    
+<section class="study-check" id="skill-check" data-skill="vibration" data-feedback="Critical damping gives c = 2√(mk) = 8 N·s/m.">
+<h2 id="check-your-prediction">Skill check · Second-order systems and vibration</h2>
+<form><fieldset><legend>For a 1 kg cart and a 16 N/m spring released from rest, what is the smallest damping coefficient that prevents crossing equilibrium?</legend>
+<label><input required type="radio" name="choice" value="0" data-correct="" data-hint="Check whether the roots still have an imaginary part."> 4 N·s/m</label><label><input required type="radio" name="choice" value="1" data-correct="yes" data-hint=""> 8 N·s/m</label><label><input required type="radio" name="choice" value="2" data-correct="" data-hint="This is overdamped. Try the boundary at which the roots first coincide."> 16 N·s/m</label>
+</fieldset><button type="submit" class="material-link" hidden>Check prediction</button><p role="status"></p></form>
+<details><summary>Worked answer</summary><p>Critical damping gives c = 2√(mk) = 8 N·s/m.</p></details>
+<p><a href="/modeling_course/assignments/#assignment-02">Try Assignment 2</a></p>
+</section>
+
+    
+    <p><a href="/modeling_course/assignments/#assignment-02">Practice with Assignment 2 · Second-Order Systems and Laplace Transform Methods</a></p>
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>A second-order free response needs two initial conditions, typically position and velocity.</p>
+</li><li><p>For a conjugate root pair, the real part sets the decay or growth rate and the imaginary magnitude sets the oscillation frequency.</p>
+</li><li><p>Critical damping occurs at \(c=2\sqrt{mk}\). The two roots coincide on the real axis.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/03-first-order-systems/"><small>Previous lecture</small>First-Order Systems</a>
+        <a href="/modeling_course/lectures/05-laplace-transforms/" class="next"><small>Next lecture</small>Laplace Transforms</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

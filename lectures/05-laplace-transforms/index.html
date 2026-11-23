@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laplace Transforms · ME 3050</title>
+  <meta name="description" content="Carry initial conditions into an algebraic equation in s and recover the time response.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+  <script type="module" src="/modeling_course/assets/js/activities.js?v=1795471675"></script>
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 05</span></nav>
+<article class="lesson" data-lecture-number="05" data-lecture-title="Laplace Transforms">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 05 · Dynamic response and modeling foundations</p>
+    <h1>Laplace Transforms</h1>
+    <p class="lede">Carry initial conditions into an algebraic equation in s and recover the time response.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-1">Exam 1 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-05-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Laplace Transforms</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-05.pdf">Lecture PDF<span class="sr-only"> for Laplace Transforms</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>How does the cart’s initial speed enter the Laplace transform of its force balance?</p>
+</li><li><p>What can you check in a recovered time response before plotting it?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="transform-the-equation-and-the-initial-conditions">Transform the equation and the initial conditions</h2>
+
+<p>The unilateral Laplace transform weights \(x(t)\) by \(e^{-st}\) and integrates from \(0\) to \(\infty\). For derivatives, the initial conditions enter as</p>
+
+\[\begin{aligned}
+\mathcal{L}\{\dot{x}\} &amp;= sX-x(0),\\
+\mathcal{L}\{\ddot{x}\} &amp;= s^2X-sx(0)-\dot{x}(0).
+\end{aligned}\]
+
+<p>These initial-condition terms distinguish the full response from a transfer-function calculation.</p>
+
+<p>Useful pairs include \(\mathcal{L}\{1\}=1/s\), \(\mathcal{L}\{e^{-at}\}=1/(s+a)\), and \(\mathcal{L}\{\sin(\omega t)\}=\omega/(s^2+\omega^2)\). A delay of \(T\) with a causal switch multiplies the transform by \(e^{-sT}\).</p>
+
+<h2 id="solve-and-invert">Solve and invert</h2>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--recover-the-time-response">Worked example · Recover the time response</h3>
+
+  <p>For \(\dot{x}+2x=4\) and \(x(0)=1\), the transform gives \((s+2)X=4/s+1\). Decompose \(X=2/s-1/(s+2)\) and invert to get \(x(t)=2-e^{-2t}\). The initial value and equilibrium verify the signs.</p>
+
+</section>
+
+<p>Distinct poles give sums of exponentials. A repeated factor \(1/(s+a)^2\) gives \(te^{-at}\). For a conjugate pair, complete the square and split the numerator so it matches shifted sine and cosine transforms.</p>
+
+<section class="lab activity worked-example" id="interactive-lab" aria-labelledby="activity-title" data-activity="laplace-example" data-search-title="Work through a Laplace solution">
+  <h3 class="lab-title" id="activity-title">Work through a Laplace solution</h3>
+  
+    
+    <figure class="activity-setup">
+      
+      <div class="activity-setup-views">
+        <img src="/modeling_course/assets/images/activities/diagrams/laplace-damper-setup.png" alt="A one kilogram block on a frictionless surface connects to the wall through a damper of 3 N·s/m. A 6 N force and the initial velocity point right." width="680" height="414" loading="lazy" />
+        <img src="/modeling_course/assets/images/activities/diagrams/laplace-damper-fbd.png" alt="The applied force points right, the damper opposes positive velocity, the normal force points up, and weight points down." width="680" height="414" loading="lazy" />
+      </div>
+      <figcaption>Define velocity as positive to the right. The applied force is six newtons and the damper opposes the motion.</figcaption>
+      
+    </figure>
+    <p><strong>Given.</strong> A 1 kg mass slides on a frictionless surface. The damper coefficient is 3 N·s/m, the applied step force is 6 N to the right, and the initial velocity is 1 m/s to the right.</p>
+  
+  <p><strong>Predict.</strong> Which term carries the initial value into the transformed equation?</p>
+  <p><strong>Try.</strong> Use the free-body diagram to write the velocity equation. Select the transform of the derivative, then reveal each step when you have tried it yourself.</p>
+
+  
+
+  
+    <form class="activity-quiz" data-activity-quiz="" data-answer="1" data-feedback="The unilateral derivative rule subtracts the initial value.">
+  <fieldset>
+    <legend>If V(s) is the transform of velocity, what is the transform of its derivative?</legend>
+    
+    <label><input type="radio" name="prediction" value="0" data-hint="The cart already has a nonzero initial velocity. Where does it enter the derivative rule?" required="" /> <span>sV</span></label>
+    
+    <label><input type="radio" name="prediction" value="1" data-hint="" required="" /> <span>sV − 1</span></label>
+    
+    <label><input type="radio" name="prediction" value="2" data-hint="Check the sign of the initial value in the derivative rule." required="" /> <span>sV + 1</span></label>
+    
+  </fieldset>
+  <div class="activity-quiz-actions">
+    <button type="submit" class="activity-button" hidden="">Check prediction</button>
+    <p data-quiz-status="" role="status"></p>
+  </div>
+</form>
+<noscript><details><summary>Check your prediction</summary><p>The unilateral derivative rule subtracts the initial value.</p></details></noscript>
+
+  
+  
+    <div class="activity-steps">
+      
+      <details>
+        <summary>Step 1 · Write the force balance</summary>
+        <p>Positive force acts to the right and the damper opposes velocity.</p>
+        <div class="lab-equation math-expression" data-tex="m\dot{v}=F-cv \quad\Longrightarrow\quad \dot{v}+3v=6,\quad v(0)=1" data-display="">Applied force minus damping force equals mass times acceleration, so v′ + 3v = 6 with v(0) = 1.</div>
+      </details>
+      
+      <details>
+        <summary>Step 2 · Transform the ODE</summary>
+        <p>Subtract the initial value from the derivative term and collect the terms in V.</p>
+        <div class="lab-equation math-expression" data-tex="(s+3)V(s)=\frac{6}{s}+1" data-display="">(s + 3)V = 6/s + 1.</div>
+      </details>
+      
+      <details>
+        <summary>Step 3 · Split into simple fractions</summary>
+        <p>Write the transformed response as a steady contribution and a decaying contribution.</p>
+        <div class="lab-equation math-expression" data-tex="V(s)=\frac{2}{s}-\frac{1}{s+3}" data-display="">V = 2/s − 1/(s + 3).</div>
+      </details>
+      
+      <details>
+        <summary>Step 4 · Invert and check</summary>
+        <p>At time zero the response is 1. As time increases, it approaches 2.</p>
+        <div class="lab-equation math-expression" data-tex="v(t)=2-e^{-3t}" data-display="">v(t) = 2 − exp(−3t) m/s.</div>
+      </details>
+      
+    </div>
+  
+  <p><strong>Explain.</strong> Check that the solution has the given initial value and approaches the equilibrium implied by the original equation.</p>
+  
+</section>
+
+<section class="lab activity" id="damper-cart-motion" aria-labelledby="damper-cart-motion-title" data-activity="damper-cart" data-search-title="Watch the two forces come into balance">
+  <h3 class="lab-title" id="damper-cart-motion-title">Watch the two forces come into balance</h3>
+  
+  <p><strong>Predict.</strong> What happens to the net force as the cart speeds up?</p>
+  <p><strong>Try.</strong> Play the solved response with the initial velocity of 1 m/s. Compare the force arrows and readouts as the cart approaches 2 m/s.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings" hidden="">
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views">
+        
+        <figure class="activity-view" data-view="physical">
+          <figcaption>Cart motion and horizontal forces</figcaption>
+          <canvas role="img" aria-label="The orange applied-force arrow stays fixed. The green damping force grows as speed rises."></canvas>
+          <p class="activity-view-key">The orange applied-force arrow stays fixed. The green damping force grows as speed rises.</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> Explain how a cart with nearly zero net force can keep moving.</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <p>At release, the 6 N applied force opposes a 3 N damper force, leaving 3 N net. At steady speed, both force magnitudes approach 6 N.</p>
+      
+    </details>
+  
+</section>
+
+
+    
+    
+    <p><a href="/modeling_course/assignments/#assignment-02">Practice with Assignment 2 · Second-Order Systems and Laplace Transform Methods</a></p>
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Carry initial conditions into the unilateral transform when transforming derivatives.</p>
+</li><li><p>Solve for the transformed variable, then use partial fractions or known transform pairs to recover the response.</p>
+</li><li><p>Check that the solution starts at the given value and, for a stable constant-input case, approaches the equilibrium.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/04-second-order-systems/"><small>Previous lecture</small>Second-Order Systems</a>
+        <a href="/modeling_course/lectures/06-convolution/" class="next"><small>Next lecture</small>Convolution and System Response</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

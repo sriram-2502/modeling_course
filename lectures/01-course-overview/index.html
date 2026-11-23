@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Course Overview and Math Recap · ME 3050</title>
+  <meta name="description" content="Frame a modeling problem by choosing what to predict, what can change, and what data can test the prediction.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+  
+  
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 01</span></nav>
+<article class="lesson" data-lecture-number="01" data-lecture-title="Course Overview and Math Recap">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 01 · Dynamic response and modeling foundations</p>
+    <h1>Course Overview and Math Recap</h1>
+    <p class="lede">Frame a modeling problem by choosing what to predict, what can change, and what data can test the prediction.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-1">Exam 1 study guide</a></p>
+    
+<div class="material-links">
+  
+    
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-01.pdf">Course slides PDF<span class="sr-only"> for Course Overview and Math Recap</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>A car hits a bump. What would you measure to judge how comfortable the ride is?</p>
+</li><li><p>How could you tell whether your suspension model is good enough for that prediction?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="the-modeling-question">The modeling question</h2>
+
+<p>A useful dynamic model predicts how a system evolves from an initial state under an input. The level of detail depends on which output you need.</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--choose-what-to-measure">Worked example · Choose what to measure</h3>
+
+  <p>To study ride comfort after a bump, use the road height as the input and the car body’s vertical acceleration as the output. If the car starts on a level road at equilibrium, set its initial displacement and velocity relative to that equilibrium to zero. Compare the predicted acceleration with an accelerometer on the body.</p>
+
+</section>
+
+<h2 id="from-a-physical-system-to-a-prediction">From a physical system to a prediction</h2>
+
+<ol>
+  <li>Identify the system boundary, input, output, and relevant states.</li>
+  <li>Choose assumptions, signs, and units. Draw the forces or flows where appropriate.</li>
+  <li>Combine the governing balance with component laws to get equations.</li>
+  <li>Solve or simulate, then check the result against a limiting case and data.</li>
+</ol>
+
+<p><strong>Try the model boundary.</strong> If the question changes from rider comfort to tire contact, keep the same road input and choose tire deflection as an output. A single body accelerometer cannot directly measure that deflection. <a href="/modeling_course/lectures/14-coupled-systems/#interactive-lab">Follow the wheel and body over a bump</a>.</p>
+
+<h2 id="modeling-versus-analysis">Modeling versus analysis</h2>
+
+<p>Modeling produces the equations. Analysis explains what those equations predict, including equilibrium, transients, oscillation, and stability. A comparison with data can show where assumptions need refinement. The same workflow carries from mechanical systems to circuits, fluids, and heat transfer.</p>
+
+<p><a href="/modeling_course/syllabus/">Course objectives and assessment</a></p>
+
+    
+    
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Choose the prediction first. It determines the model boundary, inputs, outputs, and relevant states.</p>
+</li><li><p>Combine a governing balance with component laws, then solve or simulate the resulting equations.</p>
+</li><li><p>Check a simple limiting case and compare with measurements before trusting the prediction.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+        
+        <a href="/modeling_course/lectures/02-math-review/" class="next"><small>Next lecture</small>Math Review</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

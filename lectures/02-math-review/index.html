@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Math Review · ME 3050</title>
+  <meta name="description" content="Review integration, vector operations, and complex numbers used in dynamic modeling.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+  
+  
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 02</span></nav>
+<article class="lesson" data-lecture-number="02" data-lecture-title="Math Review">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 02 · Dynamic response and modeling foundations</p>
+    <h1>Math Review</h1>
+    <p class="lede">Review integration, vector operations, and complex numbers used in dynamic modeling.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-1">Exam 1 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-02-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Math Review</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-02.pdf">Lecture PDF<span class="sr-only"> for Math Review</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>If you know a cart’s velocity over time, what else do you need to find its position?</p>
+</li><li><p>How can a complex exponential describe a real oscillation?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="integration-and-derivatives">Integration and derivatives</h2>
+
+<p>A derivative describes an instantaneous rate. Integration accumulates that rate, so the change in a quantity between two times is the integral of its rate over that interval. The integration constant sets the initial position.</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--from-velocity-to-position">Worked example · From velocity to position</h3>
+
+  <p>A cart starts at 2 m and travels at 3 m/s for 2 s. Integrating the velocity gives a change of 6 m. Adding that change to the initial position gives a final position of 8 m.</p>
+
+</section>
+
+<p>Use substitution when an integrand contains a function and its derivative. Use integration by parts when differentiating one factor simplifies a product. For definite integrals, also transform the limits if you change variables.</p>
+
+<h2 id="vectors-and-fields">Vectors and fields</h2>
+
+<p>The dot product gives the component of one vector along another direction, scaled by the vector lengths. Work is the line integral of force dotted with displacement. The cross product gives a perpendicular vector and is used in the moment \(\mathbf{M}=\mathbf{r}\times\mathbf{F}\). A scalar triple product gives signed volume. Its sign changes when two vectors are exchanged.</p>
+
+<p>The gradient points in the direction of steepest increase of a scalar field. Divergence describes local net outflow, and curl describes local circulation. The divergence theorem relates flux through a closed surface to the volume integral of divergence. Stokes’ theorem relates circulation around an oriented boundary to the surface integral of curl.</p>
+
+<p><strong>Connect the math to a machine.</strong> A horizontal 10 N force applied 0.20 m above a shaft has a 2 N·m moment magnitude. Sliding its line of action through the shaft makes the moment zero even though the force magnitude stays 10 N. <a href="/modeling_course/lectures/09-rigid-body-dynamics/#rod-motion">Watch the moment arm change on a pinned rod</a>.</p>
+
+<h2 id="complex-numbers">Complex numbers</h2>
+
+<p>Write a complex number as \(a+jb\) or in magnitude–phase form. Its magnitude is \(\sqrt{a^2+b^2}\), and its phase is \(\operatorname{atan2}(b,a)\). Multiplication adds phases and multiplies magnitudes. Euler’s formula turns a complex exponential into sine and cosine, which is how conjugate roots lead to a real oscillatory response.</p>
+
+<p>Imagine the complex point \(z=e^{(-1+2j)t}\). Its distance from the origin is \(e^{-t}\) while its angle increases by 2 rad each second. Its horizontal projection is the real displacement \(e^{-t}\cos(2t)\). When you see a complex root later, sketch the shrinking radius and then project the rotating point onto a line.</p>
+
+    
+    
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>A derivative gives the instantaneous rate. Integrate the rate to find the change and add the initial value to recover the state.</p>
+</li><li><p>Use the dot product for work and the cross product of moment arm and force for torque.</p>
+</li><li><p>In a complex exponential, the real part of the exponent’s coefficient sets the envelope and the imaginary part sets the angular frequency.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/01-course-overview/"><small>Previous lecture</small>Course Overview and Math Recap</a>
+        <a href="/modeling_course/lectures/03-first-order-systems/" class="next"><small>Next lecture</small>First-Order Systems</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

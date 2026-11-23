@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thermal Systems · ME 3050</title>
+  <meta name="description" content="Use energy conservation, thermal resistance, and capacitance to predict temperature.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  <script type="module" src="/modeling_course/assets/js/labs.js?v=1795471675"></script>
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 22</span></nav>
+<article class="lesson" data-lecture-number="22" data-lecture-title="Thermal Systems">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 22 · Electrical, fluid, and thermal systems</p>
+    <h1>Thermal Systems</h1>
+    <p class="lede">Use energy conservation, thermal resistance, and capacitance to predict temperature.</p>
+    
+    <p><a href="/modeling_course/exams/#final-exam">Final Exam suggested preparation</a></p>
+    
+<div class="material-links">
+  
+    
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-22.pdf">Lecture PDF<span class="sr-only"> for Thermal Systems</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>Can you make a heated body warm up more slowly while keeping its final temperature the same?</p>
+</li><li><p>If two isolated bodies with the same thermal capacitance start at 60 °C and 20 °C, where will their temperatures meet?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="a-lumped-thermal-model">A lumped thermal model</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/thermal.svg" alt="Heater power flows into a body with temperature T and thermal capacitance. Heat leaves through a resistance to ambient temperature." loading="lazy" />
+  <figcaption>The heater adds energy. The thermal resistance governs how quickly heat leaves for a given temperature difference.</figcaption>
+</figure>
+
+<p>When a body can be approximated by one temperature, its thermal capacitance is \(C_{\mathrm{th}}=mc_p\). A thermal resistance \(R_{\mathrm{th}}\) relates heat rate to temperature difference. With constant ambient temperature \(T_a\) and heater power \(P\), the energy balance is</p>
+
+\[C_{\mathrm{th}}\dot{T}=P-\frac{T-T_a}{R_{\mathrm{th}}}.\]
+
+<p>At steady state the temperature is \(T_a+PR_{\mathrm{th}}\). The time constant is \(R_{\mathrm{th}}C_{\mathrm{th}}\). A model in the deviation \(T-T_a\) looks mathematically like the RC circuit.</p>
+
+<p>The animated thermometers share a 20–60 °C scale. Blue marks the cool end of the scale and red marks the warm end.</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--predict-the-rise-and-the-time-constant">Worked example · Predict the rise and the time constant</h3>
+
+  <p>Start at room temperature, 20 °C. With a 50 W heater and thermal resistance of 0.4 K/W, the steady rise is 20 K, so the final temperature is 40 °C. With a thermal capacitance of 250 J/K, the time constant is 100 s. After 100 s the body has completed about 63% of its rise, reaching about 32.6 °C.</p>
+
+</section>
+
+<section class="lab" id="interactive-lab" aria-labelledby="lab-title" data-model="thermal" data-search-title="Heat a thermal enclosure">
+  <h3 class="lab-title" id="lab-title">Heat a thermal enclosure</h3>
+  <p><strong>Predict.</strong> What changes if the enclosure stores more heat per degree?</p>
+  <p><strong>Try.</strong> Begin at 20 °C with a 50 W heater. Vary thermal capacitance and thermal resistance separately.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="C_{\mathrm{th}}\frac{dT}{dt}=P-\frac{T-T_a}{R_{\mathrm{th}}}" data-display="">C_th dT/dt = P − (T − T_a)/R_th.</div>
+    
+    <div class="lab-equation math-expression" data-tex="\tau=R_{\mathrm{th}}C_{\mathrm{th}},\qquad T_\infty=T_a+PR_{\mathrm{th}}" data-display="">τ = R_th C_th, and the final temperature is T_a + P R_th.</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="lab-parameter">Thermal capacitance</label>
+  <output id="lab-parameter-readout" for="lab-parameter" data-unit="J/K"></output>
+  <input type="range" id="lab-parameter" min="100" max="500" step="25" value="250" aria-describedby="lab-parameter-readout" />
+</div>
+
+      
+        
+
+<div class="lab-control">
+  <label for="lab-resistance">Thermal resistance <span class="math-expression" data-tex="R_{\mathrm{th}}">R_th</span></label>
+  <output id="lab-resistance-readout" for="lab-resistance" data-unit="K/W"></output>
+  <input type="range" id="lab-resistance" min="0.2" max="0.8" step="0.05" value="0.4" aria-describedby="lab-resistance-readout" data-parameter="resistance" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="125" aria-pressed="false">125 J/K</button><button type="button" data-value="250" aria-pressed="false">250 J/K</button><button type="button" data-value="500" aria-pressed="false">500 J/K</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Body and room thermometers show the temperature difference</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Body and room thermometers show the temperature difference" aria-describedby="lab-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="lab-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Time response</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="lab-key"></canvas>
+        <p class="lab-key" id="lab-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      
+      <figure>
+        <figcaption>System poles</figcaption>
+        <canvas class="lab-pole-chart" role="img" aria-label="Real versus imaginary pole plot"></canvas>
+      </figure>
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  <p>Either parameter moves the pole by changing the product of resistance and capacitance. Only the thermal resistance changes the final temperature for the same heater power.</p>
+  <p><strong>Explain.</strong> Which parameter can change the time constant while leaving the final temperature unchanged?</p>
+  <details class="lab-reference">
+    <summary>Compare reference plots and values</summary>
+    <p>The reference cases use a thermal resistance of 0.4 K/W.</p>
+    
+    <figure><img src="/modeling_course/assets/images/labs/thermal.png" alt="Time responses for the preset cases. Use the table below to compare their numerical values." width="1022" height="504" loading="lazy" /></figure>
+    
+    <table>
+      <thead><tr><th scope="col">Thermal capacitance</th><th scope="col">Temperature at t = 100 s</th></tr></thead>
+      <tbody><tr><th scope="row">125 J/K</th><td>37.29 °C</td></tr><tr><th scope="row">250 J/K</th><td>32.64 °C</td></tr><tr><th scope="row">500 J/K</th><td>27.87 °C</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+<h2 id="two-thermal-bodies">Two thermal bodies</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/thermal-pair.svg" alt="Two thermal bodies each receive heat from a separate heater. A shared thermal resistance carries heat from body 1 to body 2 when body 1 is hotter." loading="lazy" />
+  <figcaption>With flow defined from body 1 to body 2, the connecting heat rate appears with opposite signs in the two energy balances.</figcaption>
+</figure>
+
+<p>For bodies with temperatures \(T_1\) and \(T_2\), heat transfer through their connecting resistance is \((T_1-T_2)/R_{12}\). It leaves body 1 and enters body 2. Include each body’s input power and losses in its own energy balance, then use the two temperatures, or deviations from equilibrium, as states.</p>
+
+<section class="lab" id="heat-exchange-demo" aria-labelledby="heat-exchange-demo-title" data-model="thermal-pair" data-search-title="Watch two bodies exchange heat">
+  <h3 class="lab-title" id="heat-exchange-demo-title">Watch two bodies exchange heat</h3>
+  <p><strong>Predict.</strong> Where will the two temperatures meet if both bodies have the same thermal capacitance?</p>
+  <p><strong>Try.</strong> Set both heater powers to zero and neglect losses to the room. Start at 60 °C and 20 °C with 100 J/K in each body. Change the connecting resistance and scrub time.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="C\dot T_1=-q_{12},\qquad C\dot T_2=q_{12},\qquad q_{12}=(T_1-T_2)/R_{12}" data-display="">The hot body loses exactly the heat that the cold body receives. The heat rate is the temperature difference divided by the resistance.</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="heat-exchange-demo-parameter">Connecting resistance</label>
+  <output id="heat-exchange-demo-parameter-readout" for="heat-exchange-demo-parameter" data-unit="K/W"></output>
+  <input type="range" id="heat-exchange-demo-parameter" min="0.2" max="1" step="0.05" value="0.5" aria-describedby="heat-exchange-demo-parameter-readout" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="0.2" aria-pressed="false">0.2 K/W</button><button type="button" data-value="0.5" aria-pressed="false">0.5 K/W</button><button type="button" data-value="1" aria-pressed="false">1 K/W</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Both thermometers use the same temperature scale</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Both thermometers use the same temperature scale" aria-describedby="heat-exchange-demo-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="heat-exchange-demo-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots">
+      <figure>
+        <figcaption>Time response</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="heat-exchange-demo-key"></canvas>
+        <p class="lab-key" id="heat-exchange-demo-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  
+  <p><strong>Explain.</strong> Explain why changing the resistance changes how fast the bodies approach 40 °C while conserving total thermal energy.</p>
+  <details class="lab-reference">
+    <summary>Compare reference values</summary>
+    
+    
+    <table>
+      <thead><tr><th scope="col">Connecting resistance</th><th scope="col">Temperature-difference time constant</th></tr></thead>
+      <tbody><tr><th scope="row">0.2 K/W</th><td>10 s</td></tr><tr><th scope="row">0.5 K/W</th><td>25 s</td></tr><tr><th scope="row">1 K/W</th><td>50 s</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+
+    
+    
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>A lumped thermal model balances the heater power, heat loss, and the rate of energy storage in the body.</p>
+</li><li><p>Thermal capacitance changes the time constant. Thermal resistance changes both the time constant and the steady temperature rise at fixed heater power.</p>
+</li><li><p>Heat exchanged between two bodies leaves one balance and enters the other. Equal-capacitance bodies in an isolated pair settle at the average of their initial temperatures.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/21-fluid-analogies/"><small>Previous lecture</small>Fluid Systems and Electrical Analogies</a>
+        <a href="/modeling_course/lectures/23-system-representations/" class="next"><small>Next lecture</small>Connecting System Representations</a>
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

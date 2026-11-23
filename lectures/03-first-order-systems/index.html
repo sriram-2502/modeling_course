@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First-Order Systems · ME 3050</title>
+  <meta name="description" content="Use equilibria, time constants, phase lines, and linearization to predict first-order motion.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  <script type="module" src="/modeling_course/assets/js/labs.js?v=1795471675"></script>
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 03</span></nav>
+<article class="lesson" data-lecture-number="03" data-lecture-title="First-Order Systems">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 03 · Dynamic response and modeling foundations</p>
+    <h1>First-Order Systems</h1>
+    <p class="lede">Use equilibria, time constants, phase lines, and linearization to predict first-order motion.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-1">Exam 1 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-03-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for First-Order Systems</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-03.pdf">Lecture PDF<span class="sr-only"> for First-Order Systems</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>Two systems settle at the same value. What determines which one gets there faster?</p>
+</li><li><p>How could you tell from a phase line whether a small disturbance will grow or fade?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="solve-the-constant-input-model">Solve the constant-input model</h2>
+
+<p>For \(\dot{x}+ax=b\) with constant \(b\) and \(a&gt;0\), the equilibrium is \(x_e=b/a\). Subtracting \(x_e\) gives \(\frac{d}{dt}(x-x_e)=-a(x-x_e)\). The response is</p>
+
+\[x(t)=x_e+\bigl(x(0)-x_e\bigr)e^{-at}.\]
+
+<p>The first term is the steady value and the exponential term is the transient.</p>
+
+<p>The time constant \(\tau=1/a\) is the time it takes the error to fall to \(1/e\) of its initial value. One time constant therefore completes about 63% of the change to equilibrium. Larger \(\tau\) means a slower response.</p>
+
+<section class="lab" id="interactive-lab" aria-labelledby="lab-title" data-model="first-order" data-search-title="Explore the time constant">
+  <h3 class="lab-title" id="lab-title">Explore the time constant</h3>
+  <p><strong>Predict.</strong> How will a larger time constant affect the rise to the same final value?</p>
+  <p><strong>Try.</strong> Compare the three presets. Look for the time at which each curve first reaches approximately 0.63.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="\tau\dot{x} + x = 1,\qquad x(0)=0" data-display="">τ x′ + x = 1, with x(0) = 0.</div>
+    
+    <div class="lab-equation math-expression" data-tex="x(t)=1-e^{-t/\tau}" data-display="">x(t) = 1 − exp(−t/τ).</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="lab-parameter">Time constant <span class="math-expression" data-tex="\tau">τ</span></label>
+  <output id="lab-parameter-readout" for="lab-parameter" data-unit="s"></output>
+  <input type="range" id="lab-parameter" min="0.25" max="3" step="0.05" value="1" aria-describedby="lab-parameter-readout" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="0.5" aria-pressed="false">Fast</button><button type="button" data-value="1" aria-pressed="false">Reference</button><button type="button" data-value="2" aria-pressed="false">Slow</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Time response</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="lab-key"></canvas>
+        <p class="lab-key" id="lab-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      
+      <figure>
+        <figcaption>System poles</figcaption>
+        <canvas class="lab-pole-chart" role="img" aria-label="Real versus imaginary pole plot"></canvas>
+      </figure>
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  <p>A larger time constant moves the pole toward the origin and slows the decay of the transient.</p>
+  <p><strong>Explain.</strong> What changes in the initial slope and the time to reach equilibrium? Why does the final value stay the same?</p>
+  <details class="lab-reference">
+    <summary>Compare reference plots and values</summary>
+    
+    
+    <figure><img src="/modeling_course/assets/images/labs/first-order.png" alt="Time responses for the preset cases. Use the table below to compare their numerical values." width="1022" height="504" loading="lazy" /></figure>
+    
+    <table>
+      <thead><tr><th scope="col">Time constant</th><th scope="col">Response at t = 1 s</th></tr></thead>
+      <tbody><tr><th scope="row">0.5 s</th><td>0.865</td></tr><tr><th scope="row">1 s</th><td>0.632</td></tr><tr><th scope="row">2 s</th><td>0.393</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+<h3 id="read-a-time-constant-from-a-measurement">Read a time constant from a measurement</h3>
+
+<p>Set the final value to one and start at zero. A measurement of 0.632 at 2 s suggests \(\tau=2\) s. Check a second point: at 1 s the model predicts \(1-e^{-1/2}\approx0.393\). Open the <a href="?case=slow#interactive-lab">two-second time-constant case</a> and compare the numerical readout. If you repeated the measurement on a thermometer with a nonzero initial temperature, first subtract the initial reading and divide by the total rise.</p>
+
+<h2 id="phase-lines-and-local-linearization">Phase lines and local linearization</h2>
+
+<p>For \(\dot{x}=f(x)\), an equilibrium satisfies \(f(x_e)=0\). Draw arrows to the right where \(f\) is positive and to the left where \(f\) is negative. Arrows pointing in on both sides indicate local attraction.</p>
+
+<p>With \(\delta x=x-x_e\), the linearization is \(\frac{d}{dt}\delta x\approx f'(x_e)\delta x\). A negative derivative gives local asymptotic stability and a positive derivative gives instability. If the derivative is zero, inspect the nonlinear terms or the phase line.</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--classify-three-equilibria">Worked example · Classify three equilibria</h3>
+
+  <p>For \(\dot{x}=x-x^3\), factor \(x(1-x^2)=0\) to get equilibria at \(-1\), \(0\), and \(+1\). The slope \(f'(x)=1-3x^2\) is negative at \(\pm1\) and positive at zero. Small disturbances decay near \(\pm1\) and grow near zero.</p>
+
+</section>
+
+<p><a href="/modeling_course/materials/lectures/examples-first-order.pdf">First-order practice examples (PDF)</a> · <a href="/modeling_course/materials/lectures/examples-linearization.pdf">Linearization practice examples (PDF)</a></p>
+
+    
+    
+<section class="study-check" id="skill-check" data-skill="first-order" data-feedback="The sensor has completed 63% of its 20 °C rise.">
+<h2 id="check-your-prediction">Skill check · First-order systems</h2>
+<form><fieldset><legend>A sensor starts at 20 °C and settles at 40 °C. What does it read after one time constant?</legend>
+<label><input required type="radio" name="choice" value="0" data-correct="" data-hint="Apply the 63% to the temperature change, then add the starting value."> 12.6 °C</label><label><input required type="radio" name="choice" value="1" data-correct="yes" data-hint=""> 32.6 °C</label><label><input required type="radio" name="choice" value="2" data-correct="" data-hint="At one time constant, some of the initial error remains."> 40 °C</label>
+</fieldset><button type="submit" class="material-link" hidden>Check prediction</button><p role="status"></p></form>
+<details><summary>Worked answer</summary><p>The sensor has completed 63% of its 20 °C rise.</p></details>
+<p><a href="/modeling_course/assignments/#assignment-01">Try Assignment 1</a></p>
+</section>
+
+    
+    <p><a href="/modeling_course/assignments/#assignment-01">Practice with Assignment 1 · Mathematics Review and First-Order Systems</a></p>
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Find the equilibrium by setting the state derivative to zero for the fixed input.</p>
+</li><li><p>A stable first-order system completes about 63% of its change toward equilibrium in one time constant.</p>
+</li><li><p>Near an equilibrium of a scalar nonlinear system, a negative local slope attracts and a positive slope repels. A zero slope calls for another check.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/02-math-review/"><small>Previous lecture</small>Math Review</a>
+        <a href="/modeling_course/lectures/04-second-order-systems/" class="next"><small>Next lecture</small>Second-Order Systems</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

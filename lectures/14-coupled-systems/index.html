@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coupled Systems and the Quarter-Car Model · ME 3050</title>
+  <meta name="description" content="Connect relative spring and damper forces to a two-mass dynamic model.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+  <script type="module" src="/modeling_course/assets/js/activities.js?v=1795471675"></script>
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 14</span></nav>
+<article class="lesson" data-lecture-number="14" data-lecture-title="Coupled Systems and the Quarter-Car Model">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 14 · Mechanical systems and stability</p>
+    <h1>Coupled Systems and the Quarter-Car Model</h1>
+    <p class="lede">Connect relative spring and damper forces to a two-mass dynamic model.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-2">Exam 2 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-14-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Coupled Systems and the Quarter-Car Model</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-14.pdf">Lecture PDF<span class="sr-only"> for Coupled Systems and the Quarter-Car Model</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>When the wheel moves up over a bump, which forces act between the wheel and body?</p>
+</li><li><p>Would you choose the same suspension settings for ride comfort and for maintaining tire contact?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="write-each-mass-balance-separately">Write each mass balance separately</h2>
+
+<p>Use the same positive direction for the two displacements. Between masses with displacements \(x_1\) and \(x_2\), a linear spring contributes \(-k(x_1-x_2)\) on mass 1 and the opposite force on mass 2. A damper similarly uses the velocity difference. Explicit relative terms make the signs easier to check.</p>
+
+<h2 id="a-passive-quarter-car">A passive quarter-car</h2>
+
+<p>Let \(z_s\) be body displacement, \(z_u\) wheel displacement, and \(r\) road height. The suspension spring and damper depend on \(z_s-z_u\) and its derivative. A simple tire spring applies \(k_t(r-z_u)\) to the unsprung mass. Measure displacement from static equilibrium so constant weight is already balanced by the static deflections.</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--find-the-suspension-force">Worked example · Find the suspension force</h3>
+
+  <p>Hold the body at equilibrium and raise the wheel 10 mm. At an instant when both velocities are zero, only the spring contributes to the suspension force. With a stiffness of 16,500 N/m, it pushes up on the body with 165 N and down on the wheel with 165 N.</p>
+
+</section>
+
+<section class="lab activity" id="interactive-lab" aria-labelledby="activity-title" data-activity="quarter-car" data-search-title="Quarter-car over a bump">
+  <h3 class="lab-title" id="activity-title">Quarter-car over a bump</h3>
+  
+    
+    <figure class="activity-setup">
+      
+      <div class="activity-setup-views">
+        <img src="/modeling_course/assets/images/activities/diagrams/quarter-car-setup.png" alt="A 290 kg body and 40 kg wheel are joined by a parallel suspension spring and dashpot. A tire spring connects the wheel to the moving road." width="680" height="414" loading="lazy" />
+        <img src="/modeling_course/assets/images/activities/diagrams/quarter-car-fbd.png" alt="On the body, both suspension force arrows point downward. On the wheel, the equal and opposite arrows point upward, with the tire force acting upward for positive road displacement relative to the wheel." width="680" height="414" loading="lazy" />
+      </div>
+      <figcaption>Arrows show the directions for positive relative displacements and velocities. Gravity is already accounted for by measuring from static equilibrium.</figcaption>
+      
+        <div class="lab-equation math-expression" data-tex="F_s=k_s(z_s-z_u),\qquad F_d=c_s(\dot{z}_s-\dot{z}_u),\qquad F_t=k_t(r-z_u)" data-display="">The spring and damper use body displacement and velocity relative to the wheel. The tire force uses road height relative to the wheel.</div>
+      
+    </figure>
+    <p><strong>Given.</strong> Measure displacement upward from static equilibrium. The suspension spring is 16,500 N/m and the tire spring is 185,000 N/m. Compare dampers of 950 and 2,200 N·s/m over the same 60 mm bump.</p>
+  
+  <p><strong>Predict.</strong> Which damping setup will give less body acceleration? Which will limit suspension travel more?</p>
+  <p><strong>Try.</strong> Run the same road bump with light and firm damping. Switch the plot between body acceleration and suspension travel, then use the timeline to connect a peak to the motion.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings">
+      
+      <label>
+        <span>Animated setup</span>
+        
+          <select name="setup">
+            
+              <option value="light">Light damping</option>
+            
+              <option value="firm">Firm damping</option>
+            
+          </select>
+        
+      </label>
+      
+      <label>
+        <span>Plot quantity</span>
+        
+          <select name="metric">
+            
+              <option value="acceleration">Body acceleration</option>
+            
+              <option value="travel">Suspension travel</option>
+            
+          </select>
+        
+      </label>
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views">
+        
+        <figure class="activity-view" data-view="motion">
+          <figcaption>Body and wheel over the bump</figcaption>
+          <canvas role="img" aria-label="The purple suspension spring and green damper act in parallel. The orange tire spring connects the wheel to the road."></canvas>
+          <p class="activity-view-key">The purple suspension spring and green damper act in parallel. The orange tire spring connects the wheel to the road.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="time">
+          <figcaption>Compare both setups</figcaption>
+          <canvas role="img" aria-label="Solid purple is light damping. Dashed orange is firm damping."></canvas>
+          <p class="activity-view-key">Solid purple is light damping. Dashed orange is firm damping.</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> What changes in the first peak and the motion after the bump? Which metric would you use to judge ride comfort?</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <img src="/modeling_course/assets/images/activities/quarter-car.png" alt="Snapshot of Quarter-car over a bump. The reference case is described below." loading="lazy" />
+      
+      <p>Both cases use the same 290 kg body mass, 40 kg wheel mass, spring stiffnesses, and 60 mm bump. The two curves show the effect of changing the damper from 950 to 2,200 N·s/m in this passive linear model.</p>
+      
+    </details>
+  
+</section>
+
+<h2 id="follow-one-force-onto-both-bodies">Follow one force onto both bodies</h2>
+
+<p>Write the signed suspension force as \(S=k_s(z_s-z_u)+c_s(\dot z_s-\dot z_u)\). The free-body diagrams give</p>
+
+\[m_s\ddot z_s=-S,\qquad m_u\ddot z_u=S+k_t(r-z_u).\]
+
+<p>Add the equations. The suspension force cancels because it is internal to the body–wheel pair. A sign error leaves an extra suspension force in the sum. To get this passive model from the lecture PDF’s general model, set the actuator force and tire damping coefficient to zero. The suspension damper still acts between body and wheel.</p>
+
+<h2 id="from-equations-to-outputs">From equations to outputs</h2>
+
+<p>The two second-order equations require four states: both positions and both velocities. To obtain a transfer function, transform the two equations under zero initial conditions and solve for the chosen output. Body acceleration, suspension travel, and tire deflection reveal different design tradeoffs. <a href="/modeling_course/projects/02-suspension/">Apply this in the suspension project</a>.</p>
+
+    
+    
+<section class="study-check" id="skill-check" data-skill="states" data-feedback="Each independent mass contributes position and velocity.">
+<h2 id="check-your-prediction">Skill check · State space and coupled systems</h2>
+<form><fieldset><legend>To predict the next instant in a two-mass suspension with known road input, which initial values suffice?</legend>
+<label><input required type="radio" name="choice" value="0" data-correct="" data-hint="The same heights can occur while the masses are moving in opposite directions."> The two heights</label><label><input required type="radio" name="choice" value="1" data-correct="yes" data-hint=""> Both heights and both velocities</label><label><input required type="radio" name="choice" value="2" data-correct="" data-hint="One output does not determine the whole initial state."> Body acceleration alone</label>
+</fieldset><button type="submit" class="material-link" hidden>Check prediction</button><p role="status"></p></form>
+<details><summary>Worked answer</summary><p>Each independent mass contributes position and velocity.</p></details>
+<p><a href="/modeling_course/assignments/#assignment-05">Try Assignment 5</a></p>
+</section>
+
+    
+    <p><a href="/modeling_course/assignments/#assignment-05">Practice with Assignment 5 · Mechanical Systems, State Space, and Block Diagrams</a></p>
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Draw one force balance per mass. Suspension forces act in equal and opposite pairs and depend on relative displacement and velocity.</p>
+</li><li><p>In the quarter-car model, the tire spring responds to road height relative to wheel position. The body and wheel together contribute four states.</p>
+</li><li><p>Use body acceleration to assess ride comfort, suspension travel to check clearance, and tire deflection to estimate changes in tire force.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/13-transfer-functions-and-diagrams/"><small>Previous lecture</small>Transfer Functions and Block Diagrams</a>
+        <a href="/modeling_course/lectures/15-phase-portraits-and-stability/" class="next"><small>Next lecture</small>Phase Portraits and Stability</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Springs and State Space · ME 3050</title>
+  <meta name="description" content="Build spring models and express a second-order ODE as a first-order state model.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+  <script type="module" src="/modeling_course/assets/js/activities.js?v=1795471675"></script>
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 11</span></nav>
+<article class="lesson" data-lecture-number="11" data-lecture-title="Springs and State Space">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 11 · Mechanical systems and stability</p>
+    <h1>Springs and State Space</h1>
+    <p class="lede">Build spring models and express a second-order ODE as a first-order state model.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-2">Exam 2 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-11-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Springs and State Space</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-11.pdf">Lecture PDF<span class="sr-only"> for Springs and State Space</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>Do two springs share the same force or the same displacement when connected in series?</p>
+</li><li><p>What happens to the middle spring when two identical masses move together by the same amount?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="spring-force-and-energy">Spring force and energy</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/spring-connections.svg" alt="Two spring arrangements. The parallel springs share both end supports. The series springs are joined end to end." loading="lazy" />
+  <figcaption>In parallel, the springs share displacement. In series, they carry the same force.</figcaption>
+</figure>
+
+<p>A linear spring exerts a restoring force proportional to displacement from its unstretched length. Two springs in parallel share displacement and their stiffnesses add. Springs in series share force, so their compliances add. An ideal spring stores energy \(\tfrac{1}{2}kx^2\).</p>
+
+<p><strong>Spring and damper in series.</strong> For a massless junction the transmitted force is common. The total extension is \(x=x_s+x_d\), where \(x_s=F/k\) and \(\dot x_d=F/c\). Differentiating gives \(\dot x=\dot F/k+F/c\). If total extension is held fixed, the force relaxes with time constant \(c/k\). This differs from parallel elements, which share the same extension.</p>
+
+<h2 id="from-an-ode-to-state-equations">From an ODE to state equations</h2>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--choose-states-for-a-springmass-system">Worked example · Choose states for a spring–mass system</h3>
+
+  <p>Choose position \(x\) and velocity \(v\) as the states for \(m\ddot{x}+kx=f\). The two equations are \(\dot{x}=v\) and \(\dot{v}=-(k/m)x+f/m\). In the form \(\dot{z}=Az+Bu\) and \(y=Cz+Du\), the position output uses \(C=[1,\;0]\) and \(D=0\). Choose the output from the physical measurement of interest.</p>
+
+</section>
+
+<h2 id="coupled-motion">Coupled motion</h2>
+
+<p>A spring between two masses acts on their relative displacement and exerts equal and opposite forces. A normal mode describes a shape in which the masses oscillate at one frequency with fixed displacement ratios. Energy alternates between kinetic energy and spring energy in the undamped model.</p>
+
+<section class="lab activity" id="interactive-lab" aria-labelledby="activity-title" data-activity="modes" data-search-title="Two masses, two modes">
+  <h3 class="lab-title" id="activity-title">Two masses, two modes</h3>
+  
+  <p><strong>Predict.</strong> Which motion stretches the spring between the masses?</p>
+  <p><strong>Try.</strong> Play the in-phase and out-of-phase releases, then try the mixture. Pause to compare the direction of motion of each mass.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings">
+      
+      <label>
+        <span>Starting motion</span>
+        
+          <select name="preset">
+            
+              <option value="in-phase">In-phase</option>
+            
+              <option value="out-of-phase">Out-of-phase</option>
+            
+              <option value="mixture">Mixed motion</option>
+            
+          </select>
+        
+      </label>
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views">
+        
+        <figure class="activity-view" data-view="motion">
+          <figcaption>Coupled mass motion</figcaption>
+          <canvas role="img" aria-label="Purple is mass 1. Orange is mass 2. The motion is exaggerated for visibility."></canvas>
+          <p class="activity-view-key">Purple is mass 1. Orange is mass 2. The motion is exaggerated for visibility.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="time">
+          <figcaption>Mass displacements over time</figcaption>
+          <canvas role="img" aria-label="Solid purple is mass 1. Dashed orange is mass 2."></canvas>
+          <p class="activity-view-key">Solid purple is mass 1. Dashed orange is mass 2.</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> Which pure mode oscillates faster? Explain the difference by looking at the center spring.</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <img src="/modeling_course/assets/images/activities/modes.png" alt="Snapshot of Two masses, two modes. The reference case is described below." loading="lazy" />
+      
+      <p>For equal masses of 1 kg, outer springs of 9 N/m, and a coupling spring of 8 N/m, the in-phase frequency is 3 rad/s and the out-of-phase frequency is 5 rad/s. The mixed release combines these two modes.</p>
+      
+    </details>
+  
+</section>
+
+
+    
+    
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Parallel springs share displacement, so their stiffnesses add. Series springs share force, so their compliances add.</p>
+</li><li><p>Use position and velocity as states to turn the second-order spring–mass equation into two first-order equations.</p>
+</li><li><p>A coupling spring responds to relative displacement. In a normal mode, the masses move at one frequency with a fixed displacement ratio.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/10-drive-kinematics/"><small>Previous lecture</small>Drive Kinematics</a>
+        <a href="/modeling_course/lectures/12-dampers/" class="next"><small>Next lecture</small>Dampers and State Space</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

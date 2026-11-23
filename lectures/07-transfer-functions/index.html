@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transfer Functions and Stability · ME 3050</title>
+  <meta name="description" content="Derive an input-to-output transfer function and use its poles to interpret the response.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+  <script type="module" src="/modeling_course/assets/js/activities.js?v=1795471675"></script>
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 07</span></nav>
+<article class="lesson" data-lecture-number="07" data-lecture-title="Transfer Functions and Stability">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 07 · Dynamic response and modeling foundations</p>
+    <h1>Transfer Functions and Stability</h1>
+    <p class="lede">Derive an input-to-output transfer function and use its poles to interpret the response.</p>
+    
+    <p><a href="/modeling_course/exams/#exam-1">Exam 1 study guide</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-07-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Transfer Functions and Stability</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-07.pdf">Lecture PDF<span class="sr-only"> for Transfer Functions and Stability</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>How does measuring velocity instead of displacement change a force-to-output transfer function?</p>
+</li><li><p>What changes immediately when the same mass receives an ideal force impulse?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="pick-the-input-and-output-first">Pick the input and output first</h2>
+
+<p>A transfer function is the ratio of a chosen output transform to a chosen input transform when the system starts from rest. Once you know the block \(G(s)\), you can use it with different inputs through \(Y(s)=G(s)U(s)\).</p>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/transfer-outputs.svg" alt="The force input passes through a block equal to one over m s squared plus c s plus k. The output junction gives displacement. A following block multiplies displacement by s to give velocity." loading="lazy" />
+  <figcaption>Read displacement at the branch and velocity after multiplying by s. Both outputs come from the same applied force.</figcaption>
+</figure>
+
+<p>Take the Laplace transform of \(m\ddot{x}+c\dot{x}+kx=f\) with zero initial displacement and velocity. Group the terms multiplying \(X(s)\), then divide by the force input.</p>
+
+\[\begin{aligned}
+(ms^2+cs+k)X(s)&amp;=F(s),\\
+\frac{X(s)}{F(s)}&amp;=\frac{1}{ms^2+cs+k},&amp;
+\frac{V(s)}{F(s)}&amp;=\frac{s}{ms^2+cs+k}.
+\end{aligned}\]
+
+<p>The velocity block uses \(V(s)=sX(s)\) because the initial position is zero. For the two outputs drawn here, the numerator changes while the denominator stays the same. <a href="/modeling_course/lectures/13-transfer-functions-and-diagrams/">Trace how the spring and damper produce that denominator</a>.</p>
+
+<h2 id="connect-poles-to-modes">Connect poles to modes</h2>
+
+<p>After reducing the rational expression, the roots of the denominator are its poles. A pole on the negative real axis gives a decaying exponential, and a conjugate pair with negative real parts gives decaying oscillation. For a proper rational transfer function, bounded-input bounded-output stability requires all poles to lie strictly in the open left half-plane. A canceled mode can still matter internally, so check the state model when internal stability is the question.</p>
+
+<p>The push and tap below use fixed mass, stiffness, and damping. In <a href="/modeling_course/lectures/04-second-order-systems/#build-a-massspringdamper-model">Second-Order Systems</a>, change those parameters to see how the model’s poles move.</p>
+
+<h2 id="add-the-input">Add the input</h2>
+
+<p>The type of input determines what you multiply the same block by. A force step of magnitude \(F_0\) gives \(F(s)=F_0/s\). An ideal impulse of area \(J\) gives \(F(s)=J\). In both cases, compute \(X(s)=[X(s)/F(s)]F(s)\).</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--check-the-final-displacement">Worked example · Check the final displacement</h3>
+
+  <p>At rest, both acceleration and velocity are zero. The spring balances the applied force, so the final displacement is \(F_0/k\). A 1 N push on a 16 N/m spring gives \(1/16=0.0625\,\mathrm{m}\), or 62.5 mm.</p>
+
+</section>
+
+<p>An ideal impulse with area \(J\) transfers momentum without an instantaneous change in position. Integrating the force balance across the tap gives \(m[v(0^+)-v(0^-)]=J\). After the tap, the mass moves freely under the spring and damper forces. The transfer function’s impulse response \(h(t)\) is the displacement per unit impulse area.</p>
+
+<section class="lab activity" id="interactive-lab" aria-labelledby="activity-title" data-activity="step-impulse" data-search-title="A push and a tap">
+  <h3 class="lab-title" id="activity-title">A push and a tap</h3>
+  
+    
+    <figure class="activity-setup">
+      
+      <div class="activity-setup-views">
+        <img src="/modeling_course/assets/images/activities/diagrams/oscillator-setup.png" alt="A one kilogram mass slides horizontally. A parallel spring of 16 N/m and damper of 2.4 N·s/m connect it to the wall." width="680" height="414" loading="lazy" />
+        <img src="/modeling_course/assets/images/activities/diagrams/oscillator-fbd.png" alt="Applied force points right. Spring and damping forces point left for positive displacement and velocity. Weight and normal reaction balance vertically." width="680" height="414" loading="lazy" />
+      </div>
+      <figcaption>Take the positive x direction to the right. Weight and the normal reaction balance vertically.</figcaption>
+      
+    </figure>
+    <p><strong>Given.</strong> The mass starts at equilibrium and at rest, and positive displacement is to the right.</p>
+  
+  <p><strong>Predict.</strong> What happens if you keep pushing the mass? What changes if you only tap it once?</p>
+  <p><strong>Try.</strong> Start with a 1 N step and watch the mass settle. Then select the ideal impulse and two short pulses. Both short pulses supply 1 N·s of impulse. Compare their motion with the ideal tap.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings">
+      
+      <label>
+        <span>Forcing case</span>
+        
+          <select name="input">
+            
+              <option value="step">Step · hold 1 N</option>
+            
+              <option value="impulse">Ideal impulse · 1 N·s</option>
+            
+              <option value="wide">Short pulse · 0.25 s</option>
+            
+              <option value="narrow">Short pulse · 0.10 s</option>
+            
+          </select>
+        
+      </label>
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views activity-views-stacked">
+        
+        <figure class="activity-view" data-view="motion">
+          <figcaption>Mass motion</figcaption>
+          <canvas role="img" aria-label="The arrow indicates an applied force or the instantaneous tap. The drawing exaggerates displacement."></canvas>
+          <p class="activity-view-key">The arrow indicates an applied force or the instantaneous tap. The drawing exaggerates displacement.</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="force">
+          <figcaption>Force input</figcaption>
+          <canvas role="img" aria-label="For the ideal impulse"></canvas>
+          <p class="activity-view-key">For the ideal impulse</p>
+        </figure>
+        
+        <figure class="activity-view" data-view="time">
+          <figcaption>Mass displacement</figcaption>
+          <canvas role="img" aria-label="For the two finite pulses"></canvas>
+          <p class="activity-view-key">For the two finite pulses</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> Compare displacement and velocity immediately after the two idealized inputs. Why does only the sustained push shift the final position?</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <img src="/modeling_course/assets/images/activities/step-impulse.png" alt="Snapshot of A push and a tap. The reference case is described below." loading="lazy" />
+      
+      <p>A 1 N step moves the equilibrium to 62.5 mm. A 1 N·s ideal impulse leaves position continuous but gives the 1 kg mass an immediate 1 m/s velocity jump. Once the tap is over, damping brings the mass back to its original equilibrium.</p>
+      
+    </details>
+  
+</section>
+
+<p><a href="/modeling_course/lectures/06-convolution/">See how the same impulse response builds up a response to any force history</a>.</p>
+
+    
+    
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>A transfer function relates a chosen input and output with the initial conditions set to zero.</p>
+</li><li><p>For a proper rational transfer function, bounded-input bounded-output stability requires all poles of the reduced function to lie in the open left half-plane.</p>
+</li><li><p>A finite impulse area changes the mass’s momentum instantly. Its position stays continuous across the tap.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/06-convolution/"><small>Previous lecture</small>Convolution and System Response</a>
+        <a href="/modeling_course/lectures/08-exam-1-review/" class="next"><small>Next lecture</small>Exam 1 Review</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

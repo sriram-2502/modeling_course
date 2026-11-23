@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Electrical Circuits · ME 3050</title>
+  <meta name="description" content="Apply Kirchhoff’s laws to derive RC, RL, and RLC dynamics.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  <script type="module" src="/modeling_course/assets/js/labs.js?v=1795471675"></script>
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 17</span></nav>
+<article class="lesson" data-lecture-number="17" data-lecture-title="Electrical Circuits">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 17 · Electrical, fluid, and thermal systems</p>
+    <h1>Electrical Circuits</h1>
+    <p class="lede">Apply Kirchhoff’s laws to derive RC, RL, and RLC dynamics.</p>
+    
+    <p><a href="/modeling_course/exams/#final-exam">Final Exam suggested preparation</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-17-notes.pdf">Handwritten notes (PDF)<span class="sr-only"> for Electrical Circuits</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-17.pdf">Lecture PDF<span class="sr-only"> for Electrical Circuits</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>Does doubling resistance speed up the response in an RC circuit, an RL circuit, or both?</p>
+</li><li><p>When you connect a second RC stage, where does its charging current come from?</p>
+</li><li><p>What can make the capacitor voltage overshoot the applied step in an RLC circuit?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="element-laws-and-storage">Element laws and storage</h2>
+
+<p>With passive sign convention, a resistor follows \(v=Ri\), an inductor \(v=L\,di/dt\), and a capacitor \(i=C\,dv/dt\). Use Kirchhoff’s current law at nodes and voltage law around loops. Capacitor voltage and inductor current are natural state variables because they track stored energy.</p>
+
+<p>The <strong>ammeter</strong> goes in series and reports signed current. The <strong>voltmeter</strong> connects across the capacitor or inductor and reads its voltage drop. The moving blue dots follow the direction of conventional current, with their speed scaled for visibility.</p>
+
+<p>Compare the models and pole plots for the <a href="#a-series-rc-circuit">RC</a>, <a href="#a-series-rl-circuit">RL</a>, and <a href="#a-series-rlc-circuit">RLC</a> circuits.</p>
+
+<h2 id="a-series-rc-circuit">A series RC circuit</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/rc.svg" alt="Series loop with an input voltage source, resistor R, and capacitor C. The current arrow points clockwise and the capacitor voltage is positive at its top terminal." loading="lazy" />
+  <figcaption>Use clockwise current and measure capacitor voltage from the bottom terminal to the top. The lab starts with an uncharged capacitor and a 5 V step.</figcaption>
+</figure>
+
+<p>For a source \(u(t)\) driving a resistor and capacitor in series, \(u=Ri+v_C\) and \(i=C\,dv_C/dt\). Substituting gives \(RC\,dv_C/dt+v_C=u\). For a step from zero to \(U\) and an initially uncharged capacitor,</p>
+
+\[v_C(t)=U\bigl(1-e^{-t/(RC)}\bigr).\]
+
+<p>The product \(RC\) has units of seconds.</p>
+
+<section class="lab" id="interactive-lab" aria-labelledby="lab-title" data-model="rc" data-search-title="Charge an RC circuit">
+  <h3 class="lab-title" id="lab-title">Charge an RC circuit</h3>
+  <p><strong>Predict.</strong> How will a larger resistance affect the capacitor voltage after 1 s?</p>
+  <p><strong>Try.</strong> Apply a 5 V step to an initially uncharged capacitor. Vary resistance and capacitance separately.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="RC\,\frac{dv_C}{dt}+v_C=V_{\mathrm{in}}" data-display="">RC dv_C/dt + v_C = V_in.</div>
+    
+    <div class="lab-equation math-expression" data-tex="v_C(t)=V_{\mathrm{in}}\left(1-e^{-t/(RC)}\right)" data-display="">For a constant voltage step, v_C(t) = V_in[1 − exp(−t/(RC))].</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="lab-parameter">Resistance <span class="math-expression" data-tex="R">R</span></label>
+  <output id="lab-parameter-readout" for="lab-parameter" data-unit="kΩ"></output>
+  <input type="range" id="lab-parameter" min="0.25" max="3" step="0.05" value="1" aria-describedby="lab-parameter-readout" />
+</div>
+
+      
+        
+
+<div class="lab-control">
+  <label for="lab-capacitance">Capacitance <span class="math-expression" data-tex="C">C</span></label>
+  <output id="lab-capacitance-readout" for="lab-capacitance" data-unit="mF"></output>
+  <input type="range" id="lab-capacitance" min="0.5" max="2" step="0.05" value="1" aria-describedby="lab-capacitance-readout" data-parameter="capacitance" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="0.5" aria-pressed="false">0.5 kΩ</button><button type="button" data-value="1" aria-pressed="false">1 kΩ</button><button type="button" data-value="2" aria-pressed="false">2 kΩ</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Ammeter in series and voltmeter across the capacitor</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Ammeter in series and voltmeter across the capacitor" aria-describedby="lab-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="lab-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Time response</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="lab-key"></canvas>
+        <p class="lab-key" id="lab-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      
+      <figure>
+        <figcaption>System poles</figcaption>
+        <canvas class="lab-pole-chart" role="img" aria-label="Real versus imaginary pole plot"></canvas>
+      </figure>
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  <p>Increasing either resistance or capacitance increases RC and moves the pole closer to zero. Try changing both while keeping their product constant.</p>
+  <p><strong>Explain.</strong> Find the time to reach about 3.16 V. How does it change with resistance? Explain why all three curves approach 5 V.</p>
+  <details class="lab-reference">
+    <summary>Compare reference plots and values</summary>
+    <p>The reference cases use a 1 mF capacitor.</p>
+    
+    <figure><img src="/modeling_course/assets/images/labs/rc.png" alt="Time responses for the preset cases. Use the table below to compare their numerical values." width="1022" height="504" loading="lazy" /></figure>
+    
+    <table>
+      <thead><tr><th scope="col">Resistance</th><th scope="col">Capacitor voltage at t = 1 s</th></tr></thead>
+      <tbody><tr><th scope="row">0.5 kΩ</th><td>4.32 V</td></tr><tr><th scope="row">1 kΩ</th><td>3.16 V</td></tr><tr><th scope="row">2 kΩ</th><td>1.97 V</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+<h2 id="a-series-rl-circuit">A series RL circuit</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/rl.svg" alt="Series loop with a voltage source, resistor R, and inductor L. The current arrow points clockwise." loading="lazy" />
+  <figcaption>The inductor current is the state. Increasing inductance slows the current change for a fixed resistance.</figcaption>
+</figure>
+
+<p>The series RL circuit obeys \(L\,di/dt+Ri=u\), with time constant \(L/R\) and pole \(s=-R/L\).</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--double-the-rl-resistance">Worked example · Double the RL resistance</h3>
+
+  <p>For a 2 Ω resistor and a 1 H inductor, the pole is \(-2\,\mathrm{s}^{-1}\). Doubling the resistance moves it to \(-4\,\mathrm{s}^{-1}\) and halves the time constant. For the same voltage step, the final current falls by half because \(i_\infty=U/R\).</p>
+
+</section>
+
+<section class="lab" id="rl-lab" aria-labelledby="rl-lab-title" data-model="rl" data-search-title="Change the time constant of an RL circuit">
+  <h3 class="lab-title" id="rl-lab-title">Change the time constant of an RL circuit</h3>
+  <p><strong>Predict.</strong> Will more resistance make the current rise faster or slower? How will the final current change?</p>
+  <p><strong>Try.</strong> Apply a 5 V step with zero initial current. In turn, change the resistance and the inductance.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="L\dot i+Ri=u(t),\qquad s=-\frac{R}{L}" data-display="">L i′ + Ri = u(t). The pole is at −R/L.</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="rl-lab-parameter">Resistance <span class="math-expression" data-tex="R">R</span></label>
+  <output id="rl-lab-parameter-readout" for="rl-lab-parameter" data-unit="Ω"></output>
+  <input type="range" id="rl-lab-parameter" min="0.5" max="5" step="0.05" value="2" aria-describedby="rl-lab-parameter-readout" />
+</div>
+
+      
+        
+
+<div class="lab-control">
+  <label for="rl-lab-inductance">Inductance <span class="math-expression" data-tex="L">L</span></label>
+  <output id="rl-lab-inductance-readout" for="rl-lab-inductance" data-unit="H"></output>
+  <input type="range" id="rl-lab-inductance" min="0.5" max="2" step="0.05" value="1" aria-describedby="rl-lab-inductance-readout" data-parameter="inductance" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="1" aria-pressed="false">1 Ω</button><button type="button" data-value="2" aria-pressed="false">2 Ω</button><button type="button" data-value="4" aria-pressed="false">4 Ω</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Ammeter in series and voltmeter across the inductor</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Ammeter in series and voltmeter across the inductor" aria-describedby="rl-lab-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="rl-lab-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Time response</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="rl-lab-key"></canvas>
+        <p class="lab-key" id="rl-lab-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      
+      <figure>
+        <figcaption>System poles</figcaption>
+        <canvas class="lab-pole-chart" role="img" aria-label="Real versus imaginary pole plot"></canvas>
+      </figure>
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  <p>Increasing resistance moves the RL pole farther left. In the RC circuit, increasing resistance moves the pole toward zero.</p>
+  <p><strong>Explain.</strong> Double the inductance and resistance together. Which features of the response change?</p>
+  <details class="lab-reference">
+    <summary>Compare reference values</summary>
+    
+    
+    <table>
+      <thead><tr><th scope="col">Resistance</th><th scope="col">Pole at L = 1 H</th></tr></thead>
+      <tbody><tr><th scope="row">1 Ω</th><td>−1 s⁻¹</td></tr><tr><th scope="row">2 Ω</th><td>−2 s⁻¹</td></tr><tr><th scope="row">4 Ω</th><td>−4 s⁻¹</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+<p><strong>Read the meters at switching.</strong> For an initially uncharged capacitor in a series RC circuit, the capacitor voltage starts at zero and the initial current is \(V/R\). For an initially unenergized series RL circuit, the current starts at zero and rises toward \(V/R\). The ideal voltage step changes the derivative of the stored state. Check the initial meter readings before pressing Play.</p>
+
+<h2 id="a-series-rlc-circuit">A series RLC circuit</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/rlc.svg" alt="Series loop with a voltage source, resistor R, inductor L, and capacitor C. Current is clockwise and the capacitor voltage is measured top relative to bottom." loading="lazy" />
+  <figcaption>The current is shared by all three elements. The lab measures the capacitor voltage after a 5 V step with zero initial voltage and current.</figcaption>
+</figure>
+
+<p>Current and capacitor voltage are two states. Use \(u=Ri+L\dot{i}+v_C\) and \(i=C\dot{v}_C\) to obtain \(LC\ddot{v}_C+RC\dot{v}_C+v_C=u\). With capacitor voltage as the output, its transfer-function poles are the roots of \(LCs^2+RCs+1=0\).</p>
+
+<p>Divide by \(LC\) and compare with \(s^2+(c/m)s+k/m=0\) for the mass–spring–damper system. The circuit’s \(R/L\) plays the role of \(c/m\), and \(1/(LC)\) plays the role of \(k/m\).</p>
+
+<section class="lab" id="rlc-lab" aria-labelledby="rlc-lab-title" data-model="rlc" data-search-title="Follow the poles of an RLC circuit">
+  <h3 class="lab-title" id="rlc-lab-title">Follow the poles of an RLC circuit</h3>
+  <p><strong>Predict.</strong> Can the capacitor voltage overshoot a 5 V source step? What happens to the poles as you increase resistance?</p>
+  <p><strong>Try.</strong> Start with a 1 H inductor and 1 F capacitor. Switch between the three resistance presets, then change inductance or capacitance.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="LC\ddot v_C+RC\dot v_C+v_C=u(t)" data-display="">LC v_C″ + RC v_C′ + v_C = u(t).</div>
+    
+    <div class="lab-equation math-expression" data-tex="\frac{V_C(s)}{U(s)}=\frac{1}{LCs^2+RCs+1}" data-display="">V_C(s)/U(s) = 1/(LCs² + RCs + 1).</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="rlc-lab-parameter">Resistance <span class="math-expression" data-tex="R">R</span></label>
+  <output id="rlc-lab-parameter-readout" for="rlc-lab-parameter" data-unit="Ω"></output>
+  <input type="range" id="rlc-lab-parameter" min="0.2" max="5" step="0.05" value="0.5" aria-describedby="rlc-lab-parameter-readout" />
+</div>
+
+      
+        
+
+<div class="lab-control">
+  <label for="rlc-lab-inductance">Inductance <span class="math-expression" data-tex="L">L</span></label>
+  <output id="rlc-lab-inductance-readout" for="rlc-lab-inductance" data-unit="H"></output>
+  <input type="range" id="rlc-lab-inductance" min="0.5" max="2" step="0.05" value="1" aria-describedby="rlc-lab-inductance-readout" data-parameter="inductance" />
+</div>
+
+      
+        
+
+<div class="lab-control">
+  <label for="rlc-lab-capacitance">Capacitance <span class="math-expression" data-tex="C">C</span></label>
+  <output id="rlc-lab-capacitance-readout" for="rlc-lab-capacitance" data-unit="F"></output>
+  <input type="range" id="rlc-lab-capacitance" min="0.5" max="2" step="0.05" value="1" aria-describedby="rlc-lab-capacitance-readout" data-parameter="capacitance" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="0.5" aria-pressed="false">0.5 Ω</button><button type="button" data-value="2" aria-pressed="false">2 Ω</button><button type="button" data-value="4" aria-pressed="false">4 Ω</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Watch the sign on the ammeter and the direction of the markers</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Watch the sign on the ammeter and the direction of the markers" aria-describedby="rlc-lab-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="rlc-lab-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots lab-plots-paired">
+      <figure>
+        <figcaption>Time response</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="rlc-lab-key"></canvas>
+        <p class="lab-key" id="rlc-lab-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      
+      <figure>
+        <figcaption>System poles</figcaption>
+        <canvas class="lab-pole-chart" role="img" aria-label="Real versus imaginary pole plot"></canvas>
+      </figure>
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  <p>The capacitor and inductor store energy. Increasing resistance moves the conjugate poles together on the real axis at critical damping. Beyond that point the poles split along the real axis.</p>
+  <p><strong>Explain.</strong> Find the resistance at which ringing disappears. Change the inductance and explain why the threshold moves.</p>
+  <details class="lab-reference">
+    <summary>Compare reference values</summary>
+    
+    
+    <table>
+      <thead><tr><th scope="col">Resistance</th><th scope="col">Poles at L = 1 H and C = 1 F</th></tr></thead>
+      <tbody><tr><th scope="row">0.5 Ω</th><td>−0.25 ± 0.968j s⁻¹</td></tr><tr><th scope="row">2 Ω</th><td>−1 s⁻¹, repeated</td></tr><tr><th scope="row">4 Ω</th><td>−0.268 s⁻¹ and −3.732 s⁻¹</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+<h2 id="stage-loading">Stage loading</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/rc-ladder.svg" alt="A voltage source drives two series resistors. A capacitor connects each node to the grounded bottom wire." loading="lazy" />
+  <figcaption>Measure both node voltages from the bottom ground wire. Their difference drives current between the stages.</figcaption>
+</figure>
+
+<p>Write a separate current balance for each capacitor node in a ladder circuit. The branch current between nodes depends on their voltage difference. Because each node appears in the other node’s equation, two connected stages generally behave differently from the product of their isolated responses. An ideal buffer is one way to remove loading.</p>
+
+<p>The bottom wire connects both capacitors to the negative terminal of the 5 V step source. This <strong>ground node</strong> is the shared 0 V reference for both voltmeters. The ammeter reads the current between the stages.</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--read-the-current-from-the-node-voltages">Worked example · Read the current from the node voltages</h3>
+
+  <p>Suppose the voltmeters read 3.85 V at Node 1 and 3.14 V at Node 2. With a 1 kΩ resistor between them, the current is \((3.85-3.14)/1000=0.00071\,\mathrm{A}\). It flows from Node 1 to Node 2, so the ammeter reads about 0.71 mA.</p>
+
+</section>
+
+<section class="lab" id="rc-ladder-lab" aria-labelledby="rc-ladder-lab-title" data-model="ladder" data-search-title="Watch one RC stage load the other">
+  <h3 class="lab-title" id="rc-ladder-lab-title">Watch one RC stage load the other</h3>
+  <p><strong>Predict.</strong> Which node begins changing immediately after a 5 V step?</p>
+  <p><strong>Try.</strong> Use the same 1 mF capacitance at each node. Both resistors share the value on the slider. Scrub time to compare the two node voltages.</p>
+  
+  <div class="lab-equations">
+    <h4>Model used in the simulation</h4>
+    
+    <div class="lab-equation math-expression" data-tex="RC\dot v_1=u-2v_1+v_2,\qquad RC\dot v_2=v_1-v_2" data-display="">RC times node 1’s voltage rate equals u minus twice v1 plus v2. RC times node 2’s voltage rate equals v1 minus v2.</div>
+    
+  </div>
+  
+
+  <div class="lab-live" hidden="">
+    
+    <div class="lab-controls">
+      
+
+<div class="lab-control">
+  <label for="rc-ladder-lab-parameter">Resistance per stage</label>
+  <output id="rc-ladder-lab-parameter-readout" for="rc-ladder-lab-parameter" data-unit="kΩ"></output>
+  <input type="range" id="rc-ladder-lab-parameter" min="0.5" max="2" step="0.05" value="1" aria-describedby="rc-ladder-lab-parameter-readout" />
+</div>
+
+      
+    </div>
+    
+    <div class="lab-presets" role="group" aria-label="Preset values">
+      <button type="button" data-value="0.5" aria-pressed="false">0.5 kΩ</button><button type="button" data-value="1" aria-pressed="false">1 kΩ</button><button type="button" data-value="2" aria-pressed="false">2 kΩ</button>
+      <button class="reset" type="button" data-reset="">Reset</button>
+    </div>
+    
+    <figure class="lab-motion">
+      <figcaption>Meters show node voltages and current between stages</figcaption>
+      <canvas class="lab-motion-chart" role="img" aria-label="Meters show node voltages and current between stages" aria-describedby="rc-ladder-lab-live-state"></canvas>
+      
+      <p class="lab-motion-value" id="rc-ladder-lab-live-state"></p>
+      
+    </figure>
+    <div class="activity-playback" aria-label="Animation playback controls">
+      <button type="button" class="activity-button primary" data-lab-play="">Play</button>
+      <button type="button" class="activity-button" data-lab-step="" aria-label="Step time forward">Step</button>
+      <label class="activity-time">
+        <span>Simulation time</span>
+        <input type="range" min="0" max="300" value="0" step="1" data-lab-time="" />
+        <span class="time-value" aria-hidden="true" data-lab-time-value=""></span>
+      </label>
+    </div>
+    
+    <div class="lab-plots">
+      <figure>
+        <figcaption>Time response</figcaption>
+        <canvas class="lab-chart" role="img" aria-label="Time response" aria-describedby="rc-ladder-lab-key"></canvas>
+        <p class="lab-key" id="rc-ladder-lab-key">Solid line: selected case. Dashed line: starting case.</p>
+      </figure>
+      
+      
+    </div>
+    <dl class="lab-metrics" aria-label="Response values"></dl>
+  </div>
+
+  
+  <p><strong>Explain.</strong> Why does the second capacitor draw current from the first node while the node voltages differ?</p>
+  <details class="lab-reference">
+    <summary>Compare reference values</summary>
+    
+    
+    <table>
+      <thead><tr><th scope="col">Resistance per stage</th><th scope="col">Isolated-stage RC</th></tr></thead>
+      <tbody><tr><th scope="row">0.5 kΩ</th><td>0.5 s</td></tr><tr><th scope="row">1 kΩ</th><td>1 s</td></tr><tr><th scope="row">2 kΩ</th><td>2 s</td></tr></tbody>
+    </table>
+  </details>
+</section>
+
+
+    
+    
+    <p><a href="/modeling_course/assignments/#assignment-07">Practice with Assignment 7 · Electrical and Electromechanical Systems</a></p>
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Choose capacitor voltage and inductor current as states. Use Kirchhoff’s laws and the element equations to find their dynamics.</p>
+</li><li><p>Increasing resistance lengthens the RC time constant \(RC\) and shortens the RL time constant \(L/R\).</p>
+</li><li><p>A series RLC circuit has two storage elements and two poles. Underdamped poles can produce ringing and overshoot in the capacitor voltage.</p>
+</li><li><p>A second RC stage draws charging current from the first. An ideal buffer isolates the stages.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/16-exam-2-review/"><small>Previous lecture</small>Exam 2 Review</a>
+        <a href="/modeling_course/lectures/18-electromechanical-coupling/" class="next"><small>Next lecture</small>Electromechanical Coupling</a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+

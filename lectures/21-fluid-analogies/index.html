@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fluid Systems and Electrical Analogies · ME 3050</title>
+  <meta name="description" content="Model hydraulic pressure, restrictions, capacitance, and piston forces.">
+  <meta name="theme-color" content="#2e1a47">
+  <link rel="stylesheet" href="/modeling_course/assets/css/course.css?v=1795471675">
+  <script src="/modeling_course/assets/js/course.js" defer></script>
+  
+  <link rel="stylesheet" href="/modeling_course/assets/vendor/katex/katex.min.css">
+  <script src="/modeling_course/assets/vendor/katex/katex.min.js" defer></script>
+  <script src="/modeling_course/assets/vendor/katex/auto-render.min.js" defer></script>
+  <script src="/modeling_course/assets/js/course-math.js" defer></script>
+  
+  
+    
+    
+    <script type="importmap">
+    { "imports": {
+      "/modeling_course/assets/js/activities.js": "/modeling_course/assets/js/activities.js?v=1795471675",
+      "/modeling_course/assets/js/activity-models.js": "/modeling_course/assets/js/activity-models.js?v=1795471675",
+      "/modeling_course/assets/js/activity-views.js": "/modeling_course/assets/js/activity-views.js?v=1795471675",
+      "/modeling_course/assets/js/cart-preview.js": "/modeling_course/assets/js/cart-preview.js?v=1795471675",
+      "/modeling_course/assets/js/course-math.js": "/modeling_course/assets/js/course-math.js?v=1795471675",
+      "/modeling_course/assets/js/course.js": "/modeling_course/assets/js/course.js?v=1795471675",
+      "/modeling_course/assets/js/exam-guide.js": "/modeling_course/assets/js/exam-guide.js?v=1795471675",
+      "/modeling_course/assets/js/lab-instruments.js": "/modeling_course/assets/js/lab-instruments.js?v=1795471675",
+      "/modeling_course/assets/js/lab-models.js": "/modeling_course/assets/js/lab-models.js?v=1795471675",
+      "/modeling_course/assets/js/lab-motion.js": "/modeling_course/assets/js/lab-motion.js?v=1795471675",
+      "/modeling_course/assets/js/lab-playback.js": "/modeling_course/assets/js/lab-playback.js?v=1795471675",
+      "/modeling_course/assets/js/lab-poles.js": "/modeling_course/assets/js/lab-poles.js?v=1795471675",
+      "/modeling_course/assets/js/labs.js": "/modeling_course/assets/js/labs.js?v=1795471675",
+      "/modeling_course/assets/js/simulation-drawing.js": "/modeling_course/assets/js/simulation-drawing.js?v=1795471675"
+      
+    } }
+    </script>
+  
+  
+  <link rel="stylesheet" href="/modeling_course/assets/css/activities.css">
+  
+  <script type="module" src="/modeling_course/assets/js/activities.js?v=1795471675"></script>
+  
+</head>
+<body data-course-root="/modeling_course/">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="course-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">
+        <a class="course-brand" href="/modeling_course/">
+          <span class="brand-mark" aria-hidden="true">ME</span>
+          <strong>ME 3050</strong>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="course-nav" hidden>Menu</button>
+      </div>
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        
+          <a href="/modeling_course/"><span class="nav-icon calendar" aria-hidden="true"></span>Course Overview</a>
+        
+          <a href="/modeling_course/syllabus/"><span class="nav-icon document" aria-hidden="true"></span>Syllabus</a>
+        
+          <a href="/modeling_course/lectures/" class="active"><span class="nav-icon book" aria-hidden="true"></span>Lectures</a>
+        
+          <a href="/modeling_course/exams/"><span class="nav-icon document" aria-hidden="true"></span>Exam study guide</a>
+        
+          <a href="/modeling_course/assignments/"><span class="nav-icon clipboard" aria-hidden="true"></span>Assignments</a>
+        
+          <a href="/modeling_course/projects/"><span class="nav-icon folder" aria-hidden="true"></span>Projects</a>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <span>Modeling and Analysis of Dynamic Systems</span>
+        <a href="/modeling_course/#instructor-bio">Sriram Krishnamoorthy</a>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <header class="utility-bar">
+        <p>Modeling and Analysis of Dynamic Systems</p>
+        <form class="course-search" action="/modeling_course/search/" role="search" hidden>
+          <label class="sr-only" for="course-query">Search the course</label>
+          <input id="course-query" name="q" type="search" placeholder="Search the course" required>
+          <button type="submit" aria-label="Search"><span aria-hidden="true"></span></button>
+        </form>
+      </header>
+      <main class="main-content" id="main" tabindex="-1">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/modeling_course/lectures/">Lectures</a><span aria-hidden="true">/</span><span>Lecture 21</span></nav>
+<article class="lesson" data-lecture-number="21" data-lecture-title="Fluid Systems and Electrical Analogies">
+  <header class="page-intro">
+    <p class="eyebrow">Lecture 21 · Electrical, fluid, and thermal systems</p>
+    <h1>Fluid Systems and Electrical Analogies</h1>
+    <p class="lede">Model hydraulic pressure, restrictions, capacitance, and piston forces.</p>
+    
+    <p><a href="/modeling_course/exams/#final-exam">Final Exam suggested preparation</a></p>
+    
+<div class="material-links">
+  
+    <a class="material-link" href="/modeling_course/materials/lectures/lecture-21-notes.pdf">Shared fluid notes (PDF)<span class="sr-only"> for Fluid Systems and Electrical Analogies</span></a>
+    
+  
+  <a class="material-link" href="/modeling_course/materials/lectures/lecture-21.pdf">Lecture PDF<span class="sr-only"> for Fluid Systems and Electrical Analogies</span></a>
+</div>
+
+
+  </header>
+  <div class="prose">
+    
+    <section class="lesson-guide" aria-labelledby="opening-questions">
+      <h2 id="opening-questions">Opening questions</h2>
+      <ul>
+        <li><p>Which hydraulic variables play the roles of voltage and current?</p>
+</li><li><p>Which cylinder chamber needs inflow as the piston moves right, and what happens to the flows as it reverses?</p>
+</li>
+      </ul>
+    </section>
+    
+    <nav class="lesson-jumps" data-lesson-jumps aria-label="On this page" hidden></nav>
+    <h2 id="pressure-and-flow">Pressure and flow</h2>
+
+<p>Pressure difference drives volumetric flow in a hydraulic restriction. Near a chosen operating point, a nonlinear relation can be approximated with a local resistance \(R=d(\Delta p)/dq\). Pressure plays a role analogous to voltage, and flow to current.</p>
+
+<h2 id="storage-and-pressure-force">Storage and pressure force</h2>
+
+<p>For a free-surface tank with \(p=\rho gh\), a constant surface area \(A\) corresponds to fluid capacitance \(C_h=A/(\rho g)\), where \(q_{\mathrm{net}}=C_h\dot{p}\). A piston turns a pressure difference into force. For equal effective areas, \(F=A_p(p_1-p_2)\). For unequal areas, calculate each pressure force separately.</p>
+
+<p>Watch how storage and outlet resistance set the response in the <a href="/modeling_course/lectures/20-fluid-systems/#filling-and-draining-demo">two-tank fill and drain example</a>.</p>
+
+<h2 id="coupled-actuator-model">Coupled actuator model</h2>
+
+<figure class="example-diagram">
+  <img src="/modeling_course/assets/images/examples/hydraulic-actuator.svg" alt="A piston separates two fluid chambers. Flow enters chamber 1 and leaves chamber 2 as the piston moves to the right." loading="lazy" />
+  <figcaption>Positive motion increases the left volume and decreases the right volume. Use the effective area for each chamber when finding its pressure force.</figcaption>
+</figure>
+
+<p>In a double-acting actuator, piston motion changes the two chamber volumes in opposite directions. Include these volume changes in the chamber flow balances, and use chamber pressures in the piston’s mechanical balance. For a simple damper with \(q=A_pv\) and \(\Delta p=Rq\), the equivalent damping magnitude is \(RA_p^2\).</p>
+
+<p>For the sealed-air model, prescribe the piston motion and treat the gas as isothermal. Each chamber obeys \(pV=p_0V_0\). As the piston moves, the gas pressure rises in the shrinking chamber and falls in the expanding chamber. Switch to the open-port liquid model to compare with the flow required by the same motion.</p>
+
+<section class="worked-example">
+
+  <h3 id="worked-example--find-the-force-at-the-right-stroke-limit">Worked example · Find the force at the right stroke limit</h3>
+
+  <p>At the right stroke limit, the two air volumes are 0.125 L on the left and 0.075 L on the right. Both started at 100 kPa and 0.100 L. The pressure–volume relation gives 80 kPa on the left and 133.3 kPa on the right. Over an effective area of 0.001 m² the net pressure force is 53.3 N to the left.</p>
+
+</section>
+
+<section class="lab activity" id="interactive-lab" aria-labelledby="activity-title" data-activity="hydraulic" data-search-title="Watch a piston compress and expand air">
+  <h3 class="lab-title" id="activity-title">Watch a piston compress and expand air</h3>
+  
+  <p><strong>Predict.</strong> When the piston moves right, which chamber reaches a higher pressure?</p>
+  <p><strong>Try.</strong> Start with sealed air at 100 kPa in both 0.10 L chambers. Scrub to either stroke end and compare pressure and piston force. Then select liquid and watch the flow through the ports.</p>
+
+  
+  <div class="activity-live" data-activity-live="" hidden="">
+    <form class="activity-options" aria-label="Simulation settings">
+      
+      <label>
+        <span>Chamber model</span>
+        
+          <select name="medium">
+            
+              <option value="air">Air · sealed chambers</option>
+            
+              <option value="liquid">Liquid · open ports</option>
+            
+          </select>
+        
+      </label>
+      
+      <label>
+        <span>Piston motion frequency</span>
+        
+          <select name="frequency">
+            
+              <option value="0.5">0.5 Hz</option>
+            
+              <option value="1">1 Hz</option>
+            
+              <option value="0.25">0.25 Hz</option>
+            
+          </select>
+        
+      </label>
+      
+    </form>
+
+    <div class="activity-playback" aria-label="Playback controls">
+      <button type="button" class="activity-button primary" data-play="">Play</button>
+      <button type="button" class="activity-button" data-step="" aria-label="Step forward 0.1 seconds">Step</button>
+      <button type="button" class="activity-button" data-reset-activity="">Reset</button>
+      <label class="activity-time">
+        <span>Time</span>
+        <input type="range" min="0" max="1" value="0" step="1" data-time="" />
+        <span class="time-value" aria-hidden="true" data-time-value="">0.00 s</span>
+      </label>
+    </div>
+
+    <div class="activity-visuals">
+      
+      <div class="activity-views">
+        
+        <figure class="activity-view" data-view="physical">
+          <figcaption>Piston, chamber volumes, and pressure</figcaption>
+          <canvas role="img" aria-label="In air mode the particles compress and spread as the sealed volumes change. In liquid mode the arrows show flow through the ports."></canvas>
+          <p class="activity-view-key">In air mode the particles compress and spread as the sealed volumes change. In liquid mode the arrows show flow through the ports.</p>
+        </figure>
+        
+      </div>
+    </div>
+    <dl class="activity-readout" aria-label="Values at the selected time" data-activity-readout=""></dl>
+  </div>
+  
+
+  
+  
+  <p><strong>Explain.</strong> At a stroke end, why can the sealed air exert a force even though the piston speed is zero?</p>
+  
+    <details class="activity-reference" data-activity-reference="" open="">
+      <summary>Reference case</summary>
+      
+      <p>At the right stroke end in air mode, the left gas expands to 80.0 kPa and the right gas compresses to 133.3 kPa. The net pressure force is 53.3 N to the left.</p>
+      
+      <div class="lab-equation math-expression" data-tex="pV=p_0V_0\ \text{(sealed air)},\qquad q_1=A_p\dot{x},\quad q_2=-A_p\dot{x}\ \text{(liquid)}" data-display="">Sealed isothermal air obeys pV = p₀V₀. With incompressible liquid and equal effective areas, the two chamber inflows are equal and opposite.</div>
+      
+    </details>
+  
+</section>
+
+
+    
+    
+    <p><a href="/modeling_course/assignments/#assignment-08">Practice with Assignment 8 · Fluid Systems</a></p>
+    
+    <section class="lesson-guide" aria-labelledby="key-takeaways">
+      <h2 id="key-takeaways">Key takeaways</h2>
+      <ul>
+        <li><p>Pressure difference drives flow through a restriction. A local hydraulic resistance is the slope of the pressure-drop versus flow curve.</p>
+</li><li><p>A free-surface tank stores fluid. Its cross-sectional area sets how quickly pressure changes for a given net inflow.</p>
+</li><li><p>Piston force comes from pressure acting over effective areas. Piston velocity sets how fast the chamber volumes change.</p>
+</li>
+      </ul>
+    </section>
+    
+  </div>
+  <nav class="lesson-nav" aria-label="Between lectures">
+    
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="/modeling_course/lectures/20-fluid-systems/"><small>Previous lecture</small>Fluid Systems and Mass Conservation</a>
+        <a href="/modeling_course/lectures/22-thermal-systems/" class="next"><small>Next lecture</small>Thermal Systems</a>
+      
+    
+      
+    
+      
+    
+      
+    
+  </nav>
+</article>
+
+
+      </main>
+      <footer class="site-footer"><span>ME 3050</span><a href="/modeling_course/syllabus/#instructor">Contact the instructor</a></footer>
+    </div>
+  </div>
+</body>
+</html>
+
